@@ -29,7 +29,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <a href="#" className="flex items-center">
-              <img src="../../public/Prancheta5.png" alt="O Piloto" className="h-8" />
+              <img src="src/public/Prancheta5.png" alt="O Piloto" className="h-8" />
             </a>
           </div>
 
