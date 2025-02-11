@@ -11,8 +11,11 @@ interface Message {
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { text: 'Olá! Sou o assistente d\'O Piloto, especializado em ajudar você a descobrir e aproveitar ao máximo nossos serviços de marketing digital. Como posso te ajudar hoje?', sender: 'bot' }
-  ]);
+    { 
+      "text": "Olá! Sou O Piloto, seu assistente de automação inteligente. Comigo, você pode executar ações diretamente no seu sistema, sem precisar navegar por telas ou cliques. 🚀 Quer gerar um relatório, atualizar um status ou automatizar uma tarefa? Basta me dizer que eu faço por você! Como posso te ajudar hoje?",  
+      "sender": "bot" 
+    }
+      ]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
