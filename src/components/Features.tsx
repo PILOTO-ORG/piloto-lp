@@ -1,9 +1,9 @@
 import React from 'react';
-import { Bot, Zap, Command, Workflow, Settings, Brain, MessageCircle } from 'lucide-react';
+import { Bot, Zap, Command, Workflow, Settings } from 'lucide-react';
 
-const About = () => {
+const Features = () => {
   return (
-    <section id="about" className="py-20 bg-gray-50">
+    <section id="features" className="py-20 bg-blue-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -21,7 +21,8 @@ const About = () => {
             <Command className="w-12 h-12 text-blue-600 mb-6" />
             <h3 className="text-xl font-semibold mb-4">Comandos Intuitivos</h3>
             <p className="text-gray-600">
-              Execute processos complexos com linguagem natural, eliminando treinamentos extensivos
+              Execute processos complexos com linguagem natural, eliminando a necessidade 
+              de treinamentos extensivos
             </p>
           </div>
 
@@ -29,15 +30,17 @@ const About = () => {
             <Workflow className="w-12 h-12 text-blue-600 mb-6" />
             <h3 className="text-xl font-semibold mb-4">Automação Inteligente</h3>
             <p className="text-gray-600">
-              Reduza tempo de execução em 80% e elimine até 99% dos erros operacionais
+              Crie fluxos de trabalho automatizados que se adaptam às suas necessidades, 
+              reduzindo erros em 99%
             </p>
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <Brain className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">IA Proativa</h3>
+            <Bot className="w-12 h-12 text-blue-600 mb-6" />
+            <h3 className="text-xl font-semibold mb-4">Assistente Proativo</h3>
             <p className="text-gray-600">
-              Antecipe necessidades e otimize processos com base em padrões de uso
+              Antecipe necessidades e sugira otimizações com base em padrões de uso e 
+              melhores práticas
             </p>
           </div>
 
@@ -45,15 +48,8 @@ const About = () => {
             <Zap className="w-12 h-12 text-blue-600 mb-6" />
             <h3 className="text-xl font-semibold mb-4">Resposta Instantânea</h3>
             <p className="text-gray-600">
-              Processe solicitações em tempo real, com resposta média de 1.5 segundos
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <MessageCircle className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Multicanal</h3>
-            <p className="text-gray-600">
-              Acesse via WhatsApp, web ou integre aos seus sistemas existentes
+              Processe solicitações em tempo real, com resposta média de 1.5 segundos, 
+              24 horas por dia
             </p>
           </div>
 
@@ -61,7 +57,8 @@ const About = () => {
             <Settings className="w-12 h-12 text-blue-600 mb-6" />
             <h3 className="text-xl font-semibold mb-4">Integração Flexível</h3>
             <p className="text-gray-600">
-              Conecte-se a qualquer sistema ou API mantendo seus processos atuais
+              Conecte-se a qualquer sistema ou API, mantendo seus processos atuais 
+              enquanto adiciona inteligência
             </p>
           </div>
         </div>
@@ -70,4 +67,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Features;

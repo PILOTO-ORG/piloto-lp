@@ -7,99 +7,99 @@ const Benefits = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Transforme produtividade em realidade com O Piloto
+            Resultados Comprovados para seu Negócio
           </h2>
           <p className="text-xl text-gray-600">
-            Empresas perdem tempo e dinheiro lidando com sistemas complexos.
-            O Piloto simplifica tudo com comandos inteligentes e automação total.
+            Aumente sua produtividade em até 80% e reduza custos operacionais em até 60%
+            com automação inteligente que se paga em semanas.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <Clock className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Economia de Tempo</h3>
+            <h3 className="text-xl font-semibold mb-4">ROI Garantido</h3>
             <p className="text-gray-600 mb-4">
-              Reduz em até 80% o tempo gasto em tarefas manuais
+              Economia mensal de 120+ horas em tarefas operacionais
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Automação de processos repetitivos
+                Redução de 60% em custos operacionais
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Execução rápida de comandos
+                Retorno do investimento em 8 semanas
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Respostas instantâneas
+                Eliminação de erros manuais
               </li>
             </ul>
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <UserCheck className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Experiência do Usuário Melhorada</h3>
+            <h3 className="text-xl font-semibold mb-4">Produtividade Maximizada</h3>
             <p className="text-gray-600 mb-4">
-              Interaja sem precisar estudar os sistemas
+              Aumente a eficiência da sua equipe em até 80%
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Interface conversacional intuitiva
+                Automação 24/7 sem interrupções
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Comandos em linguagem natural
+                Execução simultânea de tarefas
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Aprendizado rápido
+                Resposta instantânea a demandas
               </li>
             </ul>
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <ShieldCheck className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Mais Eficiência e Menos Erros</h3>
+            <h3 className="text-xl font-semibold mb-4">Qualidade Superior</h3>
             <p className="text-gray-600 mb-4">
-              Automação elimina processos manuais repetitivos
+              99.9% de precisão em processos automatizados
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Validação automática de dados
+                Validação automática em tempo real
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Processos padronizados
+                Conformidade garantida
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Rastreamento de ações
+                Auditoria completa de ações
               </li>
             </ul>
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <HeadphonesIcon className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Suporte 24/7</h3>
+            <h3 className="text-xl font-semibold mb-4">Suporte Especializado</h3>
             <p className="text-gray-600 mb-4">
-              Atendimento contínuo via WhatsApp e Web
+              Time dedicado com resposta em até 15 minutos
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Respostas instantâneas
+                Atendimento 24/7 multicanal
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Múltiplos canais de contato
+                Implementação em até 72h
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                Equipe especializada
+                Treinamento personalizado
               </li>
             </ul>
           </div>

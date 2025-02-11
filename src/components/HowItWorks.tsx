@@ -51,34 +51,103 @@ const HowItWorks = () => {
         </div>
 
         <div className="bg-gray-900 text-white rounded-2xl p-8 md:p-12">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Exemplos de Uso</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400" />
-                  <span>"Me envie um relatório de faturamento do mês"</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400" />
-                  <span>"Marque uma reunião com o cliente João para sexta às 14h"</span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400" />
-                  <span>"Atualize o status do pedido #1234 para 'Entregue'"</span>
-                </li>
-              </ul>
-              <button className="mt-8 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors inline-flex items-center">
-                Ver Demonstração
+              <h3 className="text-2xl font-bold mb-6">Exemplos de Uso</h3>
+              <div className="space-y-8">
+                <div>
+                  <h4 className="text-blue-400 font-semibold mb-3">CRM (Pipedrive, HubSpot, RD Station)</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                      <span>"Atualize o status do lead João para 'Qualificado'"</span>
+                    </li>
+                    <li className="flex items-start">
+                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                      <span>"Agende follow-up para próxima semana"</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-blue-400 font-semibold mb-3">ERP (TOTVS, SAP, Omie)</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                      <span>"Emita nota fiscal para o pedido #1234"</span>
+                    </li>
+                    <li className="flex items-start">
+                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                      <span>"Atualize o estoque do produto XYZ"</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-blue-400 font-semibold mb-3">Financeiro (Conta Azul, Nibo)</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                      <span>"Gere relatório de faturamento mensal"</span>
+                    </li>
+                    <li className="flex items-start">
+                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                      <span>"Faça conciliação bancária de hoje"</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button 
+                onClick={() => document.getElementById('integrations')?.scrollIntoView({ behavior: 'smooth' })}
+                className="mt-8 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors inline-flex items-center"
+              >
+                Ver Mais Integrações
                 <ArrowRight className="ml-2 w-5 h-5" />
               </button>
             </div>
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                alt="Dashboard Interface"
-                className="rounded-xl shadow-2xl"
-              />
+
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-blue-400 font-semibold mb-3">E-commerce (VTEX, Shopify)</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                    <span>"Atualize o status do pedido para 'Enviado'"</span>
+                  </li>
+                  <li className="flex items-start">
+                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                    <span>"Ajuste o preço do produto ABC"</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-blue-400 font-semibold mb-3">RH (Gupy, Senior Sistemas)</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                    <span>"Inicie processo de onboarding para Maria"</span>
+                  </li>
+                  <li className="flex items-start">
+                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                    <span>"Agende férias do colaborador José"</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-blue-400 font-semibold mb-3">Suporte (Zendesk, Freshdesk)</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                    <span>"Abra ticket para cliente com prioridade alta"</span>
+                  </li>
+                  <li className="flex items-start">
+                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
+                    <span>"Encaminhe chamado #5678 para equipe técnica"</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

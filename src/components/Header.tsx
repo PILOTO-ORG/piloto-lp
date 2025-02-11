@@ -19,12 +19,18 @@ const Header = () => {
     }
   };
 
+  const openCalendly = () => {
+    window.open('http://calendly.com/luan-piloto', '_blank');
+  };
+
   return (
     <header className="fixed w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="#" className="text-2xl font-bold text-blue-600">O Piloto</a>
+            <a href="#" className="flex items-center">
+              <img src="../../public/Prancheta5.png" alt="O Piloto" className="h-8" />
+            </a>
           </div>
 
           {/* Desktop Navigation */}
@@ -42,7 +48,7 @@ const Header = () => {
               Planos
             </button>
             <button 
-              onClick={() => scrollToSection('contact')}
+              onClick={openCalendly}
               className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors"
             >
               Demonstração
@@ -88,7 +94,7 @@ const Header = () => {
                 Planos
               </button>
               <button 
-                onClick={() => scrollToSection('contact')}
+                onClick={openCalendly}
                 className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors text-left"
               >
                 Demonstração
