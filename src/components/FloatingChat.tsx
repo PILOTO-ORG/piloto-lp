@@ -12,13 +12,13 @@ const OPENAI_ASSISTANT_ID = import.meta.env.VITE_OPENAI_ASSISTANT_ID || '';
 const openAIHeaders = OPENAI_API_KEY ? {
   'Authorization': `Bearer ${OPENAI_API_KEY}`,
   'Content-Type': 'application/json',
-  'OpenAI-Beta': 'assistants=v2'
+  'OpenAI-Beta': 'assistents=v2'
 } : {};
 
 interface Message {
   id: number;
   text: string;
-  sender: 'user' | 'james';
+  sender: 'user' | 'piloto';
   timestamp: Date;
 }
 
@@ -33,8 +33,8 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Olá! Eu sou o JAMES, assistente virtual da PILOTO. Estou aqui para ajudá-lo a transformar suas ideias em realidade com nossos serviços especializados. Quer saber como podemos facilitar sua vida? Vamos conversar!",
-      sender: 'james',
+      text: "💡 Precisa automatizar processos na sua empresa? Sou O Piloto, especialista em transformar sua operação manual em fluxos automáticos inteligentes. Vamos conversar sobre seus desafios?",
+      sender: 'piloto',
       timestamp: new Date()
     }
   ]);
@@ -189,7 +189,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
           const simulatedResponse: Message = {
             id: Date.now(),
             text: "Obrigado pela sua mensagem! Estamos processando sua solicitação e retornaremos em breve. (Resposta simulada - API OpenAI não configurada)",
-            sender: 'james',
+            sender: 'piloto',
             timestamp: new Date()
           };
           
@@ -259,14 +259,14 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
         console.log('Resposta completa do assistente:', assistantMessage);
         
         if (assistantMessage?.content?.[0]?.text?.value) {
-          const jamesResponse: Message = {
+          const pilotoResponse: Message = {
             id: Date.now(),
             text: assistantMessage.content[0].text.value,
-            sender: 'james',
+            sender: 'piloto',
             timestamp: new Date()
           };
           
-          setMessages(prev => [...prev, jamesResponse]);
+          setMessages(prev => [...prev, pilotoResponse]);
         } else {
           throw new Error('Resposta do assistente em formato inválido');
         }
@@ -287,7 +287,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
       const errorMessage: Message = {
         id: Date.now(),
         text: 'Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.',
-        sender: 'james',
+        sender: 'piloto',
         timestamp: new Date()
       };
       console.log('Enviando mensagem de erro ao usuário');
@@ -373,7 +373,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
           const newMessage: Message = {
             id: Date.now(),
             text: simulatedResponse,
-            sender: 'james',
+            sender: 'piloto',
             timestamp: new Date()
           };
           
@@ -473,42 +473,6 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
  
  ---
  
- ## **📌 Estratégia de Conversão**
- O agente sempre deve direcionar a conversa para **uma ação clara**:
- 1️⃣ **Fazer perguntas estratégicas** ("Como você gerencia isso hoje?")  
- 2️⃣ **Criar urgência** ("Isso pode reduzir seu tempo de trabalho em 80%. Quer ver como funciona?")  
- 3️⃣ **Direcionar para o WhatsApp** ("Para um atendimento mais detalhado, posso te passar para nosso especialista no WhatsApp. Pode ser?")  
- 
- ### **Exemplo de abordagem completa**:
- **Usuário**: "O que é O Piloto?"  
- **Piloto**: "O Piloto é um agente de IA que automatiza tarefas nos seus sistemas. Isso pode reduzir tarefas manuais em até 80%. Você já utiliza alguma ferramenta de automação?"  
- 
- **Usuário**: "Não, ainda não."  
- **Piloto**: "Interessante! Nossa solução se integra a CRMs, ERPs, e-commerce e muito mais. O que você gostaria de automatizar na sua empresa?"  
- 
- **Usuário**: "Gostaria de agilizar os follow-ups no meu CRM."  
- **Piloto**: "Ótimo! Com O Piloto, seus leads são qualificados automaticamente, e follow-ups podem ser feitos via WhatsApp sem esforço. Para entender melhor suas necessidades, posso te chamar no WhatsApp. Podemos continuar por lá?"  
- 
- ✅ **Direcionamento para o WhatsApp:**  
- *"Perfeito! Vamos conversar por lá. Clique aqui para falar com nosso time no WhatsApp: [https://wa.me/5548998589586](https://wa.me/5548998589586)"*  
- 
- ---
- 
- ## **📅 Agendamento de Demonstração**
- Se o usuário quiser mais detalhes antes de ir para o WhatsApp, o agente pode sugerir uma demonstração:  
- 🔗 **Calendly**: [http://calendly.com/luan-piloto](http://calendly.com/luan-piloto)  
- 
- ---
- 
- ## **📲 Canais de Contato**
- O Piloto deve sempre oferecer múltiplas opções de contato:  
- 📲 WhatsApp (prioritário): [https://wa.me/5548998589586](https://wa.me/5548998589586)  
- 📧 E-mail: [luan@piloto.live](mailto:luan@piloto.live)  
- 📍 Endereço: Joinville - SC  
- 🔗 LinkedIn: [linkedin.com/company/piloto-ia](https://linkedin.com/company/piloto-ia)  
- 
- ---
- 
  ## **📈 Resultados Esperados**
  Com essa abordagem, o agente deve:  
  ✅ **Coletar leads qualificados** com informações estratégicas.  
@@ -545,7 +509,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
       const assistantMessage: Message = {
         id: Date.now() + 1,
         text: aiResponse,
-        sender: 'james',
+        sender: 'piloto',
         timestamp: new Date()
       };
       
@@ -561,7 +525,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
       const errorMessage: Message = {
         id: Date.now(),
         text: "Desculpe, ocorreu um erro ao processar seu áudio. Por favor, tente novamente.",
-        sender: 'james',
+        sender: 'piloto',
         timestamp: new Date()
       };
       
@@ -681,7 +645,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
                   )}
                 </div>
                 <div className="text-blue-200">
-                  <h3 className="font-semibold">JAMES PRO</h3>
+                  <h3 className="font-semibold">O Piloto</h3>
                   <p className="text-xs text-blue-100">Assistente Virtual</p>
                 </div>
               </div>
@@ -765,7 +729,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyPress={handleKeyPress}
-                    placeholder={isTranscribing ? "Processando áudio..." : "Digite sua mensagem..."}
+                    placeholder={isTranscribing ? "Processando mensagem..." : "Digite sua mensagem..."}
                     className={`w-full px-4 py-2 pr-20 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${isTranscribing ? 'animate-pulse' : ''}`}
                     disabled={isTranscribing}
                   />
