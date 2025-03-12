@@ -1,5 +1,4 @@
-import { useState, useEffect, lazy } from 'react';
-import debounce from 'lodash.debounce';
+import { useState, lazy } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import FloatingChat from './components/FloatingChat';
@@ -13,7 +12,8 @@ const Contact = lazy(() => import('./components/Contact'));
 const ChatSection = lazy(() => import('./components/ChatSection'));
 
 function App() {
-  const [showChat, setShowChat] = useState(true);
+  // Sempre mostrar o chat, sem comportamento de scroll
+  const [showChat] = useState(true);
 
   return (
     <div className="bg-gray-900 text-white min-h-screen">
