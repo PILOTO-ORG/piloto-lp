@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy } from 'react';
 import debounce from 'lodash.debounce';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -37,20 +37,16 @@ function App() {
   return (
     <div className="bg-gray-900 text-white min-h-screen">
       <Header />
-      
-      {/* Chat visível apenas quando próximo ao topo da página */}
-      <ChatSection minimized={!showChat} />
-      
+        
       <main>
+        <ChatSection minimized={!showChat} />
         <Hero />
-        <Suspense fallback={<div className="py-10 text-center">Carregando conteúdo...</div>}>
-          <About />
-          <HowItWorks />
-          <SystemIntegrations />
-          <Benefits />
-          <Pricing />
-          <Contact />
-        </Suspense>
+        <About />
+        <HowItWorks />
+        <SystemIntegrations />
+        <Benefits />
+        <Pricing />
+        <Contact />
       </main>
       
       {/* Floating WhatsApp button and Chat component */}

@@ -21,13 +21,13 @@ const Hero = memo(() => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="lg:w-1/2 mb-12 lg:mb-0">
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
               Revolucione sua Empresa
               <span className="text-blue-300 block mt-2">
                 com Automação Inteligente
               </span>
             </h1>
-            <p className="text-xl text-white mb-8">
+            <p className="text-lg sm:text-xl text-white mb-8">
               Reduza custos e aumente a produtividade, substituindo processos manuais por robôs inteligentes. 
               <br />
               <span className="block mt-2">Elimine erros operacionais com O Piloto.</span>
@@ -49,7 +49,7 @@ const Hero = memo(() => {
               </button>
             </div>
           </div>
-          <div className="lg:w-1/2 relative">
+          <div className="lg:w-1/2 relative mt-6 lg:mt-0">
             <img 
               src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
               alt="AI Automation"
@@ -59,7 +59,7 @@ const Hero = memo(() => {
               loading="eager"
             />
             <div 
-              className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border border-gray-200"
+              className="absolute -bottom-6 -left-6 bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 hidden sm:block"
             >
               <div className="flex items-center gap-4">
                 <Bot className="text-blue-600 h-8 w-8" />

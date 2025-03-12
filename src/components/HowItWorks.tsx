@@ -6,43 +6,43 @@ const HowItWorks = () => {
     <section id="how-it-works" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
             Automação sem esforço: Fale, que o Piloto executa!
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600">
             Nosso agente de IA se conecta à API do seu sistema e permite que você execute
             tarefas apenas enviando mensagens de texto ou áudio.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-blue-50 p-8 rounded-xl relative">
-            <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-16">
+          <div className="bg-blue-50 p-6 sm:p-8 rounded-xl relative">
+            <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-6 h-6 sm:w-8 sm:h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
               1
             </div>
-            <MessageCircle className="w-12 h-12 text-blue-600 mb-6" />
+            <MessageCircle className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
             <h3 className="text-xl font-semibold mb-4 text-blue-700">Envie um Comando</h3>
             <p className="text-gray-600">
               "Atualize o estoque do produto X para 50 unidades"
             </p>
           </div>
 
-          <div className="bg-blue-50 p-8 rounded-xl relative">
-            <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+          <div className="bg-blue-50 p-6 sm:p-8 rounded-xl relative">
+            <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-6 h-6 sm:w-8 sm:h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
               2
             </div>
-            <Database className="w-12 h-12 text-blue-600 mb-6" />
+            <Database className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
             <h3 className="text-xl font-semibold mb-4 text-blue-700">IA Processa</h3>
             <p className="text-gray-600">
               O Piloto interpreta o comando e acessa a API do sistema
             </p>
           </div>
 
-          <div className="bg-blue-50 p-8 rounded-xl relative">
-            <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+          <div className="bg-blue-50 p-6 sm:p-8 rounded-xl relative">
+            <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-6 h-6 sm:w-8 sm:h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
               3
             </div>
-            <Check className="w-12 h-12 text-blue-600 mb-6" />
+            <Check className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
             <h3 className="text-xl font-semibold mb-4 text-blue-700">Tarefa Executada</h3>
             <p className="text-gray-600">
               A ação é realizada e você recebe a confirmação

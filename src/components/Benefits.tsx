@@ -6,18 +6,18 @@ const Benefits = () => {
     <section id="benefits" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
             Resultados Comprovados para seu Negócio
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600">
             Aumente sua produtividade e reduza custos operacionais em até 60%
             com automação inteligente que se paga em semanas.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <Clock className="w-12 h-12 text-blue-600 mb-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
+          <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100">
+            <Clock className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
             <h3 className="text-xl font-semibold mb-4 text-blue-700">ROI Garantido</h3>
             <p className="text-gray-600 mb-4">
               Economia mensal de 120+ horas em tarefas operacionais
@@ -38,8 +38,8 @@ const Benefits = () => {
             </ul>
           </div>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <UserCheck className="w-12 h-12 text-blue-600 mb-6" />
+          <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100">
+            <UserCheck className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
             <h3 className="text-xl font-semibold mb-4 text-blue-700">Produtividade Maximizada</h3>
             <p className="text-gray-600 mb-4">
               Aumente a eficiência da sua equipe
@@ -60,8 +60,8 @@ const Benefits = () => {
             </ul>
           </div>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <ShieldCheck className="w-12 h-12 text-blue-600 mb-6" />
+          <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100">
+            <ShieldCheck className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
             <h3 className="text-xl font-semibold mb-4 text-blue-700">Qualidade Superior</h3>
             <p className="text-gray-600 mb-4">
               99.9% de precisão em processos automatizados
@@ -82,8 +82,8 @@ const Benefits = () => {
             </ul>
           </div>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <HeadphonesIcon className="w-12 h-12 text-blue-600 mb-6" />
+          <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100">
+            <HeadphonesIcon className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
             <h3 className="text-xl font-semibold mb-4 text-blue-700">Suporte Especializado</h3>
             <p className="text-gray-600 mb-4">
               Time dedicado com resposta em até 15 minutos

@@ -6,10 +6,10 @@ const About = () => {
     <section id="about" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
             Potencialize seus Processos com IA Avançada
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8">
             O Piloto é a evolução da automação empresarial, combinando inteligência artificial 
             com simplicidade operacional. Transforme comandos simples em fluxos de trabalho 
             complexos, sem necessidade de conhecimento técnico.
