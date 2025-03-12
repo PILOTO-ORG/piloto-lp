@@ -21,7 +21,7 @@ const Hero = memo(() => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="lg:w-1/2 mb-12 lg:mb-0">
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-blue-200 leading-tight mb-6">
               Revolucione sua Empresa
               <span className="text-blue-400 block mt-2">
                 com Automação Inteligente
@@ -34,7 +34,7 @@ const Hero = memo(() => {
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 onClick={openCalendly}
-                className="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center hover:scale-105 active:scale-95"
+                className="bg-blue-600 text-blue-200 px-8 py-3 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center hover:scale-105 active:scale-95"
               >
                 Solicitar Demonstração
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -62,7 +62,7 @@ const Hero = memo(() => {
               <div className="flex items-center gap-4">
                 <Bot className="text-blue-400 h-8 w-8" />
                 <div>
-                  <p className="font-semibold text-white">Automação Inteligente</p>
+                  <p className="font-semibold text-blue-200">Automação Inteligente</p>
                   <p className="text-sm text-gray-300">24/7 em operação</p>
                 </div>
               </div>
@@ -128,7 +128,7 @@ const BenefitCard = memo(({ icon, title, description }: {
 }) => (
   <div className="bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-700 hover:-translate-y-1 transition-transform">
     {icon}
-    <h3 className="font-semibold mb-2 text-white">{title}</h3>
+    <h3 className="font-semibold mb-2 text-blue-200">{title}</h3>
     <p className="text-gray-300">{description}</p>
   </div>
 ));
@@ -141,7 +141,7 @@ const FeatureCard = memo(({ icon, title, description, features }: {
 }) => (
   <div className="bg-gradient-to-br from-gray-800 to-gray-700 p-8 rounded-2xl shadow-lg border border-gray-700">
     {icon}
-    <h3 className="text-2xl font-semibold mb-4 text-white">{title}</h3>
+    <h3 className="text-2xl font-semibold mb-4 text-blue-200">{title}</h3>
     <p className="text-gray-300 mb-6">{description}</p>
     <ul className="space-y-3">
       {features.map((feature, index) => (

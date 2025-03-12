@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import debounce from 'lodash.debounce';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import FloatingChat from './components/FloatingChat';
 // Lazy load secondary components for better initial load times
 const About = lazy(() => import('./components/About'));
 const HowItWorks = lazy(() => import('./components/HowItWorks'));
@@ -55,6 +56,9 @@ function App() {
           <Contact />
         </Suspense>
       </main>
+      
+      {/* Floating WhatsApp button and Chat component */}
+      <FloatingChat />
     </div>
   );
 }
