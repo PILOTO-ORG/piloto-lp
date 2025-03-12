@@ -28,8 +28,8 @@ const Hero = memo(() => {
               </span>
             </h1>
             <p className="text-xl text-gray-300 mb-8">
-              Reduza custos em 60%, aumente a produtividade em 80% e elimine erros operacionais.
-              O Piloto automatiza seus sistemas com IA avançada, transformando comandos simples em ações poderosas.
+              Reduza custos e aumente a produtividade, substituindo processos manuais por robôs inteligente. Elimine erros operacionais.
+              O Piloto automatiza seus sistemas com as melhores tecnologias mais avançadas do mercado, transformando comandos simples em ações poderosas.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Mic, X, MessageCircle, Minimize2, ChevronDown } from 'lucide-react';
+import { Send, Mic, X, MessageCircle, ChevronDown } from 'lucide-react';
 import axios, { AxiosError } from 'axios';
 import '../components/chatScrollbar.css';
 
@@ -42,10 +42,13 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
   const [isRecording, setIsRecording] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(true);
+  const [isTranscribing, setIsTranscribing] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
@@ -252,19 +255,208 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
     }
   };
 
-  const toggleRecording = () => {
-    const newRecordingState = !isRecording;
-    console.log(` ${newRecordingState ? 'Iniciando' : 'Parando'} gravação de voz`);
-    setIsRecording(newRecordingState);
-    
-    // Simulate voice recognition (in a real app, you would use the Web Speech API)
-    if (!isRecording) {
-      setTimeout(() => {
+  const toggleRecording = async () => {
+    if (isRecording) {
+      // Parar a gravação
+      if (mediaRecorderRef.current) {
+        mediaRecorderRef.current.stop();
         setIsRecording(false);
-        // Simulate recognized text
-        console.log(' Texto reconhecido da fala');
-        setInputValue("Gostaria de saber mais sobre os serviços");
-      }, 3000);
+        console.log('Gravação de áudio finalizada');
+        
+        // Toca um som para indicar o fim da gravação
+        playAudioFeedback(false);
+      }
+      return;
+    }
+
+    try {
+      // Iniciar gravação
+      setIsRecording(true);
+      console.log('Iniciando gravação de áudio...');
+      
+      // Toca um som para indicar o início da gravação
+      playAudioFeedback(true);
+      
+      // Solicitar permissão para acessar o microfone
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      // Limpar chunks anteriores
+      audioChunksRef.current = [];
+      
+      // Configurar o MediaRecorder
+      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorderRef.current = mediaRecorder;
+      
+      // Evento para capturar os dados do áudio
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        }
+      };
+      
+      // Evento que ocorre quando a gravação é finalizada
+      mediaRecorder.onstop = async () => {
+        // Criar um blob com todos os chunks de áudio
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+        console.log('Tamanho do áudio:', audioBlob.size, 'bytes');
+        
+        // Parar todas as trilhas do stream
+        stream.getTracks().forEach(track => track.stop());
+        
+        // Enviar o áudio para processamento com a OpenAI
+        await processAudioWithOpenAI(audioBlob);
+      };
+      
+      // Iniciar gravação
+      mediaRecorder.start();
+      console.log('MediaRecorder iniciado');
+    } catch (error) {
+      console.error('Erro ao iniciar gravação de áudio:', error);
+      setIsRecording(false);
+      alert('Não foi possível acessar o microfone. Verifique as permissões do navegador.');
+    }
+  };
+
+  const processAudioWithOpenAI = async (audioBlob: Blob) => {
+    try {
+      setIsTranscribing(true);
+      console.log('Enviando áudio para processamento pela OpenAI...');
+      
+      if (!OPENAI_API_KEY) {
+        // Simulação se não houver API key
+        console.log('API Key não encontrada. Usando simulação.');
+        setTimeout(() => {
+          const simulatedResponse = "Isso é uma simulação de processamento direto de áudio pela OpenAI. Em uma implementação real, a IA geraria uma resposta com base no áudio enviado.";
+          
+          // Adicionar uma nova mensagem do assistente com a resposta simulada
+          const newMessage: Message = {
+            id: Date.now(),
+            text: simulatedResponse,
+            sender: 'james',
+            timestamp: new Date()
+          };
+          
+          setMessages(prev => [...prev, newMessage]);
+          setIsTranscribing(false);
+        }, 2000);
+        return;
+      }
+      
+      // Preparar formData para envio
+      const formData = new FormData();
+      formData.append('file', audioBlob, 'audio.webm');
+      formData.append('model', 'whisper-1');
+      
+      // Primeiro, obter a transcrição do áudio usando o modelo Whisper
+      const transcriptionResponse = await axios.post(
+        'https://api.openai.com/v1/audio/transcriptions',
+        formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+      
+      const transcription = transcriptionResponse.data.text;
+      console.log('Áudio transcrito:', transcription);
+      
+      // Agora, enviar a transcrição para o modelo de chat para obter uma resposta
+      const chatResponse = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: "gpt-4o",
+          messages: [
+            {
+              role: "system",
+              content: "Você é JAMES, um assistente virtual da PILOTO especializado em automatização e inteligência artificial. Responda de forma clara, amigável e profissional, focando em soluções de automatização."
+            },
+            {
+              role: "user",
+              content: transcription
+            }
+          ],
+          max_tokens: 300
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      
+      const aiResponse = chatResponse.data.choices[0].message.content;
+      console.log('Resposta da IA:', aiResponse);
+      
+      // Primeiro adicionamos a mensagem do usuário ao chat
+      const userMessage: Message = {
+        id: Date.now(),
+        text: transcription,
+        sender: 'user',
+        timestamp: new Date()
+      };
+      
+      // Depois adicionamos a resposta da IA
+      const assistantMessage: Message = {
+        id: Date.now() + 1,
+        text: aiResponse,
+        sender: 'james',
+        timestamp: new Date()
+      };
+      
+      // Atualizamos o estado das mensagens
+      setMessages(prevMessages => [...prevMessages, userMessage, assistantMessage]);
+      
+      setIsTranscribing(false);
+    } catch (error) {
+      console.error('Erro ao processar áudio com a OpenAI:', error);
+      setIsTranscribing(false);
+      
+      // Adicionar mensagem de erro
+      const errorMessage: Message = {
+        id: Date.now(),
+        text: "Desculpe, ocorreu um erro ao processar seu áudio. Por favor, tente novamente.",
+        sender: 'james',
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
+    }
+  };
+
+  // Função para reproduzir feedback sonoro
+  const playAudioFeedback = (isStart: boolean) => {
+    try {
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      // Configurações de frequência e ganho para início ou fim da gravação
+      if (isStart) {
+        // Som agudo ascendente para início
+        oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+        oscillator.frequency.linearRampToValueAtTime(880, audioContext.currentTime + 0.2);
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      } else {
+        // Som descendente para fim
+        oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+        oscillator.frequency.linearRampToValueAtTime(440, audioContext.currentTime + 0.2);
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      }
+      
+      // Reduzir o volume gradualmente
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
+      
+      // Iniciar e parar o oscilador
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.3);
+    } catch (error) {
+      console.error('Erro ao reproduzir feedback sonoro:', error);
     }
   };
 
@@ -307,123 +499,146 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
 
       {/* Chat Window */}
       <AnimatePresence>
-        {!isMinimized && (
+        {(isOpen || !isMinimized) && (
           <motion.div
-            className="fixed bottom-6 right-6 z-50 flex flex-col items-end"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5, y: 20 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 260, 
-              damping: 20 
-            }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            className="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col"
+            style={{ width: '350px', maxHeight: '80vh' }}
           >
-            <motion.div 
-              className="bg-white shadow-xl overflow-hidden flex flex-col w-full sm:w-96 h-[85vh] sm:h-[600px] rounded-lg"
-            >
-              {/* Header */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 flex justify-between items-center">
-                <div className="flex items-center">
-                  <div className="text-blue-200">
-                    <h3 className="font-semibold">JAMES PRO</h3>
-                    <p className="text-xs text-blue-100">Assistente Virtual</p>
-                  </div>
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-3 flex justify-between items-center">
+              <div className="flex items-center space-x-3">
+                <div className="bg-white/10 p-2 rounded-full">
+                  {isRecording ? (
+                    <motion.div 
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ 
+                        repeat: Infinity, 
+                        duration: 1.5
+                      }}
+                      className="h-4 w-4 rounded-full bg-red-500"
+                    />
+                  ) : isTranscribing ? (
+                    <motion.div 
+                      animate={{ rotate: 360 }}
+                      transition={{ 
+                        repeat: Infinity, 
+                        duration: 1.5,
+                        ease: "linear"
+                      }}
+                      className="text-blue-200"
+                    >
+                      <ChevronDown size={16} />
+                    </motion.div>
+                  ) : (
+                    <MessageCircle className="text-blue-200" size={18} />
+                  )}
                 </div>
-                <div className="flex items-center space-x-2">
-                  <button
-                    onClick={() => {
-                      setIsMinimized(true);
-                      onClose?.();
-                    }}
-                    className="text-blue-200 hover:text-blue-100 transition-colors"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
+                <div className="text-blue-200">
+                  <h3 className="font-semibold">JAMES PRO</h3>
+                  <p className="text-xs text-blue-100">Assistente Virtual</p>
                 </div>
               </div>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => {
+                    setIsMinimized(true);
+                    onClose?.();
+                  }}
+                  className="text-blue-200 hover:text-blue-100 transition-colors"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
 
-              {/* Messages */}
-              <div 
-                ref={messagesContainerRef}
-                className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
-              >
-                {messages.map((message) => (
+            {/* Messages */}
+            <div 
+              ref={messagesContainerRef}
+              className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
+            >
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${
+                    message.sender === 'user' ? 'justify-end' : 'justify-start'
+                  }`}
+                >
                   <div
-                    key={message.id}
-                    className={`flex ${
-                      message.sender === 'user' ? 'justify-end' : 'justify-start'
+                    className={`max-w-[80%] p-3 rounded-lg ${
+                      message.sender === 'user'
+                        ? 'bg-blue-600 text-blue-100 rounded-br-none'
+                        : 'bg-white text-gray-800 shadow-md rounded-bl-none'
                     }`}
                   >
-                    <div
-                      className={`max-w-[80%] p-3 rounded-lg ${
-                        message.sender === 'user'
-                          ? 'bg-blue-600 text-blue-100 rounded-br-none'
-                          : 'bg-white text-gray-800 shadow-md rounded-bl-none'
+                    <p className="text-sm">{message.text}</p>
+                    <p
+                      className={`text-xs mt-1 ${
+                        message.sender === 'user' ? 'text-blue-100' : 'text-gray-400'
                       }`}
                     >
-                      <p className="text-sm">{message.text}</p>
-                      <p
-                        className={`text-xs mt-1 ${
-                          message.sender === 'user' ? 'text-blue-100' : 'text-gray-400'
-                        }`}
-                      >
-                        {formatTime(message.timestamp)}
-                      </p>
-                    </div>
+                      {formatTime(message.timestamp)}
+                    </p>
                   </div>
-                ))}
-                <div ref={messagesEndRef} />
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Scroll Indicator */}
+            {showScrollIndicator && (
+              <div className="absolute bottom-20 right-6">
+                <motion.button
+                  onClick={handleScrollToBottom}
+                  className="bg-blue-600 text-blue-200 rounded-full p-2 shadow-md"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="h-4 w-4" />
+                </motion.button>
               </div>
+            )}
 
-              {/* Scroll Indicator */}
-              {showScrollIndicator && (
-                <div className="absolute bottom-20 right-6">
-                  <motion.button
-                    onClick={handleScrollToBottom}
-                    className="bg-blue-600 text-blue-200 rounded-full p-2 shadow-md"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ChevronDown className="h-4 w-4" />
-                  </motion.button>
-                </div>
-              )}
-
-              {/* Input */}
-              <form onSubmit={handleSubmit} className="p-4 bg-white border-t">
-                <div className="flex items-center space-x-2">
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Digite sua mensagem..."
-                    className="flex-1 p-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleRecording}
-                    className={`p-2 rounded-lg transition-colors ${
-                      isRecording
-                        ? 'bg-red-500 text-blue-100'
+            {/* Input */}
+            <form onSubmit={handleSubmit} className="p-4 bg-white border-t">
+              <div className="flex items-center space-x-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  onKeyPress={handleKeyPress}
+                  placeholder={isTranscribing ? "Processando áudio..." : "Digite sua mensagem..."}
+                  className={`w-full px-4 py-2 pr-20 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${isTranscribing ? 'animate-pulse' : ''}`}
+                  disabled={isTranscribing}
+                />
+                <button
+                  type="button"
+                  onClick={toggleRecording}
+                  className={`p-2 rounded-lg transition-colors ${
+                    isRecording
+                      ? 'bg-red-500 text-blue-100'
+                      : isTranscribing
+                        ? 'bg-yellow-500 text-blue-100 animate-pulse'
                         : 'text-gray-500 hover:text-blue-500'
-                    }`}
-                  >
-                    <Mic className="h-5 w-5" />
-                  </button>
-                  <button
-                    type="submit"
-                    className="bg-blue-600 text-blue-200 p-2 rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    <Send className="h-5 w-5" />
-                  </button>
-                </div>
-              </form>
-            </motion.div>
+                  }`}
+                  disabled={isTranscribing}
+                >
+                  <Mic className="h-5 w-5" />
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-600 text-blue-200 p-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <Send className="h-5 w-5" />
+                </button>
+              </div>
+            </form>
           </motion.div>
         )}
       </AnimatePresence>

@@ -180,17 +180,8 @@ const TopChat: React.FC = () => {
             </AnimatePresence>
             
             {messages.map((message, index) => (
-              <motion.div
+              <div
                 key={message.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { 
-                    y: { type: "spring", stiffness: 300, damping: 20 },
-                    opacity: { duration: 0.3 }
-                  }
-                }}
                 className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} ${index === messages.length - 1 ? 'last-message' : ''}`}
                 data-last={index === messages.length - 1 ? 'true' : 'false'}
               >
@@ -208,7 +199,7 @@ const TopChat: React.FC = () => {
                     {formatTime(message.timestamp)}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             ))}
             {/* Elemento de referência para scroll */}
             <div ref={messagesEndRef} />
