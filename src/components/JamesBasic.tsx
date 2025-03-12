@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Send, 
   Mic, 
@@ -39,31 +38,17 @@ const JamesBasic: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isRecording, setIsRecording] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(window.innerWidth < 640);
+  const [isMinimized, setIsMinimized] = useState(true);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Auto-scroll to bottom of messages
   useEffect(() => {
-    scrollToBottom();
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages]);
-
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640 && !isMinimized) {
-        setIsMinimized(true);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMinimized]);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -77,10 +62,10 @@ const JamesBasic: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   };
 
   const toggleRecording = () => {
-    const newRecordingState = !isRecording;
-    setIsRecording(newRecordingState);
+    setIsRecording(!isRecording);
     
     if (!isRecording) {
+      // Simulação de gravação por 3 segundos
       setTimeout(() => {
         setIsRecording(false);
         setInputValue("Gostaria de saber mais sobre os serviços básicos");
@@ -89,8 +74,7 @@ const JamesBasic: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   };
 
   const toggleMinimize = () => {
-    const newMinimizedState = !isMinimized;
-    setIsMinimized(newMinimizedState);
+    setIsMinimized(!isMinimized);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -108,6 +92,18 @@ const JamesBasic: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     setInputValue('');
 
     try {
+      // Adicionar uma mensagem de carregamento enquanto espera a resposta
+      const loadingId = Date.now();
+      setMessages(prev => [
+        ...prev, 
+        { 
+          id: loadingId, 
+          text: "Processando sua pergunta...", 
+          sender: 'james', 
+          timestamp: new Date() 
+        }
+      ]);
+
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: openAIHeaders,
@@ -131,6 +127,9 @@ const JamesBasic: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           max_tokens: 500
         })
       });
+
+      // Remover a mensagem de carregamento antes de adicionar a resposta
+      setMessages(prev => prev.filter(msg => msg.id !== loadingId));
 
       const data = await response.json();
       const assistantResponse = data.choices[0].message.content;
@@ -160,135 +159,105 @@ const JamesBasic: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
-  return (
-    <AnimatePresence>
-      <motion.div 
-        className="fixed sm:bottom-6 sm:right-6 z-50 flex flex-col items-end"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.5, y: 20 }}
-        transition={{ 
-          type: "spring", 
-          stiffness: 260, 
-          damping: 20 
-        }}
+  if (isMinimized) {
+    return (
+      <div 
+        onClick={toggleMinimize}
+        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow"
       >
-        {isMinimized && (
-          <div className="flex items-center mb-3 justify-end w-full">
-            <motion.div
-              onClick={toggleMinimize}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl shadow-md py-2 px-4 flex items-center cursor-pointer hover:shadow-lg transition-all duration-300"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 500, 
-                damping: 30 
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+        <MessageCircle className="h-6 w-6" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50 bg-white rounded-lg shadow-xl overflow-hidden" style={{ width: '350px' }}>
+      {/* Header */}
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 flex justify-between items-center">
+        <div className="flex items-center">
+          <div className="text-white">
+            <h3 className="font-semibold text-sm">JAMES BASIC</h3>
+            <p className="text-xs text-blue-100">Assistente Virtual</p>
+          </div>
+        </div>
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={toggleMinimize}
+            className="text-white transition-colors hover:text-blue-200"
+          >
+            <Minimize2 className="h-4 w-4" />
+          </button>
+          <button
+            onClick={onClose}
+            className="text-white transition-colors hover:text-blue-200"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Messages */}
+      <div className="overflow-y-auto p-3 space-y-3 bg-gray-50" style={{ height: '300px' }}>
+        {messages.map((message) => (
+          <div
+            key={message.id}
+            className={`flex ${
+              message.sender === 'user' ? 'justify-end' : 'justify-start'
+            }`}
+          >
+            <div
+              className={`max-w-[80%] p-2 rounded-lg text-sm ${
+                message.sender === 'user'
+                  ? 'bg-blue-600 text-white rounded-br-none'
+                  : 'bg-white text-gray-800 shadow border border-gray-100 rounded-bl-none'
+              }`}
             >
-              <MessageCircle className="h-5 w-5 mr-2" />
-              <p className="text-sm font-medium">Precisa de ajuda?</p>
-            </motion.div>
-          </div>
-        )}
-        
-        <motion.div 
-          className={`bg-white shadow-xl overflow-hidden flex flex-col ${
-            isMinimized 
-              ? 'h-0 w-0 opacity-0' 
-              : 'opacity-100 w-full sm:w-96 h-[85vh] sm:h-[600px]'
-          } rounded-lg transition-all duration-300`}
-        >
-          {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 flex justify-between items-center">
-            <div className="flex items-center">
-              <div className="text-white">
-                <h3 className="font-semibold">JAMES BASIC</h3>
-                <p className="text-xs text-blue-100">Assistente Virtual</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={toggleMinimize}
-                className="text-white hover:text-blue-200 transition-colors"
-              >
-                <Minimize2 className="h-5 w-5" />
-              </button>
-              <button
-                onClick={onClose}
-                className="text-white hover:text-blue-200 transition-colors"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${
-                  message.sender === 'user' ? 'justify-end' : 'justify-start'
+              <p className="text-xs">{message.text}</p>
+              <p
+                className={`text-xs mt-1 ${
+                  message.sender === 'user' ? 'text-blue-100' : 'text-gray-400'
                 }`}
               >
-                <div
-                  className={`max-w-[80%] p-3 rounded-lg ${
-                    message.sender === 'user'
-                      ? 'bg-blue-600 text-white rounded-br-none'
-                      : 'bg-white text-gray-800 shadow-md rounded-bl-none'
-                  }`}
-                >
-                  <p className="text-sm">{message.text}</p>
-                  <p
-                    className={`text-xs mt-1 ${
-                      message.sender === 'user' ? 'text-blue-100' : 'text-gray-400'
-                    }`}
-                  >
-                    {formatTime(message.timestamp)}
-                  </p>
-                </div>
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-
-          {/* Input */}
-          <form onSubmit={handleSubmit} className="p-4 bg-white border-t">
-            <div className="flex items-center space-x-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
-                placeholder="Digite sua mensagem..."
-                className="flex-1 p-2 border rounded-lg focus:outline-none focus:border-blue-500"
-              />
-              <button
-                type="button"
-                onClick={toggleRecording}
-                className={`p-2 rounded-lg transition-colors ${
-                  isRecording
-                    ? 'bg-red-500 text-white'
-                    : 'text-gray-500 hover:text-blue-500'
-                }`}
-              >
-                <Mic className="h-5 w-5" />
-              </button>
-              <button
-                type="submit"
-                className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                <Send className="h-5 w-5" />
-              </button>
+                {formatTime(message.timestamp)}
+              </p>
             </div>
-          </form>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Input */}
+      <form onSubmit={handleSubmit} className="p-2 bg-white border-t">
+        <div className="flex items-center space-x-1">
+          <input
+            ref={inputRef}
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyPress}
+            placeholder="Digite sua mensagem..."
+            className="flex-1 p-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500"
+          />
+          <button
+            type="button"
+            onClick={toggleRecording}
+            className={`p-1.5 rounded-lg transition-colors ${
+              isRecording
+                ? 'bg-red-500 text-white'
+                : 'text-gray-500 hover:bg-gray-100'
+            }`}
+          >
+            <Mic className="h-4 w-4" />
+          </button>
+          <button
+            type="submit"
+            className="bg-blue-600 text-white p-1.5 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Send className="h-4 w-4" />
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
