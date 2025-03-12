@@ -39,6 +39,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
     }
   ]);
   const [isMinimized, setIsMinimized] = useState(true); // Inicializa minimizado
+  const [isMobile, setIsMobile] = useState(false); // Estado para verificar se é dispositivo móvel
   const [isRecording, setIsRecording] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(true);
@@ -124,6 +125,23 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [isMinimized]);
+
+  // Detecta se é dispositivo móvel
+  useEffect(() => {
+    const checkIfMobile = () => {
+      const mobile = window.innerWidth <= 768; // Considerando dispositivos com largura <= 768px como mobile
+      setIsMobile(mobile);
+    };
+
+    // Verificar inicialmente
+    checkIfMobile();
+
+    // Adicionar listener para verificar quando a janela for redimensionada
+    window.addEventListener('resize', checkIfMobile);
+
+    // Cleanup do listener
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   // Set up scroll event listener
   useEffect(() => {
@@ -590,8 +608,8 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
         </motion.div>
       )}
 
-      {/* Chat Button */}
-      {isMinimized && (
+      {/* Chat Button - somente exibido em desktop */}
+      {isMinimized && !isMobile && (
         <motion.div 
           onClick={toggleMinimize}
           className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-blue-700 text-blue-200 rounded-2xl shadow-lg px-4 py-2 cursor-pointer flex items-center"
@@ -604,9 +622,9 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
         </motion.div>
       )}
 
-      {/* Chat Window */}
-      <AnimatePresence>
-        {(isOpen || !isMinimized) && (
+      {/* Chat Container - somente exibido em desktop */}
+      {isOpen && !isMobile && (
+        <AnimatePresence>
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -758,8 +776,8 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
               </div>
             </form>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </>
   );
 };
