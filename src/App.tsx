@@ -15,25 +15,6 @@ const ChatSection = lazy(() => import('./components/ChatSection'));
 function App() {
   const [showChat, setShowChat] = useState(true);
 
-  useEffect(() => {
-    // Usar uma função debounce para melhorar a performance durante a rolagem
-    const handleScroll = debounce(() => {
-      // Usando um valor fixo de pixels para melhorar a confiabilidade
-      if (window.scrollY > 300) {
-        setShowChat(false);
-      } else {
-        setShowChat(true);
-      }
-    }, 100); // 100ms de debounce para evitar cálculos excessivos
-
-    window.addEventListener('scroll', handleScroll);
-    
-    // Limpar o event listener quando o componente for desmontado
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <div className="bg-gray-900 text-white min-h-screen">
       <Header />
