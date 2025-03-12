@@ -1,16 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import { 
   Send, 
   X,
-  ChevronDown,
+  ArrowLeft,
   Mic
 } from 'lucide-react';
-import axios from 'axios';
 import './chatScrollbar.css';
 
 // OpenAI configuration
-const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || '';
+const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || '';
+
+// Configurando interceptor do Axios para garantir que a chave API seja incluída em todas as chamadas
+axios.interceptors.request.use(config => {
+  if (config.url?.includes('api.openai.com')) {
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${OPENAI_API_KEY}`;
+    
+    // Manter o Content-Type original para multipart/form-data
+    if (!config.headers['Content-Type']) {
+      config.headers['Content-Type'] = 'application/json';
+    }
+    
+    console.log('Axios interceptor (TopChat): Added API key to OpenAI request');
+  }
+  return config;
+});
 
 interface Message {
   id: number;
@@ -25,13 +41,13 @@ const TopChat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "👋 Olá! Sou O Piloto, seu assistente de automação empresarial. Transforme tarefas manuais em processos automáticos e economize seu tempo!",
+      text: " Olá! Sou O Piloto, seu assistente de automação empresarial. Transforme tarefas manuais em processos automáticos e economize seu tempo!",
       sender: 'piloto',
       timestamp: new Date()
     },
     {
       id: 2,
-      text: "💼 Posso integrar seus sistemas para eliminar tarefas repetitivas e manuais. Qual processo da sua empresa você gostaria de automatizar hoje?",
+      text: " Posso integrar seus sistemas para eliminar tarefas repetitivas e manuais. Qual processo da sua empresa você gostaria de automatizar hoje?",
       sender: 'piloto',
       timestamp: new Date()
     }
@@ -178,9 +194,9 @@ const TopChat: React.FC = () => {
         messages: [
           {
             role: "system",
-            content: `## **🤖 Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+            content: `## ** Modelo de Agente de IA - O Piloto (Pré-Vendas)**
  
- ### **📌 Visão Geral**
+ ### ** Visão Geral**
  **O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
  
  Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
@@ -190,12 +206,12 @@ const TopChat: React.FC = () => {
  
  ---
  
- ## **🎯 Objetivo do Agente**
- ✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
- ✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
- ✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
- ✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
- ✔️ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.`
+ ## ** Objetivo do Agente**
+ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
+ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
+ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
+ **Coletar informações do lead** como nome, empresa e principal desafio.  
+ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.`
           },
           ...messages.map(msg => ({
             role: msg.sender === 'user' ? 'user' : 'assistant',
@@ -207,12 +223,6 @@ const TopChat: React.FC = () => {
           }
         ],
         max_tokens: 300
-      },
-      {
-        headers: {
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-          'Content-Type': 'application/json'
-        }
       }
     )
     .then(response => {
@@ -356,26 +366,6 @@ const TopChat: React.FC = () => {
       setIsTranscribing(true);
       console.log('Enviando áudio para processamento pela OpenAI...');
       
-      if (!OPENAI_API_KEY) {
-        // Simulação se não houver API key
-        console.log('API Key não encontrada. Usando simulação.');
-        setTimeout(() => {
-          const simulatedResponse = "Isso é uma simulação de processamento direto de áudio pela OpenAI. Em uma implementação real, a IA geraria uma resposta com base no áudio enviado.";
-          
-          // Adicionar uma nova mensagem do assistente com a resposta simulada
-          const newMessage: Message = {
-            id: Date.now(),
-            text: simulatedResponse,
-            sender: 'piloto',
-            timestamp: new Date()
-          };
-          
-          setMessages(prev => [...prev, newMessage]);
-          setIsTranscribing(false);
-        }, 2000);
-        return;
-      }
-      
       // Preparar formData para envio
       const formData = new FormData();
       formData.append('file', audioBlob, 'audio.webm');
@@ -384,13 +374,7 @@ const TopChat: React.FC = () => {
       // Primeiro, obter a transcrição do áudio usando o modelo Whisper
       const transcriptionResponse = await axios.post(
         'https://api.openai.com/v1/audio/transcriptions',
-        formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
+        formData
       );
       
       const transcription = transcriptionResponse.data.text;
@@ -404,9 +388,9 @@ const TopChat: React.FC = () => {
           messages: [
             {
               role: "system",
-              content: `## **🤖 Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+              content: `## ** Modelo de Agente de IA - O Piloto (Pré-Vendas)**
  
- ### **📌 Visão Geral**
+ ### ** Visão Geral**
  **O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
  
  Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
@@ -416,12 +400,12 @@ const TopChat: React.FC = () => {
  
  ---
  
- ## **🎯 Objetivo do Agente**
- ✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
- ✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
- ✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
- ✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
- ✔️ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.  `
+ ## ** Objetivo do Agente**
+ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
+ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
+ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
+ **Coletar informações do lead** como nome, empresa e principal desafio.  
+ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.  `
             },
             {
               role: "user",
@@ -429,12 +413,6 @@ const TopChat: React.FC = () => {
             }
           ],
           max_tokens: 300
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            'Content-Type': 'application/json'
-          }
         }
       );
       
@@ -529,7 +507,7 @@ const TopChat: React.FC = () => {
                 className="scroll-indicator"
                 onClick={handleScrollToBottom}
               >
-                <ChevronDown size={24} />
+                <ArrowLeft size={24} />
               </div>
             )}
             

@@ -4,16 +4,19 @@ import { Send, Mic, X, MessageCircle, ChevronDown } from 'lucide-react';
 import axios, { AxiosError } from 'axios';
 import '../components/chatScrollbar.css';
 
-// OpenAI configuration
-const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || '';
-const OPENAI_ASSISTANT_ID = import.meta.env.VITE_OPENAI_ASSISTANT_ID || '';
 
-// Headers configuration for OpenAI API
-const openAIHeaders = OPENAI_API_KEY ? {
-  'Authorization': `Bearer ${OPENAI_API_KEY}`,
-  'Content-Type': 'application/json',
-  'OpenAI-Beta': 'assistents=v2'
-} : {};
+// OpenAI configuration
+const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || '';
+
+// Configurando interceptor do Axios para garantir que a chave API seja incluída em todas as chamadas
+axios.interceptors.request.use(config => {
+  if (config.url?.includes('api.openai.com')) {
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${OPENAI_API_KEY}`;
+    console.log('Axios interceptor: Added API key to OpenAI request');
+  }
+  return config;
+});
 
 interface Message {
   id: number;
@@ -201,97 +204,60 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
     setInputValue('');
 
     try {
-      // Se não tiver as chaves de API, usa mensagem simulada
-      if (!OPENAI_API_KEY || !OPENAI_ASSISTANT_ID) {
-        setTimeout(() => {
-          const simulatedResponse: Message = {
-            id: Date.now(),
-            text: "Obrigado pela sua mensagem! Estamos processando sua solicitação e retornaremos em breve. (Resposta simulada - API OpenAI não configurada)",
-            sender: 'piloto',
-            timestamp: new Date()
-          };
-          
-          setMessages(prev => [...prev, simulatedResponse]);
-        }, 1000);
-        return;
-      }
-
-      console.log('Iniciando nova thread com OpenAI...');
-      // Criar um novo thread
-      const threadResponse = await axios.post('https://api.openai.com/v1/threads', {}, {
-        headers: openAIHeaders
-      });
-
-      const threadId = threadResponse.data.id;
-      console.log('Thread criada com sucesso. ID:', threadId);
-
-      // Adicionar mensagem à thread
-      await axios.post(`https://api.openai.com/v1/threads/${threadId}/messages`, {
-        role: 'user',
-        content: inputValue
-      }, {
-        headers: openAIHeaders
-      });
-
-      console.log('Executando assistente...');
-      // Executar o assistente
-      const runResponse = await axios.post(`https://api.openai.com/v1/threads/${threadId}/runs`, {
-        assistant_id: OPENAI_ASSISTANT_ID
-      }, {
-        headers: openAIHeaders
-      });
-
-      const runId = runResponse.data.id;
-      console.log('Assistente iniciado. Run ID:', runId);
-
-      // Aguardar a conclusão do run
-      let run;
-      let attempts = 0;
-      const maxAttempts = 30; // 30 segundos de timeout
-      console.log('Aguardando resposta do assistente...');
+      console.log('Enviando para API OpenAI chat completions...');
       
-      do {
-        if (attempts >= maxAttempts) {
-          throw new Error('Timeout aguardando resposta do assistente');
-        }
-        
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        const runStatusResponse = await axios.get(`https://api.openai.com/v1/threads/${threadId}/runs/${runId}`, {
-          headers: openAIHeaders
-        });
-        
-        run = runStatusResponse.data;
-        console.log('Status atual:', run.status);
-        attempts++;
-      } while (run.status === 'in_progress' || run.status === 'queued');
+      // Usar chat completions diretamente em vez da API de assistentes
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: "gpt-4-turbo",
+          messages: [
+            {
+              role: "system",
+              content: `## **🤖 Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+ 
+### **📌 Visão Geral**
+**O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
 
-      if (run.status === 'completed') {
-        console.log('Assistente concluiu a resposta');
-        // Obter a resposta do assistente
-        console.log('Buscando mensagens da thread...');
-        const messagesResponse = await axios.get(`https://api.openai.com/v1/threads/${threadId}/messages`, {
-          headers: openAIHeaders
-        });
+Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
+- Explica de forma clara e objetiva os benefícios da solução.
+- **Coleta informações essenciais** sobre o interesse do lead.
+- Direciona a conversa para o **WhatsApp da equipe comercial** para fechamento.
 
-        const assistantMessage = messagesResponse.data.data[0];
-        console.log('Resposta completa do assistente:', assistantMessage);
-        
-        if (assistantMessage?.content?.[0]?.text?.value) {
-          const pilotoResponse: Message = {
-            id: Date.now(),
-            text: assistantMessage.content[0].text.value,
-            sender: 'piloto',
-            timestamp: new Date()
-          };
-          
-          setMessages(prev => [...prev, pilotoResponse]);
-        } else {
-          throw new Error('Resposta do assistente em formato inválido');
+---
+
+## **🎯 Objetivo do Agente**
+✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
+✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
+✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
+✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
+✔️ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.`
+            },
+            ...messages.map(msg => ({
+              role: msg.sender === 'user' ? 'user' : 'assistant',
+              content: msg.text
+            })),
+            {
+              role: "user",
+              content: inputValue
+            }
+          ],
+          max_tokens: 500
         }
-      } else {
-        console.error('Run falhou com status:', run.status);
-        throw new Error(`Run failed with status: ${run.status}`);
-      }
+      );
+      
+      console.log('Resposta recebida da OpenAI:', response.data);
+      
+      const aiResponse = response.data.choices[0].message.content;
+      const pilotoResponse: Message = {
+        id: Date.now(),
+        text: aiResponse,
+        sender: 'piloto',
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, pilotoResponse]);
+      
     } catch (error) {
       console.error('Erro na interação do chat:', error);
       if (axios.isAxiosError(error)) {
@@ -381,26 +347,6 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
       setIsTranscribing(true);
       console.log('Enviando áudio para processamento pela OpenAI...');
       
-      if (!OPENAI_API_KEY) {
-        // Simulação se não houver API key
-        console.log('API Key não encontrada. Usando simulação.');
-        setTimeout(() => {
-          const simulatedResponse = "Isso é uma simulação de processamento direto de áudio pela OpenAI. Em uma implementação real, a IA geraria uma resposta com base no áudio enviado.";
-          
-          // Adicionar uma nova mensagem do assistente com a resposta simulada
-          const newMessage: Message = {
-            id: Date.now(),
-            text: simulatedResponse,
-            sender: 'piloto',
-            timestamp: new Date()
-          };
-          
-          setMessages(prev => [...prev, newMessage]);
-          setIsTranscribing(false);
-        }, 2000);
-        return;
-      }
-      
       // Preparar formData para envio
       const formData = new FormData();
       formData.append('file', audioBlob, 'audio.webm');
@@ -409,13 +355,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
       // Primeiro, obter a transcrição do áudio usando o modelo Whisper
       const transcriptionResponse = await axios.post(
         'https://api.openai.com/v1/audio/transcriptions',
-        formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
+        formData
       );
       
       const transcription = transcriptionResponse.data.text;
@@ -425,90 +365,39 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
       const chatResponse = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         {
-          model: "gpt-4o",
+          model: "gpt-4-turbo",
           messages: [
             {
               role: "system",
               content: `## **🤖 Modelo de Agente de IA - O Piloto (Pré-Vendas)**
  
- ### **📌 Visão Geral**
- **O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
- 
- Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
- - Explica de forma clara e objetiva os benefícios da solução.
- - **Coleta informações essenciais** sobre o interesse do lead.
- - Direciona a conversa para o **WhatsApp da equipe comercial** para fechamento.
- 
- ---
- 
- ## **🎯 Objetivo do Agente**
- ✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
- ✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
- ✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
- ✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
- ✔️ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.  
- 
- ---
- 
- ## **💡 Mensagens-Chave**
- O agente deve responder de maneira **curta, direta e convincente**, com foco em gerar curiosidade e engajamento.  
- 
- **Exemplo de abordagem inicial**:  
- *"Olá! Sou O Piloto, um agente de IA especializado em automação. Posso te ajudar a transformar processos manuais em ações automáticas. Quer saber como isso pode funcionar na sua empresa?"*  
- 
- **Exemplo de direcionamento para o WhatsApp**:  
- *"Esse é um caso interessante! Para te ajudar melhor, vou te conectar com nossa equipe pelo WhatsApp. Podemos continuar por lá?"*  
- 
- ---
- 
- ## **🔧 Como O Piloto Pode Ser Usado**
- O agente deve apresentar **exemplos práticos**, simulando pedidos reais e as ações executadas pelo sistema.  
- 
- #### **📊 CRM (Pipedrive, HubSpot, RD Station)**
- - **Pedido**: "O Piloto, crie um lead chamado João Silva com o email joao@email.com e adicione a tag 'Hot Lead'."  
- - **Resposta**: "Lead criado no Pipedrive com a tag 'Hot Lead'. Quer que eu também envie um email automático para ele?"  
- - **Ação**: Chamada à API do CRM para criar o lead e adicionar a tag.  
- 
- #### **📦 ERP (TOTVS, SAP, Omie)**
- - **Pedido**: "O Piloto, atualize o estoque do produto 'Notebook Dell' para 15 unidades."  
- - **Resposta**: "Atualizei o estoque no TOTVS para 15 unidades. Deseja gerar um alerta para reposição automática?"  
- - **Ação**: Atualização do estoque via API.  
- 
- #### **🛒 E-commerce (VTEX, Shopify, WooCommerce)**
- - **Pedido**: "O Piloto, envie um email de rastreamento para o pedido #12345."  
- - **Resposta**: "Email enviado com o código de rastreamento AB123456789. Quer que eu notifique também via WhatsApp?"  
- - **Ação**: Recuperação do código de rastreamento e disparo de email.  
- 
- #### **🎧 Suporte ao Cliente (Zendesk, Freshdesk)**
- - **Pedido**: "O Piloto, abra um chamado para o cliente Maria dizendo que o suporte técnico entrará em contato em até 24h."  
- - **Resposta**: "Chamado criado no Zendesk com SLA de 24h. Quer que eu envie um email de confirmação para o cliente?"  
- - **Ação**: Criação do chamado via API.  
- 
- #### **💰 Financeiro (Conta Azul, Nibo, QuickBooks)**
- - **Pedido**: "O Piloto, gere um relatório de faturamento do último mês."  
- - **Resposta**: "Relatório gerado! Posso te enviar agora pelo WhatsApp ou email?"  
- - **Ação**: Geração do relatório via API.  
- 
- ---
- 
- ## **📈 Resultados Esperados**
- Com essa abordagem, o agente deve:  
- ✅ **Coletar leads qualificados** com informações estratégicas.  
- ✅ **Gerar engajamento** ao mostrar como O Piloto resolve problemas reais.  
- ✅ **Converter leads para o WhatsApp**, onde a equipe pode finalizar a venda.  `
+### **📌 Visão Geral**
+**O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
+
+Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
+- Explica de forma clara e objetiva os benefícios da solução.
+- **Coleta informações essenciais** sobre o interesse do lead.
+- Direciona a conversa para o **WhatsApp da equipe comercial** para fechamento.
+
+---
+
+## **🎯 Objetivo do Agente**
+✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
+✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
+✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
+✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
+✔️ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.`
             },
+            ...messages.map(msg => ({
+              role: msg.sender === 'user' ? 'user' : 'assistant',
+              content: msg.text
+            })),
             {
               role: "user",
               content: transcription
             }
           ],
-          max_tokens: 300
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            'Content-Type': 'application/json'
-          }
+          max_tokens: 500
         }
       );
       
