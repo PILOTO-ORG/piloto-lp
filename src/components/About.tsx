@@ -19,7 +19,7 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <Command className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Comandos Intuitivos</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Comandos Intuitivos</h3>
             <p className="text-gray-600">
               Execute processos complexos com linguagem natural, eliminando treinamentos extensivos
             </p>
@@ -27,15 +27,15 @@ const About = () => {
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <Workflow className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Automação Inteligente</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Automação Inteligente</h3>
             <p className="text-gray-600">
-              Reduza tempo de execução em 80% e elimine até 99% dos erros operacionais
+              Reduza tempo de execução e elimine os erros operacionais
             </p>
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <Brain className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">IA Proativa</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">IA Proativa</h3>
             <p className="text-gray-600">
               Antecipe necessidades e otimize processos com base em padrões de uso
             </p>
@@ -43,7 +43,7 @@ const About = () => {
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <Zap className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Resposta Instantânea</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Resposta Instantânea</h3>
             <p className="text-gray-600">
               Processe solicitações em tempo real, com resposta média de 1.5 segundos
             </p>
@@ -51,7 +51,7 @@ const About = () => {
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <MessageCircle className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Multicanal</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Multicanal</h3>
             <p className="text-gray-600">
               Acesse via WhatsApp, web ou integre aos seus sistemas existentes
             </p>
@@ -59,7 +59,7 @@ const About = () => {
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <Settings className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Integração Flexível</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Integração Flexível</h3>
             <p className="text-gray-600">
               Conecte-se a qualquer sistema ou API mantendo seus processos atuais
             </p>

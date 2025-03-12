@@ -40,9 +40,14 @@ const Pricing = () => {
                 <span>Interface intuitiva e amigável</span>
               </li>
             </ul>
-            <button className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium">
+            <a
+              href="https://wa.me/5548998589586?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20James!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"
+            >
               Quero esse plano!
-            </button>
+            </a>
           </div>
 
           {/* Professional Plan */}
@@ -75,9 +80,14 @@ const Pricing = () => {
                 <span>Integrações avançadas para otimizar sua operação</span>
               </li>
             </ul>
-            <button className="w-full bg-white text-blue-600 py-3 rounded-full hover:bg-blue-50 transition-colors font-semibold">
+            <a
+              href="https://wa.me/5548998589586?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20James%20Plus!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-white text-blue-600 py-3 rounded-full hover:bg-blue-50 transition-colors font-semibold text-center"
+            >
               Quero esse plano!
-            </button>
+            </a>
           </div>
 
           {/* Enterprise Plan */}
@@ -104,9 +114,14 @@ const Pricing = () => {
                 <span>Consultoria especializada para implementar IA com eficiência</span>
               </li>
             </ul>
-            <button className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium">
-              Converse com um especialista
-            </button>
+            <a
+              href="https://wa.me/5548998589586?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20Enterprise!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"
+            >
+              Quero esse plano!
+            </a>
           </div>
         </div>
       </div>

@@ -70,11 +70,11 @@ const SystemIntegrations = () => {
                 {integration.category}
               </h3>
               <div className="mb-4">
-                <p className="font-medium mb-2">Sistemas Populares:</p>
+                {/* <p className="font-medium mb-2 text-black">Sistemas Populares:</p> */}
                 <p className="text-gray-600">{integration.systems.join(", ")}</p>
               </div>
               <div>
-                <p className="font-medium mb-2">Automações Possíveis:</p>
+                {/* <p className="font-medium mb-2">Automações Possíveis:</p> */}
                 <ul className="space-y-2">
                   {integration.examples.map((example, i) => (
                     <li key={i} className="flex items-start">

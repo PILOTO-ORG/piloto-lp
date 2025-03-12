@@ -10,7 +10,7 @@ const Benefits = () => {
             Resultados Comprovados para seu Negócio
           </h2>
           <p className="text-xl text-gray-600">
-            Aumente sua produtividade em até 80% e reduza custos operacionais em até 60%
+            Aumente sua produtividade e reduza custos operacionais em até 60%
             com automação inteligente que se paga em semanas.
           </p>
         </div>
@@ -18,7 +18,7 @@ const Benefits = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <Clock className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">ROI Garantido</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">ROI Garantido</h3>
             <p className="text-gray-600 mb-4">
               Economia mensal de 120+ horas em tarefas operacionais
             </p>
@@ -40,9 +40,9 @@ const Benefits = () => {
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <UserCheck className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Produtividade Maximizada</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Produtividade Maximizada</h3>
             <p className="text-gray-600 mb-4">
-              Aumente a eficiência da sua equipe em até 80%
+              Aumente a eficiência da sua equipe
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
@@ -62,7 +62,7 @@ const Benefits = () => {
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <ShieldCheck className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Qualidade Superior</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Qualidade Superior</h3>
             <p className="text-gray-600 mb-4">
               99.9% de precisão em processos automatizados
             </p>
@@ -84,7 +84,7 @@ const Benefits = () => {
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <HeadphonesIcon className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Suporte Especializado</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Suporte Especializado</h3>
             <p className="text-gray-600 mb-4">
               Time dedicado com resposta em até 15 minutos
             </p>

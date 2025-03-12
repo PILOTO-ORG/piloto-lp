@@ -21,7 +21,7 @@ const HowItWorks = () => {
               1
             </div>
             <MessageCircle className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Envie um Comando</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Envie um Comando</h3>
             <p className="text-gray-600">
               "Atualize o estoque do produto X para 50 unidades"
             </p>
@@ -32,7 +32,7 @@ const HowItWorks = () => {
               2
             </div>
             <Database className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">IA Processa</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">IA Processa</h3>
             <p className="text-gray-600">
               O Piloto interpreta o comando e acessa a API do sistema
             </p>
@@ -43,7 +43,7 @@ const HowItWorks = () => {
               3
             </div>
             <Check className="w-12 h-12 text-blue-600 mb-6" />
-            <h3 className="text-xl font-semibold mb-4">Tarefa Executada</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Tarefa Executada</h3>
             <p className="text-gray-600">
               A ação é realizada e você recebe a confirmação
             </p>

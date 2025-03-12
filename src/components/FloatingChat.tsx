@@ -43,12 +43,26 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(true);
   const [isTranscribing, setIsTranscribing] = useState(false);
+  const [recordingTime, setRecordingTime] = useState(0);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Função para parar a gravação
+  const stopRecording = () => {
+    if (isRecording && mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+      setRecordingTime(0);
+      console.log('Gravação de áudio interrompida');
+      
+      // Toca um som para indicar o fim da gravação
+      playAudioFeedback(false);
+    }
+  };
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
@@ -56,6 +70,39 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
       scrollToBottom();
     }
   }, [messages, isAtBottom]);
+
+  // Efeito para atualizar o temporizador durante a gravação
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (isRecording) {
+      // Atualiza o temporizador a cada segundo
+      interval = setInterval(() => {
+        setRecordingTime(prevTime => prevTime + 1);
+      }, 1000);
+      
+      // Adiciona um listener de clique para interromper a gravação ao clicar em qualquer lugar
+      const handleBodyClick = (e: MouseEvent) => {
+        // Verifica se o clique foi fora do botão de gravação
+        const target = e.target as HTMLElement;
+        if (!target.closest('button[title*="gravação"]')) {
+          stopRecording();
+        }
+      };
+      
+      document.body.addEventListener('click', handleBodyClick);
+      
+      // Limpa o listener quando o componente é desmontado ou a gravação para
+      return () => {
+        if (interval) clearInterval(interval);
+        document.body.removeEventListener('click', handleBodyClick);
+      };
+    } else {
+      return () => {
+        if (interval) clearInterval(interval);
+      };
+    }
+  }, [isRecording]);
 
   // Focus input when chat opens
   useEffect(() => {
@@ -258,20 +305,14 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
   const toggleRecording = async () => {
     if (isRecording) {
       // Parar a gravação
-      if (mediaRecorderRef.current) {
-        mediaRecorderRef.current.stop();
-        setIsRecording(false);
-        console.log('Gravação de áudio finalizada');
-        
-        // Toca um som para indicar o fim da gravação
-        playAudioFeedback(false);
-      }
+      stopRecording();
       return;
     }
 
     try {
       // Iniciar gravação
       setIsRecording(true);
+      setRecordingTime(0);
       console.log('Iniciando gravação de áudio...');
       
       // Toca um som para indicar o início da gravação
@@ -545,10 +586,13 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => {
+                    setIsOpen(false);
                     setIsMinimized(true);
-                    onClose?.();
+                    if (onClose) onClose();
                   }}
-                  className="text-blue-200 hover:text-blue-100 transition-colors"
+                  className="text-blue-200 hover:text-white p-1 rounded-full hover:bg-blue-700/50 transition-colors"
+                  title="Fechar chat"
+                  aria-label="Fechar chat"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -607,16 +651,23 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
             {/* Input */}
             <form onSubmit={handleSubmit} className="p-4 bg-white border-t">
               <div className="flex items-center space-x-2">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  onKeyPress={handleKeyPress}
-                  placeholder={isTranscribing ? "Processando áudio..." : "Digite sua mensagem..."}
-                  className={`w-full px-4 py-2 pr-20 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${isTranscribing ? 'animate-pulse' : ''}`}
-                  disabled={isTranscribing}
-                />
+                {isRecording ? (
+                  <div className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-800 text-red-500 font-medium rounded-lg flex items-center justify-center animate-pulse">
+                    <span className="mr-2">🎙️</span>
+                    Gravando: {Math.floor(recordingTime / 60).toString().padStart(2, '0')}:{(recordingTime % 60).toString().padStart(2, '0')}
+                  </div>
+                ) : (
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onKeyPress={handleKeyPress}
+                    placeholder={isTranscribing ? "Processando áudio..." : "Digite sua mensagem..."}
+                    className={`w-full px-4 py-2 pr-20 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${isTranscribing ? 'animate-pulse' : ''}`}
+                    disabled={isTranscribing}
+                  />
+                )}
                 <button
                   type="button"
                   onClick={toggleRecording}
@@ -634,6 +685,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose }: FloatingChatProps)
                 <button
                   type="submit"
                   className="bg-blue-600 text-blue-200 p-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  disabled={isRecording || isTranscribing}
                 >
                   <Send className="h-5 w-5" />
                 </button>
