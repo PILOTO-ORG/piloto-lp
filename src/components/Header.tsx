@@ -38,6 +38,10 @@ const Header = () => {
     window.open('http://calendly.com/luan-piloto', '_blank');
   };
 
+  const openStripeCheckout = () => {
+    window.open('https://buy.stripe.com/14k7t074j5YJbT23cc', '_blank');
+  };
+
   return (
     <motion.header 
       className="fixed w-full backdrop-blur-sm z-40 border-b border-gray-800"
@@ -92,6 +96,14 @@ const Header = () => {
             >
               Demonstração
             </motion.button>
+            <motion.button 
+              onClick={openStripeCheckout}
+              className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Assinar Agora
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -141,6 +153,12 @@ const Header = () => {
                 className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors text-left"
               >
                 Demonstração
+              </button>
+              <button 
+                onClick={openStripeCheckout}
+                className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors text-left"
+              >
+                Assinar Agora
               </button>
             </div>
           </motion.div>

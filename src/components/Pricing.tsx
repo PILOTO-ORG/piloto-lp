@@ -41,12 +41,12 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://wa.me/5548998589586?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20James!"
+              href="https://buy.stripe.com/14k7t074j5YJbT23cc"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"
             >
-              Quero esse plano!
+              Assinar agora
             </a>
           </div>
 
@@ -81,12 +81,12 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://wa.me/5548998589586?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20James%20Plus!"
+              href="https://buy.stripe.com/9AQ3cKewL2Mx0ak289"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-white text-blue-600 py-3 rounded-full hover:bg-blue-50 transition-colors font-semibold text-center"
             >
-              Quero esse plano!
+              Assinar agora
             </a>
           </div>
 
@@ -115,12 +115,12 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://wa.me/5548998589586?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20Enterprise!"
+              href="https://buy.stripe.com/test_28ocN08t7eT0dq8dQS"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"
             >
-              Quero esse plano!
+              Assinar agora
             </a>
           </div>
         </div>
