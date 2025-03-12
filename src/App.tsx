@@ -39,11 +39,7 @@ function App() {
       <Header />
       
       {/* Chat visível apenas quando próximo ao topo da página */}
-      {showChat && (
-        <Suspense fallback={<div className="h-[350px] mt-[80px] flex items-center justify-center">Carregando chat...</div>}>
-          <ChatSection minimized={!showChat} />
-        </Suspense>
-      )}
+      <ChatSection minimized={!showChat} />
       
       <main>
         <Hero />

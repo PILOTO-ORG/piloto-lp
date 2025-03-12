@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   Send, 
   X,
@@ -52,14 +52,14 @@ const TopChat: React.FC = () => {
     setTimeout(() => {
       if (messagesContainerRef.current) {
         messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
-
-        // Usar scrollIntoView como método adicional para garantir a rolagem
-        const lastMessageElement = messagesContainerRef.current.querySelector('.last-message');
-        if (lastMessageElement) {
-          lastMessageElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
+        
+        // Removendo o scrollIntoView que pode estar movendo a página
+        // const lastMessageElement = messagesContainerRef.current.querySelector('.last-message');
+        // if (lastMessageElement) {
+        //   lastMessageElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        // }
       }
-    }, 10);
+    }, 0); // Reduzindo o timeout para execução imediata
   };
 
   // Função para verificar se é necessário mostrar o indicador de scroll
@@ -79,16 +79,15 @@ const TopChat: React.FC = () => {
 
   // Auto-scroll para o final das mensagens sempre que novas mensagens são adicionadas
   useEffect(() => {
-    forceScrollToBottom();
-    // Verifica a posição do scroll após a adição de mensagem
+    // Apenas verificamos a posição do scroll sem forçar rolagem
     setTimeout(() => {
       checkScrollPosition();
-    }, 500);
+    }, 100);
   }, [messages]);
 
   // Garantir que o scroll ocorra quando o componente for montado
   useEffect(() => {
-    forceScrollToBottom();
+    // Removido o forceScrollToBottom que pode estar causando movimento indesejado da página
   }, []);
 
   // Efeito para atualizar o temporizador durante a gravação
@@ -137,11 +136,10 @@ const TopChat: React.FC = () => {
 
   // Adicionar um event listener para rolagem para garantir que qualquer mudança no conteúdo resulte em scroll para o fim
   useEffect(() => {
-    const handleResize = () => forceScrollToBottom();
-    window.addEventListener('resize', handleResize);
+    // Removido o event listener de resize para evitar movimentos indesejados na página
     
     return () => {
-      window.removeEventListener('resize', handleResize);
+      // Cleanup vazio para manter o hook
     };
   }, [messages]);
 
@@ -407,10 +405,10 @@ const TopChat: React.FC = () => {
         <div 
           ref={chatContainerRef}
           className="w-full mx-auto bg-gray-800 rounded-xl shadow-xl flex flex-col"
-          style={{ height: "450px" }}
+          style={{ height: "550px" }}
         >
-          <div className="flex items-center justify-between p-4 border-b border-gray-700 bg-gray-900 rounded-t-xl">
-            <h2 className="text-xl font-semibold text-blue-300 flex items-center">
+          <div className="flex items-center justify-between p-5 border-b border-gray-700 bg-gray-900 rounded-t-xl">
+            <h2 className="text-2xl font-semibold text-blue-300 flex items-center">
               {isRecording ? (
                 <motion.div 
                   animate={{ scale: [1, 1.2, 1] }}
@@ -418,7 +416,7 @@ const TopChat: React.FC = () => {
                     repeat: Infinity, 
                     duration: 1.5
                   }}
-                  className="h-3 w-3 bg-red-500 rounded-full mr-2"
+                  className="h-4 w-4 bg-red-500 rounded-full mr-3"
                 />
               ) : isTranscribing ? (
                 <motion.div 
@@ -428,10 +426,10 @@ const TopChat: React.FC = () => {
                     duration: 1.5,
                     ease: "linear"
                   }}
-                  className="h-3 w-3 bg-yellow-500 rounded-full mr-2"
+                  className="h-4 w-4 bg-yellow-500 rounded-full mr-3"
                 />
               ) : (
-                <span className="h-3 w-3 bg-green-500 rounded-full mr-2"></span>
+                <span className="h-4 w-4 bg-green-500 rounded-full mr-3"></span>
               )}
               Converse com o Piloto
             </h2>
@@ -442,19 +440,14 @@ const TopChat: React.FC = () => {
             className="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar"
           >
             {/* Indicador de scroll para baixo */}
-            <AnimatePresence>
-              {showScrollIndicator && (
-                <motion.div 
-                  className="scroll-indicator"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  onClick={handleScrollToBottom}
-                >
-                  <ChevronDown size={24} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {showScrollIndicator && (
+              <div 
+                className="scroll-indicator"
+                onClick={handleScrollToBottom}
+              >
+                <ChevronDown size={24} />
+              </div>
+            )}
             
             {messages.map((message, index) => (
               <div
