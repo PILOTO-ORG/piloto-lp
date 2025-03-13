@@ -1,21 +1,46 @@
-import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom';
+import Nanda from './pages/nanda';
+import Home from './pages/home';
+import { trackPageView } from './utils/analytics';
 
-// Lazy load pages for better initial load time
-const HomePage = lazy(() => import('./pages/home'));
-const NandaPage = lazy(() => import('./pages/nanda'));
+// Componente de rastreamento analytics
+const RouteChangeTracker: React.FC = () => {
+  const location = useLocation();
 
-function App() {
-  return (
-    <Router>
-      <Suspense fallback={<div className="min-h-screen bg-gray-900 flex items-center justify-center"><div className="text-white">Carregando...</div></div>}>
-        <Routes>
-          <Route path="/nanda" element={<NandaPage />} />
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </Suspense>
-    </Router>
-  );
-}
+  React.useEffect(() => {
+    // Rastrear pageview quando a localização muda
+    trackPageView(location.pathname + location.search);
+  }, [location]);
+
+  return null;
+};
+
+// Configuração de rotas
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <>
+        <RouteChangeTracker />
+        <Home />
+      </>
+    ),
+  },
+  {
+    path: '/nanda',
+    element: (
+      <>
+        <RouteChangeTracker />
+        <Nanda />
+      </>
+    ),
+  },
+  // Adicione outras rotas conforme necessário
+]);
+
+const App: React.FC = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;

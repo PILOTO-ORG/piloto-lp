@@ -27,8 +27,18 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Preload para recursos críticos -->
-    <link rel="preload" href="/images/automation-hero.webp" as="image" type="image/webp" />
+    <!-- Preload condicional baseado na rota -->
+    <script>
+      // Apenas precarregar imagens da página principal se não estivermos na rota /nanda
+      if (!window.location.pathname.includes('/nanda')) {
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.href = '/images/automation-hero.webp';
+        preloadLink.as = 'image';
+        preloadLink.type = 'image/webp';
+        document.head.appendChild(preloadLink);
+      }
+    </script>
     
     <title>Piloto - Viaje nessa experiência</title>
     
