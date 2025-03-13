@@ -48,8 +48,8 @@ const NandaHeader: React.FC = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Navegação Desktop (visível apenas em telas > 1000px) */}
+          <div className="hidden [min-width:1000px]:flex items-center space-x-8">
             <motion.button 
               onClick={() => scrollToSection('about')} 
               className="text-gray-200 hover:text-purple-300 transition-colors"
@@ -89,7 +89,7 @@ const NandaHeader: React.FC = () => {
             >
               FAQ
             </motion.button>
-            
+
             <motion.button 
               onClick={() => scrollToSection('cta')}
               className="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors"
@@ -109,17 +109,14 @@ const NandaHeader: React.FC = () => {
             </motion.button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile Menu Button (esconder em telas > 1000px) */}
+          <div className="flex [min-width:1000px]:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white focus:outline-none"
+              className="text-white p-2"
+              aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
             >
-              {isMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -127,7 +124,7 @@ const NandaHeader: React.FC = () => {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <motion.div 
-            className="md:hidden mt-4 py-4 bg-purple-900 rounded-lg"
+            className="[min-width:1000px]:hidden mt-4 py-4 bg-purple-900 rounded-lg"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -164,16 +161,10 @@ const NandaHeader: React.FC = () => {
                 FAQ
               </button>
               <button 
-                onClick={() => scrollToSection('cta')}
-                className="bg-purple-600 text-white py-2 rounded-full hover:bg-purple-700 transition-colors"
-              >
-                Teste Agora
-              </button>
-              <button 
                 onClick={openSubscriptionPage}
                 className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2 rounded-full hover:from-purple-700 hover:to-purple-900 transition-colors"
               >
-                Assinar
+                Teste
               </button>
             </div>
           </motion.div>
