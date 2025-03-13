@@ -1,5 +1,10 @@
+/* eslint-disable */
+/* This file contains Tailwind CSS directives */
+/* stylelint-disable-next-line */
 @tailwind base;
+/* stylelint-disable-next-line */
 @tailwind components;
+/* stylelint-disable-next-line */
 @tailwind utilities;
 
 @keyframes fade-in {

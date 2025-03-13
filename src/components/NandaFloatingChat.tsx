@@ -4,7 +4,6 @@ import { Send, Mic, X, MessageCircle, ChevronDown } from 'lucide-react';
 import axios, { AxiosError } from 'axios';
 import '../components/chatScrollbar.css';
 
-
 // OpenAI configuration
 const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || '';
 
@@ -30,13 +29,14 @@ axios.interceptors.request.use(config => {
 interface Message {
   id: number;
   text: string;
-  sender: 'user' | 'piloto';
+  sender: 'user' | 'nanda';
   timestamp: Date;
 }
 
-interface FloatingChatProps {
+interface NandaFloatingChatProps {
   showWhatsAppButton?: boolean;
   onClose?: () => void;
+  openOnHover?: boolean; // Nova propriedade para controlar se abre no hover
   customProps?: {
     initialMessages?: Message[];
     avatarText?: string;
@@ -45,15 +45,20 @@ interface FloatingChatProps {
   };
 }
 
-const FloatingChat = ({ showWhatsAppButton = true, onClose, customProps }: FloatingChatProps) => {
+const NandaFloatingChat = ({ 
+  showWhatsAppButton = true, 
+  onClose, 
+  openOnHover = false, 
+  customProps 
+}: NandaFloatingChatProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<Message[]>(
     customProps?.initialMessages || [
       {
         id: 1,
-        text: "💡 Precisa automatizar processos na sua empresa? Sou O Piloto, especialista em transformar sua operação manual em fluxos automáticos inteligentes. Vamos conversar sobre seus desafios?",
-        sender: 'piloto',
+        text: "Olá! Sou Nanda, sua assistente virtual especializada no setor imobiliário. Como posso ajudar na busca pelo seu imóvel ideal?",
+        sender: 'nanda',
         timestamp: new Date()
       }
     ]
@@ -61,11 +66,10 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose, customProps }: Float
   const [isMinimized, setIsMinimized] = useState(true); // Inicializa minimizado
   const [isMobile, setIsMobile] = useState(false); // Estado para verificar se é dispositivo móvel
   const [isRecording, setIsRecording] = useState(false);
-  // Comment out unused state variable but keep for future implementation
-  // const [isTranscribing, setIsTranscribing] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(true);
   const [recordingTime, setRecordingTime] = useState(0);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -240,24 +244,25 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose, customProps }: Float
           messages: [
             {
               role: "system",
-              content: `## **🤖 Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+              content: `## **🤖 Modelo de Agente de IA - Nanda (Assistente Imobiliária)**
  
 ### **📌 Visão Geral**
-**O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
+**Nanda** é uma **assistente de IA especializada no setor imobiliário**, projetada para **ajudar clientes na busca pelo imóvel ideal e responder dúvidas sobre financiamento, documentação e processos de compra e venda**.
 
-Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
-- Explica de forma clara e objetiva os benefícios da solução.
-- **Coleta informações essenciais** sobre o interesse do lead.
-- Direciona a conversa para o **WhatsApp da equipe comercial** para fechamento.
+Ela **não é apenas um chatbot**, mas sim uma agente **especializada e estratégica**, que:
+- Explica de forma clara e objetiva os detalhes sobre imóveis.
+- **Coleta informações essenciais** sobre as necessidades e preferências dos clientes.
+- Fornece orientações sobre financiamento imobiliário e documentação.
+- Esclarece dúvidas comuns sobre o processo de compra e venda de imóveis.
 
 ---
 
-## **🎯 Objetivo do Agente**
-✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
-✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
-✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
-✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
-✔️ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.`
+## **🎯 Objetivo da Agente**
+✔️ **Ser informativa e precisa** ao fornecer informações sobre imóveis e processos imobiliários.  
+✔️ **Fazer perguntas estratégicas** para entender as necessidades dos clientes.  
+✔️ **Demonstrar conhecimento especializado** sobre o mercado imobiliário.  
+✔️ **Oferecer atendimento personalizado** para cada cliente.  
+✔️ **Direcionar clientes interessados para contato direto** com corretores quando necessário.`
             },
             ...messages.map(msg => ({
               role: msg.sender === 'user' ? 'user' : 'assistant',
@@ -275,14 +280,14 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
       console.log('Resposta recebida da OpenAI:', response.data);
       
       const aiResponse = response.data.choices[0].message.content;
-      const pilotoResponse: Message = {
+      const nandaResponse: Message = {
         id: Date.now(),
         text: aiResponse,
-        sender: 'piloto',
+        sender: 'nanda',
         timestamp: new Date()
       };
       
-      setMessages(prev => [...prev, pilotoResponse]);
+      setMessages(prev => [...prev, nandaResponse]);
       
     } catch (error) {
       console.error('Erro na interação do chat:', error);
@@ -297,7 +302,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
       const errorMessage: Message = {
         id: Date.now(),
         text: 'Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.',
-        sender: 'piloto',
+        sender: 'nanda',
         timestamp: new Date()
       };
       console.log('Enviando mensagem de erro ao usuário');
@@ -408,24 +413,25 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
           messages: [
             {
               role: "system",
-              content: `## **🤖 Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+              content: `## **🤖 Modelo de Agente de IA - Nanda (Assistente Imobiliária)**
  
 ### **📌 Visão Geral**
-**O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
+**Nanda** é uma **assistente de IA especializada no setor imobiliário**, projetada para **ajudar clientes na busca pelo imóvel ideal e responder dúvidas sobre financiamento, documentação e processos de compra e venda**.
 
-Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
-- Explica de forma clara e objetiva os benefícios da solução.
-- **Coleta informações essenciais** sobre o interesse do lead.
-- Direciona a conversa para o **WhatsApp da equipe comercial** para fechamento.
+Ela **não é apenas um chatbot**, mas sim uma agente **especializada e estratégica**, que:
+- Explica de forma clara e objetiva os detalhes sobre imóveis.
+- **Coleta informações essenciais** sobre as necessidades e preferências dos clientes.
+- Fornece orientações sobre financiamento imobiliário e documentação.
+- Esclarece dúvidas comuns sobre o processo de compra e venda de imóveis.
 
 ---
 
-## **🎯 Objetivo do Agente**
-✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
-✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
-✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
-✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
-✔️ **Encaminhar o lead para o WhatsApp da equipe comercial**, garantindo contato direto.`
+## **🎯 Objetivo da Agente**
+✔️ **Ser informativa e precisa** ao fornecer informações sobre imóveis e processos imobiliários.  
+✔️ **Fazer perguntas estratégicas** para entender as necessidades dos clientes.  
+✔️ **Demonstrar conhecimento especializado** sobre o mercado imobiliário.  
+✔️ **Oferecer atendimento personalizado** para cada cliente.  
+✔️ **Direcionar clientes interessados para contato direto** com corretores quando necessário.`
             },
             ...messages.map(msg => ({
               role: msg.sender === 'user' ? 'user' : 'assistant',
@@ -461,7 +467,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
       const assistantMessage: Message = {
         id: Date.now() + 1,
         text: aiResponse,
-        sender: 'piloto',
+        sender: 'nanda',
         timestamp: new Date()
       };
       
@@ -475,7 +481,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
       const errorMessage: Message = {
         id: Date.now(),
         text: "Desculpe, ocorreu um erro ao processar seu áudio. Por favor, tente novamente.",
-        sender: 'piloto',
+        sender: 'nanda',
         timestamp: new Date()
       };
       
@@ -522,16 +528,41 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
   };
 
   const openWhatsApp = () => {
-    window.open('https://api.whatsapp.com/send?phone=+5511989225782&text=Olá!%20Estou%20entrando%20em%20contato%20através%20do%20site.', '_blank');
+    window.open('https://api.whatsapp.com/send?phone=+5548998589586&text=Olá!%20Estou%20entrando%20em%20contato%20através%20do%20site%20da%20Nanda.', '_blank');
+  };
+
+  // Função para lidar com o hover do mouse sobre o botão de chat
+  const handleMouseEnter = () => {
+    if (openOnHover && isMinimized) {
+      // Definir um pequeno timeout para evitar abrir o chat acidentalmente
+      const timeout = setTimeout(() => {
+        setIsMinimized(false);
+        setIsOpen(true);
+        
+        setTimeout(() => {
+          scrollToBottom();
+        }, 100);
+      }, 300); // 300ms de delay antes de abrir
+      
+      setHoverTimeout(timeout);
+    }
+  };
+  
+  // Função para cancelar a abertura se o mouse sair antes do timeout
+  const handleMouseLeave = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
   };
 
   return (
-    <>
+    <div className="relative z-50">
       {/* WhatsApp Button */}
       {showWhatsAppButton && (
         <motion.div 
           onClick={openWhatsApp}
-          className="fixed bottom-6 left-6 z-50 bg-green-500 text-blue-100 rounded-full shadow-lg p-4 cursor-pointer"
+          className="fixed bottom-6 left-6 z-50 bg-green-500 text-purple-100 rounded-full shadow-lg p-4 cursor-pointer"
           whileHover={{ scale: 1.05, backgroundColor: '#25D366' }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
@@ -542,16 +573,21 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
 
       {/* Chat Button - somente exibido em desktop */}
       {isMinimized && !isMobile && (
-        <motion.div 
-          onClick={toggleMinimize}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-blue-700 text-blue-200 rounded-2xl shadow-lg px-4 py-2 cursor-pointer flex items-center"
-          whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)" }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+        <div 
+          className="fixed bottom-6 right-6 z-50"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          <MessageCircle className="h-5 w-5 mr-2" />
-          <p className="text-sm font-medium">Precisa de ajuda?</p>
-        </motion.div>
+          <motion.button
+            onClick={toggleMinimize}
+            className="w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow-lg hover:shadow-xl focus:outline-none"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title="Fale com a Nanda"
+          >
+            <MessageCircle size={30} />
+          </motion.button>
+        </div>
       )}
 
       {/* Chat Container - somente exibido em desktop quando não está minimizado */}
@@ -566,23 +602,23 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
             style={{ width: '350px', maxHeight: '80vh' }}
           >
             {/* Header */}
-            <div className="flex justify-between items-center p-3 bg-blue-600 text-white rounded-t-lg">
+            <div className="flex justify-between items-center p-3 bg-purple-600 text-white rounded-t-lg">
               <div className="flex items-center">
-                <div className="h-8 w-8 bg-blue-700 text-blue-100 rounded-full flex items-center justify-center text-xs font-medium mr-2">
-                  {customProps?.avatarText || "OP"}
+                <div className="h-8 w-8 bg-purple-700 text-purple-100 rounded-full flex items-center justify-center text-xs font-medium mr-2">
+                  {customProps?.avatarText || "NA"}
                 </div>
-                <h3 className="font-medium">{customProps?.chatTitle || "O Piloto - Assistente Virtual"}</h3>
+                <h3 className="font-medium">{customProps?.chatTitle || "Nanda - Assistente Imobiliária"}</h3>
               </div>
               <div className="flex items-center space-x-2">
                 <button 
                   onClick={toggleMinimize} 
-                  className="p-1 rounded-full hover:bg-blue-700 transition-colors"
+                  className="p-1 rounded-full hover:bg-purple-700 transition-colors"
                   aria-label="Minimizar chat"
                 >
                   <ChevronDown size={18} />
                 </button>
                 {onClose && (
-                  <button onClick={onClose} className="p-1 rounded-full hover:bg-blue-700 transition-colors">
+                  <button onClick={onClose} className="p-1 rounded-full hover:bg-purple-700 transition-colors">
                     <X size={18} />
                   </button>
                 )}
@@ -604,14 +640,14 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
                   <div
                     className={`max-w-[80%] p-3 rounded-lg ${
                       message.sender === 'user'
-                        ? 'bg-blue-600 text-blue-100 rounded-br-none'
+                        ? 'bg-purple-600 text-purple-100 rounded-br-none'
                         : 'bg-white text-gray-800 shadow-md rounded-bl-none'
                     }`}
                   >
                     <p className="text-sm">{message.text}</p>
                     <p
                       className={`text-xs mt-1 ${
-                        message.sender === 'user' ? 'text-blue-100' : 'text-gray-400'
+                        message.sender === 'user' ? 'text-purple-100' : 'text-gray-400'
                       }`}
                     >
                       {formatTime(message.timestamp)}
@@ -627,7 +663,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
               <div className="absolute bottom-20 right-6">
                 <motion.button
                   onClick={handleScrollToBottom}
-                  className="bg-blue-600 text-blue-200 rounded-full p-2 shadow-md"
+                  className="bg-purple-600 text-purple-200 rounded-full p-2 shadow-md"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
@@ -654,7 +690,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
                     onChange={handleInputChange}
                     onKeyPress={handleKeyPress}
                     placeholder={customProps?.inputPlaceholder || "Digite sua mensagem..."}
-                    className={`w-full px-4 py-2 pr-20 bg-white border border-gray-200 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all`}
+                    className={`w-full px-4 py-2 pr-20 bg-white border border-gray-200 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all`}
                   />
                 )}
                 <button
@@ -662,15 +698,15 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
                   onClick={toggleRecording}
                   className={`p-2 rounded-lg transition-colors ${
                     isRecording
-                      ? 'bg-red-500 text-blue-100'
-                      : 'text-gray-500 hover:text-blue-500'
+                      ? 'bg-red-500 text-purple-100'
+                      : 'text-gray-500 hover:text-purple-500'
                   }`}
                 >
                   <Mic className="h-5 w-5" />
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-600 text-blue-200 p-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  className="bg-purple-600 text-purple-100 p-2 rounded-lg hover:bg-purple-700 transition-colors"
                   disabled={isRecording}
                 >
                   <Send className="h-5 w-5" />
@@ -680,8 +716,8 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
           </motion.div>
         </AnimatePresence>
       )}
-    </>
+    </div>
   );
 };
 
-export default FloatingChat;
+export default NandaFloatingChat;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { 
   Send, 
-  X,
+  // X,  // Removed unused import
   ArrowLeft,
   Mic
 } from 'lucide-react';
@@ -16,6 +16,14 @@ const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || '';
 axios.interceptors.request.use(config => {
   if (config.url?.includes('api.openai.com')) {
     config.headers = config.headers || {};
+    
+    // Ensure API key is not empty
+    if (!OPENAI_API_KEY) {
+      console.error('OpenAI API key is missing or empty. Please check your .env file.');
+    }
+    
+    // Always set the Authorization header with the API key, even if it's empty
+    // This will help debug if the key is not being loaded correctly
     config.headers.Authorization = `Bearer ${OPENAI_API_KEY}`;
     
     // Manter o Content-Type original para multipart/form-data
@@ -23,7 +31,8 @@ axios.interceptors.request.use(config => {
       config.headers['Content-Type'] = 'application/json';
     }
     
-    console.log('Axios interceptor (TopChat): Added API key to OpenAI request');
+    console.log('Axios interceptor (TopChat): Added API key to OpenAI request', 
+                OPENAI_API_KEY ? 'API key present' : 'API key missing');
   }
   return config;
 });
@@ -36,7 +45,8 @@ interface Message {
 }
 
 const TopChat: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  // Using isVisible state but commenting out setter since it's not currently used
+  const [isVisible, /*setIsVisible*/] = useState(true);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -159,15 +169,16 @@ const TopChat: React.FC = () => {
     };
   }, [messages]);
 
-  const scrollToHero = () => {
-    const heroSection = document.getElementById('home');
-    if (heroSection) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'auto'
-      });
-    }
-  };
+  // Function commented out as it's not currently used
+  // const scrollToHero = () => {
+  //   const heroSection = document.getElementById('home');
+  //   if (heroSection) {
+  //     window.scrollTo({
+  //       top: 0,
+  //       behavior: 'auto'
+  //     });
+  //   }
+  // };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
