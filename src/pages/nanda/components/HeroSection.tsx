@@ -55,6 +55,7 @@ const HeroSection: React.FC = () => {
                   style={{ minHeight: "400px" }}
                   onError={(e) => {
                     // Fallback para uma imagem de placeholder caso a imagem principal não carregue
+                    console.log("Erro ao carregar a imagem principal, usando fallback");
                     e.currentTarget.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80";
                   }}
                 />

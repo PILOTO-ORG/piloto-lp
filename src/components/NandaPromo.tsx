@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Bot, Building, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const NandaPromo: React.FC = () => {
+  useEffect(() => {
+    console.log("NandaPromo component mounted");
+  }, []);
+
   return (
     <section id="nanda" className="py-20 bg-gradient-to-br from-purple-900 to-purple-700 text-white relative overflow-hidden">
       {/* Overlay com padrões decorativos */}

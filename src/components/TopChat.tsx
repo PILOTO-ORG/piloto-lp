@@ -10,29 +10,29 @@ import {
 import './chatScrollbar.css';
 
 // OpenAI configuration
-const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || '';
+// Usando uma chave temporária para desenvolvimento - em produção, use variáveis de ambiente
+const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || 'sk-exemplo-temporario123456789';
 
 // Configurando interceptor do Axios para garantir que a chave API seja incluída em todas as chamadas
 axios.interceptors.request.use(config => {
   if (config.url?.includes('api.openai.com')) {
     config.headers = config.headers || {};
     
-    // Ensure API key is not empty
-    if (!OPENAI_API_KEY) {
-      console.error('OpenAI API key is missing or empty. Please check your .env file.');
+    // Ensure API key is not empty and add it to the headers
+    if (!OPENAI_API_KEY || OPENAI_API_KEY === 'sk-exemplo-temporario123456789') {
+      console.error('OpenAI API key is missing or using a placeholder. Please check your .env file.');
+      // Desativar chamadas à API em desenvolvimento quando não há chave válida
+      if (import.meta.env.DEV) {
+        console.log('Development mode - mocking OpenAI API call');
+        // Em desenvolvimento, podemos modificar a URL para evitar chamadas à API real
+        // quando não temos uma chave válida
+        config.url = 'https://mock-api.local/v1/chat/completions';
+      }
     }
     
-    // Always set the Authorization header with the API key, even if it's empty
-    // This will help debug if the key is not being loaded correctly
+    // Always set the Authorization header with the API key
     config.headers.Authorization = `Bearer ${OPENAI_API_KEY}`;
-    
-    // Manter o Content-Type original para multipart/form-data
-    if (!config.headers['Content-Type']) {
-      config.headers['Content-Type'] = 'application/json';
-    }
-    
-    console.log('Axios interceptor (TopChat): Added API key to OpenAI request', 
-                OPENAI_API_KEY ? 'API key present' : 'API key missing');
+    console.log('Axios interceptor: Added API key to OpenAI request');
   }
   return config;
 });
