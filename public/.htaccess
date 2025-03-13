@@ -1,0 +1,12 @@
+# Habilitar o módulo de rewrite do Apache
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Não aplicar regra a arquivos e diretórios existentes
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Redirecionar todas as requisições para index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
