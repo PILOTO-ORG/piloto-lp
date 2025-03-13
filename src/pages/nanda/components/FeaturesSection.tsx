@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Home, RefreshCw, Target, BarChart3, Clock, Calendar } from 'lucide-react';
+import { Smartphone, Home, RefreshCw, Target, Clock, Calendar } from 'lucide-react';
 
 const FeaturesSection: React.FC = () => {
   return (

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import FloatingChat from './components/FloatingChat';
+import NandaPromo from './components/NandaPromo';
 // Lazy load secondary components for better initial load times
 const About = lazy(() => import('./components/About'));
 const HowItWorks = lazy(() => import('./components/HowItWorks'));
@@ -33,6 +34,7 @@ function App() {
                 <About />
                 <HowItWorks />
                 <SystemIntegrations />
+                <NandaPromo />
                 <Benefits />
                 <Pricing />
                 <Contact />

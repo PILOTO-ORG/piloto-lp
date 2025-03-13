@@ -1,10 +1,16 @@
 /* eslint-disable */
 /* This file contains Tailwind CSS directives */
 /* stylelint-disable-next-line */
+/* VS Code: ignore the following line */
+/* @tailwind base; */
 @tailwind base;
 /* stylelint-disable-next-line */
+/* VS Code: ignore the following line */
+/* @tailwind components; */
 @tailwind components;
 /* stylelint-disable-next-line */
+/* VS Code: ignore the following line */
+/* @tailwind utilities; */
 @tailwind utilities;
 
 @keyframes fade-in {
