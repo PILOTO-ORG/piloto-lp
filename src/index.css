@@ -3,15 +3,15 @@
 /* stylelint-disable-next-line */
 /* VS Code: ignore the following line */
 /* @tailwind base; */
-@tailwind base;
+@import 'tailwindcss/base';
 /* stylelint-disable-next-line */
 /* VS Code: ignore the following line */
 /* @tailwind components; */
-@tailwind components;
+@import 'tailwindcss/components';
 /* stylelint-disable-next-line */
 /* VS Code: ignore the following line */
 /* @tailwind utilities; */
-@tailwind utilities;
+@import 'tailwindcss/utilities';
 
 @keyframes fade-in {
   from {

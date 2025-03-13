@@ -1,7 +1,7 @@
 /* Global CSS file - All @import and @tailwind rules at top */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 /* Definições de animações keyframes */
 @keyframes pulse-highlight {
