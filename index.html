@@ -32,6 +32,22 @@
     
     <title>Piloto - Viaje nessa experiência</title>
     
+    <!-- Configuração das variáveis de ambiente -->
+    <script>
+      window.ENV = {
+        // Em produção, será substituído pelo valor real via interpolação de variáveis de ambiente
+        // Durante o desenvolvimento, usamos uma chave de exemplo
+        OPENAI_API_KEY: '%VITE_APP_OPENAI_API_KEY%' || 'sk-exemplo-temporario123456789'
+      };
+      
+      // Verificação adicional em caso de falha na interpolação da variável
+      if (window.ENV.OPENAI_API_KEY === '%VITE_APP_OPENAI_API_KEY%') {
+        // Fallback para desenvolvimento
+        window.ENV.OPENAI_API_KEY = 'sk-exemplo-temporario123456789';
+        console.log('Usando chave de API temporária para desenvolvimento');
+      }
+    </script>
+    
     <!-- OpenAI API Key Interceptor -->
     <script src="/openai-interceptor.js"></script>
     
