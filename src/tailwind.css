@@ -1,0 +1,4 @@
+/* Arquivo para fornecer dicas sobre as diretivas do Tailwind para o editor */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

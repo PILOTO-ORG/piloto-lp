@@ -1,0 +1,3 @@
+{
+  "ignoreAtRules": ["tailwind", "layer", "apply", "screen"]
+}

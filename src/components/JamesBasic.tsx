@@ -9,7 +9,6 @@ import {
   User,
   ChevronDown
 } from 'lucide-react';
-import './chatScrollbar.css';
 
 interface Message {
   id: number;

@@ -7,7 +7,6 @@ import {
   ArrowLeft,
   Mic
 } from 'lucide-react';
-import './chatScrollbar.css';
 
 // OpenAI configuration
 // Usando uma chave temporária para desenvolvimento - em produção, use variáveis de ambiente

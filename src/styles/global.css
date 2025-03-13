@@ -1,0 +1,93 @@
+/* Global CSS file - All @import and @tailwind rules at top */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definições de animações keyframes */
+@keyframes pulse-highlight {
+  0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+@keyframes bounce-down {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-15px); }
+  60% { transform: translateY(-7px); }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Estilos para a barra de rolagem personalizada */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(107, 114, 128, 0.4);
+  border-radius: 4px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(107, 114, 128, 0.4) rgba(31, 41, 55, 0.2);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Animação de pulse para novas mensagens */
+.last-message {
+  position: relative;
+}
+
+.last-message:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  animation: pulse-highlight 1.5s ease-in-out;
+  pointer-events: none;
+}
+
+/* Indicador de scroll para baixo */
+.scroll-indicator {
+  position: absolute;
+  bottom: 70px;
+  right: 15px;
+  background-color: #ffffff;
+  color: #1F2937;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator.visible {
+  opacity: 1;
+  animation: bounce-down 2s infinite;
+}
+
+/* Animações de entrada */
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}

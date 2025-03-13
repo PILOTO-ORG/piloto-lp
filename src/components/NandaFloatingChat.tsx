@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Mic, X, MessageCircle, ChevronDown } from 'lucide-react';
 import axios, { AxiosError } from 'axios';
-import '../components/chatScrollbar.css';
 
 // OpenAI configuration
 // Usando uma chave temporária para desenvolvimento - em produção, use variáveis de ambiente
