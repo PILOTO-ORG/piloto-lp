@@ -533,7 +533,7 @@ Ela **não é apenas um chatbot**, mas sim uma agente **especializada e estraté
   };
 
   const openWhatsApp = () => {
-    window.open('https://api.whatsapp.com/send?phone=+5548998589586&text=Olá!%20Estou%20entrando%20em%20contato%20através%20do%20site%20da%20Nanda.', '_blank');
+    window.open('https://api.whatsapp.com/send?phone=+554899230055&text=Olá!%20Estou%20entrando%20em%20contato%20através%20do%20site%20da%20Nanda.', '_blank');
   };
 
   // Função para lidar com o hover do mouse sobre o botão de chat
