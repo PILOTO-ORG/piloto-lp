@@ -526,7 +526,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
   };
 
   const openWhatsApp = () => {
-    window.open('https://api.whatsapp.com/send?phone=+5511989225782&text=Olá!%20Estou%20entrando%20em%20contato%20através%20do%20site.', '_blank');
+    window.open('https://api.whatsapp.com/send?phone=+5548998589586&text=Olá!%20Estou%20entrando%20em%20contato%20através%20do%20site.', '_blank');
   };
 
   return (
