@@ -1,7 +1,15 @@
 import { ArrowRight, Bot, Zap, DollarSign, Sparkles, Globe } from 'lucide-react';
 import { memo } from 'react';
 
-const Hero = memo(() => {
+interface HeroProps {
+  title: string;
+  subtitle?: string;
+  backgroundImage?: string;
+  ctaText?: string;
+  onClick?: () => void;
+}
+
+const Hero = memo(({ title, subtitle, backgroundImage, ctaText, onClick }: HeroProps) => {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -17,33 +25,35 @@ const Hero = memo(() => {
   };
 
   return (
-    <div className="pt-24 pb-16 bg-gradient-to-br from-blue-900 to-gray-900" id="home">
-      <div className="container mx-auto px-4">
+    <section className="hero relative overflow-hidden">
+      {backgroundImage && (
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-50" />
+        </div>
+      )}
+      <div className="relative container mx-auto px-4 py-24">
         <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="lg:w-1/2 mb-12 lg:mb-0">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+          <div className="lg:w-1/2 text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
               Revolucione sua Empresa
-              <span className="text-blue-300 block mt-2">
-                com Automação Inteligente
-              </span>
             </h1>
-            <p className="text-lg sm:text-xl text-white mb-8">
-              Reduza custos e aumente a produtividade, substituindo processos manuais por robôs inteligentes. 
-              <br />
-              <span className="block mt-2">Elimine erros operacionais com O Piloto.</span>
-              <span className="block mt-2">Automatize seus sistemas com tecnologias avançadas, transformando comandos simples em ações poderosas.</span>
+            <p className="text-xl sm:text-2xl text-white mb-8">
+              com Automação Inteligente
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 onClick={openCalendly}
-                className="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center hover:scale-105 active:scale-95"
+                className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center hover:scale-105 active:scale-95"
               >
                 Solicitar Demonstração
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
               <button 
                 onClick={() => scrollToSection('how-it-works')}
-                className="border-2 border-blue-500 text-white px-8 py-3 rounded-full hover:bg-blue-600 hover:border-blue-600 transition-colors hover:scale-105 active:scale-95"
+                className="border-2 border-blue-500 text-white px-8 py-4 rounded-full hover:bg-blue-600 hover:border-blue-600 transition-colors hover:scale-105 active:scale-95"
               >
                 Veja Como Funciona
               </button>
@@ -118,7 +128,7 @@ const Hero = memo(() => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 });
 
