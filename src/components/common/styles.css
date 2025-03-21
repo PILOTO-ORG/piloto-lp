@@ -1,0 +1,139 @@
+/* Hero Styles */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-size: cover;
+  background-position: center;
+  background-color: #f5f5f5;
+}
+
+.hero-content {
+  max-width: 800px;
+  text-align: center;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #2563eb;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.hero-cta:hover {
+  background-color: #1d4ed8;
+}
+
+.hero-image {
+  max-width: 600px;
+  margin-top: 3rem;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Solution Block Styles */
+.solution-block {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.solution-block:hover {
+  transform: translateY(-5px);
+}
+
+.solution-content {
+  margin-bottom: 2rem;
+}
+
+.solution-content h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.solution-content p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.solution-cta {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #2563eb;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.solution-cta:hover {
+  background-color: #1d4ed8;
+}
+
+.solution-image {
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.solution-image img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.solution-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .solution-block {
+    margin: 1rem 0;
+  }
+
+  .solution-content {
+    text-align: center;
+  }
+}
