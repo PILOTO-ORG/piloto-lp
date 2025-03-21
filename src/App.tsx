@@ -1,7 +1,9 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom';
-import Nanda from './pages/nanda';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
+import Nanda from './pages/nanda';
+import James from './pages/james';
+import Fabricio from './pages/fabricio';
 import { trackPageView } from './utils/analytics';
 
 // Componente de rastreamento analytics
@@ -16,31 +18,37 @@ const RouteChangeTracker: React.FC = () => {
   return null;
 };
 
-// Configuração de rotas
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: (
-      <>
-        <RouteChangeTracker />
-        <Home />
-      </>
-    ),
-  },
-  {
-    path: '/nanda',
-    element: (
-      <>
-        <RouteChangeTracker />
-        <Nanda />
-      </>
-    ),
-  },
-  // Adicione outras rotas conforme necessário
-]);
-
-const App: React.FC = () => {
-  return <RouterProvider router={router} />;
-};
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <RouteChangeTracker />
+            <Home />
+          </>
+        } />
+        <Route path="/nanda" element={
+          <>
+            <RouteChangeTracker />
+            <Nanda />
+          </>
+        } />
+        <Route path="/james" element={
+          <>
+            <RouteChangeTracker />
+            <James />
+          </>
+        } />
+        <Route path="/fabricio" element={
+          <>
+            <RouteChangeTracker />
+            <Fabricio />
+          </>
+        } />
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;

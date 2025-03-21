@@ -14,10 +14,10 @@ const AboutSection: React.FC = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
-            Atendimento inteligente que converte visitantes em clientes
+            Negociação Inteligente para Redução de Custos
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            A Nanda elimina a espera e aumenta a conversão com atendimento ágil via chat e WhatsApp, transformando visitantes em clientes em tempo real.
+            O Fabricio identifica os melhores orçamentos e negocia automaticamente, ajudando você a reduzir custos e melhorar a qualidade dos seus insumos.
           </p>
         </motion.div>
         
@@ -47,33 +47,33 @@ const AboutSection: React.FC = () => {
 const features = [
   {
     icon: MessageSquare,
-    title: "Interface Intuitiva",
-    description: "Uma experiência de chat moderna e fácil de usar, que se integra perfeitamente com seu site."
+    title: "Integração com ERP",
+    description: "Conecta-se diretamente ao seu ERP para buscar os melhores orçamentos e negociações."
   },
   {
     icon: Calendar,
-    title: "Integração com WhatsApp",
-    description: "Atende clientes em tempo real através do WhatsApp, mantendo a conversa organizada e profissional."
+    title: "Comparação Inteligente",
+    description: "Analisa múltiplos orçamentos em tempo real, identificando as melhores oportunidades de economia."
   },
   {
     icon: Users,
-    title: "Atendimento Personalizado",
-    description: "Entende as necessidades de cada cliente e oferece recomendações personalizadas de imóveis."
+    title: "Negociação Automática",
+    description: "Negocia automaticamente com fornecedores, buscando sempre os melhores preços e condições."
   },
   {
     icon: LineChart,
-    title: "Qualificação de Leads",
-    description: "Identifica clientes potenciais e envia para seu CRM com todas as informações relevantes."
+    title: "Análise de Mercado",
+    description: "Monitora tendências de mercado e ajusta automaticamente suas estratégias de negociação."
   },
   {
     icon: Share2,
-    title: "Analytics em Tempo Real",
-    description: "Acompanhe métricas de conversão, interações e performance do atendimento em tempo real."
+    title: "Histórico de Negociações",
+    description: "Armazena e analisa todas as negociações realizadas, aprendendo com cada experiência."
   },
   {
     icon: BarChart3,
-    title: "Relatórios Inteligentes",
-    description: "Acesse relatórios detalhados sobre o desempenho do atendimento e as preferências dos clientes.",
+    title: "Relatórios de Economia",
+    description: "Gera relatórios detalhados sobre economias realizadas e oportunidades de melhoria.",
   }
 ];
 
