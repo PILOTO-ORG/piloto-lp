@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Bot, Building, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import BaseChat from './BaseChat';
 
 const NandaPromo: React.FC = () => {
   useEffect(() => {
@@ -80,69 +81,13 @@ const NandaPromo: React.FC = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <div className="relative w-full max-w-md">
-              {/* Moldura estilizada para mostrar a Nanda */}
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                {/* Cabeçalho da "janela" */}
-                <div className="bg-purple-800 p-4 flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold">NA</span>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium">Nanda - Assistente Imobiliária</h4>
-                    </div>
-                  </div>
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-gray-300"></div>
-                    <div className="w-3 h-3 rounded-full bg-gray-300"></div>
-                    <div className="w-3 h-3 rounded-full bg-gray-300"></div>
-                  </div>
-                </div>
-                
-                {/* Corpo da conversa */}
-                <div className="p-6 bg-gray-50">
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex items-start max-w-[80%]">
-                      <div className="bg-purple-100 p-3 rounded-lg rounded-tl-none">
-                        <p className="text-purple-800">Olá! Sou Nanda, sua assistente virtual especializada no setor imobiliário. Como posso ajudar na busca pelo seu imóvel ideal?</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start self-end max-w-[80%]">
-                      <div className="bg-blue-600 p-3 rounded-lg rounded-tr-none">
-                        <p className="text-white">Estou procurando um apartamento de 2 quartos na zona sul.</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start max-w-[80%]">
-                      <div className="bg-purple-100 p-3 rounded-lg rounded-tl-none">
-                        <p className="text-purple-800">Encontrei 5 ótimas opções de apartamentos com 2 quartos na zona sul! Gostaria de filtrar por faixa de preço ou tamanho?</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Input area */}
-                <div className="p-4 border-t border-gray-200 flex items-center">
-                  <input 
-                    type="text" 
-                    className="flex-1 py-2 px-4 bg-gray-100 rounded-full text-gray-700 placeholder-gray-500 text-sm"
-                    placeholder="Digite sua mensagem..."
-                    disabled
-                  />
-                  <button className="ml-3 p-2 rounded-full bg-purple-600 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              
-              {/* Elementos decorativos */}
-              <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-purple-500 rounded-full"></div>
-              <div className="absolute -top-6 -left-6 w-12 h-12 bg-purple-300 rounded-full"></div>
-            </div>
+            <BaseChat
+              customProps={{
+                chatTitle: 'Nanda - Assistente Imobiliária',
+                inputPlaceholder: 'Digite sua mensagem...',
+                avatarText: 'NA'
+              }}
+            />
           </motion.div>
         </div>
       </div>

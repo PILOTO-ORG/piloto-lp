@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Calendar } from 'lucide-react';
 
 const Contact = () => {
   const openCalendly = () => {
-    window.open('https://calendly.com/piloto-contato/30min', '_blank');
+    window.open('https://calendly.com/luan-piloto', '_blank');
   };
 
   return (

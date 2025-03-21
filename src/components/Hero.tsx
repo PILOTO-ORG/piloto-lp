@@ -97,11 +97,12 @@ const Hero = memo(({ title, subtitle, backgroundImage, ctaText, onClick }: HeroP
             title="Comandos Intuitivos"
             description="Configure automações complexas com comandos simples em português"
           />
-          <BenefitCard 
-            icon={<DollarSign className="text-blue-600 h-8 w-8 mb-4" />}
-            title="ROI Garantido"
-            description="ROI comprovado em 8 semanas com redução de custos operacionais"
-          />
+<BenefitCard 
+  icon={<DollarSign className="text-blue-600 h-8 w-8 mb-4" />}
+  title="Resultados Incríveis"
+  description="Experimente um retorno surpreendente rapidamente, com cortes expressivos nos custos operacionais."
+/>
+
         </div>
 
         {/* Additional Piloto Features */}

@@ -1,17 +1,17 @@
-import React, { useState, lazy } from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Header';
-import FloatingChat from '../../components/FloatingChat';
+import ChatSection from '../../components/ChatSection';
 import Hero from '../../components/Hero';
-
-// Lazy load components para melhor performance na carga inicial
-const About = lazy(() => import('../../components/About'));
-const HowItWorks = lazy(() => import('../../components/HowItWorks'));
-const SystemIntegrations = lazy(() => import('../../components/SystemIntegrations'));
-const NandaPromo = lazy(() => import('../../components/NandaPromo'));
-const Benefits = lazy(() => import('../../components/Benefits'));
-const Pricing = lazy(() => import('../../components/Pricing'));
-const Contact = lazy(() => import('../../components/Contact'));
-const ChatSection = lazy(() => import('../../components/ChatSection'));
+import About from '../../components/About';
+import HowItWorks from '../../components/HowItWorks';
+import SystemIntegrations from '../../components/SystemIntegrations';
+import NandaPromo from '../../components/NandaPromo';
+import JamesPromo from '../../components/JamesPromo';
+import FabricioPromo from '../../components/FabricioPromo';
+import Benefits from '../../components/Benefits';
+import Pricing from '../../components/Pricing';
+import Contact from '../../components/Contact';
+import FloatingChat from '../../components/FloatingChat';
 
 const HomePage: React.FC = () => {
   // Sempre mostrar o chat, sem comportamento de scroll
@@ -23,11 +23,13 @@ const HomePage: React.FC = () => {
         
       <main>
         <ChatSection minimized={!showChat} />
-        <Hero />
+        <Hero title={''} />
         <About />
         <HowItWorks />
         <SystemIntegrations />
         <NandaPromo />
+        <JamesPromo />
+        <FabricioPromo />
         <Benefits />
         <Pricing />
         <Contact />

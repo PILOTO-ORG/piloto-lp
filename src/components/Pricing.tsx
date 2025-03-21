@@ -15,9 +15,9 @@ const Pricing = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {/* Basic Plan */}
+          {/* Plano Nanda */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 transition-all duration-300 hover:shadow-xl flex flex-col h-full">
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">James</h3>
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">Nanda</h3>
             <div className="mb-6">
               <span className="text-4xl font-bold text-gray-900">R$ 100</span>
               <span className="text-gray-600">/mês</span>
@@ -29,11 +29,11 @@ const Pricing = () => {
               </li>
               <li className="flex items-center">
                 <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" />
-                <span>Inteligência artificial pronta para atender seus clientes 24/7</span>
+                <span>Atendimento 24/7 com inteligência artificial</span>
               </li>
               <li className="flex items-center">
                 <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" />
-                <span>Fácil integração no seu site em poucos minutos</span>
+                <span>Fácil integração no seu site e WhatsApp</span>
               </li>
               <li className="flex items-center">
                 <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" />
@@ -50,14 +50,14 @@ const Pricing = () => {
             </a>
           </div>
 
-          {/* Professional Plan */}
+          {/* Plano James */}
           <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl shadow-xl p-8 relative flex flex-col h-full transform translate-y-[-8px]">
             <div className="absolute top-[-16px] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
               <span className="bg-yellow-100 text-yellow-800 text-sm font-bold px-4 py-1 rounded-full shadow-sm">
                 Mais Popular
               </span>
             </div>
-            <h3 className="text-2xl font-bold mb-4 text-white">James Plus</h3>
+            <h3 className="text-2xl font-bold mb-4 text-white">James</h3>
             <div className="mb-6 text-white">
               <span className="text-4xl font-bold">R$ 500</span>
               <span className="opacity-90">/mês</span>
@@ -65,19 +65,19 @@ const Pricing = () => {
             <ul className="space-y-4 mb-8 text-white flex-grow">
               <li className="flex items-start">
                 <Check className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-1" />
-                <span>Leve o James para o WhatsApp e conecte-se com seus clientes onde eles estão</span>
+                <span>Conecte o James ao WhatsApp e atenda seus clientes onde eles estiverem</span>
               </li>
               <li className="flex items-start">
                 <Check className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-1" />
-                <span>Personalize o atendimento e ofereça uma experiência única</span>
+                <span>Personalize o atendimento para uma experiência única</span>
               </li>
               <li className="flex items-start">
                 <Check className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-1" />
-                <span>Automatize tarefas e execute ações com um simples comando</span>
+                <span>Automatize tarefas e execute ações com comandos simples</span>
               </li>
               <li className="flex items-start">
                 <Check className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-1" />
-                <span>Integrações avançadas para otimizar sua operação</span>
+                <span>Integração via API com seus sistemas de gestão</span>
               </li>
             </ul>
             <a
@@ -90,32 +90,34 @@ const Pricing = () => {
             </a>
           </div>
 
-          {/* Enterprise Plan */}
+          {/* Plano Fabricio */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 transition-all duration-300 hover:shadow-xl flex flex-col h-full">
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Enterprise</h3>
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">Fabricio</h3>
             <div className="mb-6">
-              <span className="text-4xl font-bold text-gray-900">Sob consulta</span>
+              <span className="text-4xl font-bold text-gray-900">R$ 2000</span>
+              <span className="text-gray-600">/mês</span>
             </div>
-            <ul className="space-y-4 mb-8 flex-grow text-gray-700">
+
+          <ul className="space-y-4 mb-8 flex-grow text-gray-700">
               <li className="flex items-start">
                 <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1" />
-                <span>Solução totalmente customizada para sua empresa</span>
+                <span>Conecta ao ERP para comparar preços e negociar automaticamente</span>
               </li>
               <li className="flex items-start">
                 <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1" />
-                <span>Escalabilidade ilimitada: usuários sem restrição</span>
+                <span>Personalize os filtros para encontrar os melhores orçamentos</span>
               </li>
               <li className="flex items-start">
                 <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1" />
-                <span>Suporte premium 24/7 para garantir alto desempenho</span>
+                <span>Comparador inteligente que seleciona os melhores fornecedores</span>
               </li>
               <li className="flex items-start">
                 <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1" />
-                <span>Consultoria especializada para implementar IA com eficiência</span>
+                <span>Consultoria especializada para otimizar suas compras</span>
               </li>
             </ul>
             <a
-              href="https://buy.stripe.com/test_28ocN08t7eT0dq8dQS"
+              href="https://buy.stripe.com/14k7t074j5YJbT23cc"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"
