@@ -2,8 +2,7 @@ import AboutSection from './components/AboutSection';
 import Hero from './components/Hero';
 import FeaturesSection from './components/FeaturesSection';
 import CTASection from './components/CTASection';
-
-const Fabricio = () => {
+const Fabricio: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Hero

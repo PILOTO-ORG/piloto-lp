@@ -5,6 +5,7 @@ import Nanda from './pages/nanda';
 import James from './pages/james';
 import Fabricio from './pages/fabricio';
 import { trackPageView } from './utils/analytics';
+import { useLocation } from 'react-router-dom';
 
 // Componente de rastreamento analytics
 const RouteChangeTracker: React.FC = () => {
