@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Home, RefreshCw, Target, Clock, Calendar, MessageCircle } from 'lucide-react';
+import { Smartphone, Home, RefreshCw, Target, Clock, Calendar } from 'lucide-react';
 import NandaChat from './NandaChat';
 
 // Define the Message type to match NandaChat
@@ -36,7 +36,7 @@ const FeaturesSection: React.FC = () => {
     }
   ];
   
-  const handleOpenChat = () => {
+  const activateChat = () => {
     setShowChat(true);
   };
   
@@ -135,6 +135,13 @@ const FeaturesSection: React.FC = () => {
                   ))}
                 </div>
 
+                {/* Botão para ativar o chat completo */}
+                <button
+                  onClick={activateChat}
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center"
+                >
+                  Fale com Nanda
+                </button>
               </div>
             </div>
           </div>

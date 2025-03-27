@@ -382,12 +382,10 @@ Ela **não é apenas um chatbot**, mas sim uma agente **especializada e estraté
     try {
       console.log('Enviando áudio para processamento pela OpenAI...');
       
-      // Obter a chave da API do OpenAI do ambiente
-      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-      
-      if (!apiKey) {
-        console.error('API Key do OpenAI não encontrada');
-        throw new Error('API Key do OpenAI não configurada');
+      // Use the same API key that's used throughout the app
+      if (!OPENAI_API_KEY || OPENAI_API_KEY === 'sk-exemplo-temporario123456789') {
+        console.error('API Key do OpenAI não encontrada ou usando placeholder');
+        throw new Error('API Key do OpenAI não configurada corretamente');
       }
       
       // Preparar formData para envio
@@ -401,8 +399,8 @@ Ela **não é apenas um chatbot**, mas sim uma agente **especializada e estraté
         formData,
         {
           headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${OPENAI_API_KEY}`
           }
         }
       );
@@ -451,7 +449,7 @@ Ela **não é apenas um chatbot**, mas sim uma agente **especializada e estraté
         },
         {
           headers: {
-            'Authorization': `Bearer ${apiKey}`,
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
             'Content-Type': 'application/json'
           }
         }

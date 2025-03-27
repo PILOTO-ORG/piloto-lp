@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Bot, Building, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const JamesPromo: React.FC = () => {
-  useEffect(() => {
-    console.log("JamesPromo component mounted");
-  }, []);
-
   return (
     <section id="james" className="py-20 bg-gradient-to-br from-blue-900 to-blue-700 text-white relative overflow-hidden">
       {/* Overlay com padrões decorativos */}

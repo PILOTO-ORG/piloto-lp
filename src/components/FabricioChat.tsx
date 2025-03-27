@@ -1,8 +1,18 @@
 import React from 'react';
 import BaseChat from './BaseChat';
 
-const FabricioChat: React.FC = () => {
-  const initialMessages = [
+interface FabricioChatProps {
+  showWhatsAppButton?: boolean;
+  predefinedMessages?: Array<{
+    id: number;
+    text: string;
+    sender: 'user' | 'assistant';
+    timestamp: Date;
+  }>;
+}
+
+const FabricioChat: React.FC<FabricioChatProps> = ({ showWhatsAppButton = true, predefinedMessages }) => {
+  const initialMessages = predefinedMessages || [
     {
       id: 1,
       text: 'Olá! Sou o Fabricio, seu assistente de negociação inteligente. Como posso ajudar você hoje?',
@@ -13,6 +23,7 @@ const FabricioChat: React.FC = () => {
 
   return (
     <BaseChat
+      showWhatsAppButton={showWhatsAppButton}
       customProps={{
         initialMessages,
         avatarText: 'FA',

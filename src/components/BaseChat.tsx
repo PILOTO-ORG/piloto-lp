@@ -178,7 +178,7 @@ const BaseChat: React.FC<BaseChatProps> = ({
 
       {showWhatsAppButton && (
         <a
-          href="https://wa.me/554899230055?text=Ol%C3%A1%21%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site."
+          href="https://wa.me/554899230055"
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-4 right-4 z-50"

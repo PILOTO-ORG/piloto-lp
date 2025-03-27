@@ -39,17 +39,16 @@ interface Message {
 }
 
 interface FloatingChatProps {
-  showWhatsAppButton?: boolean;
   onClose?: () => void;
   customProps?: {
     initialMessages?: Message[];
     avatarText?: string;
     chatTitle?: string;
     inputPlaceholder?: string;
-  };
+  }
 }
 
-const FloatingChat = ({ showWhatsAppButton = true, onClose, customProps }: FloatingChatProps) => {
+const FloatingChat = ({ onClose, customProps }: FloatingChatProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<Message[]>(
@@ -63,7 +62,7 @@ const FloatingChat = ({ showWhatsAppButton = true, onClose, customProps }: Float
     ]
   );
   const [isMinimized, setIsMinimized] = useState(true); // Inicializa minimizado
-  const [isMobile, setIsMobile] = useState(false); // Estado para verificar se é dispositivo móvel
+  const [isMobile, setIsMobile] = useState(false); 
   const [isRecording, setIsRecording] = useState(false);
   // Comment out unused state variable but keep for future implementation
   // const [isTranscribing, setIsTranscribing] = useState(false);
@@ -536,11 +535,12 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
         <motion.div 
           onClick={openWhatsApp}
           className="fixed bottom-6 left-6 z-50 bg-green-500 text-blue-100 rounded-full shadow-lg p-4 cursor-pointer"
-          whileHover={{ scale: 1.05, backgroundColor: '#25D366' }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          <MessageCircle className="h-6 w-6" />
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+          </svg>
         </motion.div>
       )}
 
@@ -549,12 +549,13 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
         <motion.div 
           onClick={toggleMinimize}
           className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-blue-700 text-blue-200 rounded-2xl shadow-lg px-4 py-2 cursor-pointer flex items-center"
-          whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)" }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         >
-          <MessageCircle className="h-5 w-5 mr-2" />
-          <p className="text-sm font-medium">Precisa de ajuda?</p>
+          <div className="bg-blue-500 rounded-full p-1 mr-2">
+            <MessageCircle className="h-5 w-5" />
+          </div>
+          <span className="font-medium">Precisa de ajuda?</span>
         </motion.div>
       )}
 
@@ -565,9 +566,8 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-            className="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col"
-            style={{ width: '350px', maxHeight: '80vh' }}
+            transition={{ duration: 0.2 }}
+            className={`fixed bottom-6 right-6 z-50 bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md border border-gray-200 ${isMobile ? 'h-[90vh]' : 'h-[600px]'}`}
           >
             {/* Header */}
             <div className="flex justify-between items-center p-3 bg-blue-600 text-white rounded-t-lg">
