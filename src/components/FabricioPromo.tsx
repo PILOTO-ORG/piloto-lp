@@ -30,16 +30,17 @@ const FabricioPromo: React.FC = () => {
               <div className="bg-white w-10 h-10 rounded-full flex items-center justify-center">
                 <Bot className="w-5 h-5 text-green-700" />
               </div>
-              <h3 className="text-xl font-semibold">Conheça o Fabricio</h3>
+              <h3 className="text-xl font-semibold">Maximize Economia com Fabricio</h3>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Fabricio: Negociação Inteligente
+              Fabricio: Reduza Custos em até 32% Automaticamente
             </h2>
             
             <p className="text-lg opacity-90 mb-6">
-              Otimize suas compras com o Fabricio, nossa solução de negociação inteligente. 
-              Conecte-se ao seu ERP, compare preços e negocie automaticamente para reduzir custos e melhorar a qualidade.
+              <span className="font-bold">Imagine economizar milhares todo mês!</span> Fabricio analisa ofertas, negocia 
+              com fornecedores e garante os melhores preços enquanto você se concentra nas decisões estratégicas. 
+              Nossos clientes economizam em média R$15.000/mês.
             </p>
             
             <div className="space-y-4 mb-8">
@@ -48,8 +49,8 @@ const FabricioPromo: React.FC = () => {
                   <MessageSquare className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Comparação Inteligente</h4>
-                  <p className="opacity-80">Analise e compare preços de fornecedores automaticamente.</p>
+                  <h4 className="font-medium">Inteligência de Mercado em Tempo Real</h4>
+                  <p className="opacity-80">Compare preços entre centenas de fornecedores simultaneamente e identifique oportunidades invisíveis.</p>
                 </div>
               </div>
               
@@ -58,8 +59,8 @@ const FabricioPromo: React.FC = () => {
                   <Building className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Integração com ERP</h4>
-                  <p className="opacity-80">Conecte-se ao seu sistema de gestão para automatizar processos de compra.</p>
+                  <h4 className="font-medium">Implementação em Apenas 2 Dias</h4>
+                  <p className="opacity-80">Integração perfeita com seu ERP existente, sem interrupções ao seu fluxo de trabalho atual.</p>
                 </div>
               </div>
             </div>
@@ -68,7 +69,7 @@ const FabricioPromo: React.FC = () => {
               to="/fabricio" 
               className="inline-flex items-center space-x-2 bg-white text-green-700 hover:bg-green-50 py-3 px-6 rounded-lg font-medium transition-colors shadow-lg"
             >
-              <span>Conheça o Fabricio</span>
+              <span>Calcular Minha Economia Potencial</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </motion.div>

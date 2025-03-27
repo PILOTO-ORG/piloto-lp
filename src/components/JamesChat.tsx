@@ -6,7 +6,7 @@ const JamesChat: React.FC = () => {
     {
       id: 1,
       text: 'Olá! Sou o James, seu assistente de automação via WhatsApp. Como posso ajudar você hoje?',
-      sender: 'assistant',
+      sender: 'assistant' as const,
       timestamp: new Date()
     }
   ];

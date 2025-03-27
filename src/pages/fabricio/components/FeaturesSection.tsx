@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Calendar, Users, LineChart, Share2, BarChart3 } from 'lucide-react';
 

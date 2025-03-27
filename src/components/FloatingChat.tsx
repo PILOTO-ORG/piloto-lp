@@ -532,7 +532,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
   return (
     <>
       {/* WhatsApp Button */}
-      {showWhatsAppButton && (
+      {false && (
         <motion.div 
           onClick={openWhatsApp}
           className="fixed bottom-6 left-6 z-50 bg-green-500 text-blue-100 rounded-full shadow-lg p-4 cursor-pointer"
@@ -545,7 +545,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
       )}
 
       {/* Chat Button - somente exibido em desktop */}
-      {isMinimized && !isMobile && (
+      { false && (
         <motion.div 
           onClick={toggleMinimize}
           className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-blue-700 text-blue-200 rounded-2xl shadow-lg px-4 py-2 cursor-pointer flex items-center"
@@ -559,7 +559,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
       )}
 
       {/* Chat Container - somente exibido em desktop quando não está minimizado */}
-      {isOpen && !isMinimized && !isMobile && (
+      {false && (
         <AnimatePresence>
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -647,7 +647,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
               <div className="flex items-center space-x-2">
                 {isRecording ? (
                   <div className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-800 text-red-500 font-medium rounded-lg flex items-center justify-center animate-pulse">
-                    <span className="mr-2">🎙️</span>
+                    <span className="mr-2"> </span>
                     Gravando: {Math.floor(recordingTime / 60).toString().padStart(2, '0')}:{(recordingTime % 60).toString().padStart(2, '0')}
                   </div>
                 ) : (

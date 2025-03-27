@@ -28,7 +28,7 @@ const CTA: React.FC = () => {
             className="flex justify-center"
           >
             <a 
-              href="https://wa.me/5548998589586?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Nanda%20para%20minha%20imobiliária."
+              href="https://wa.me/5548999230055?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Nanda%20para%20minha%20imobiliária."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium py-4 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"

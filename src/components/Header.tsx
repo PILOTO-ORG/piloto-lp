@@ -35,11 +35,7 @@ const Header = () => {
   };
 
   const openCalendly = () => {
-    window.open('http://calendly.com/luan-piloto', '_blank');
-  };
-
-  const openStripeCheckout = () => {
-    window.open('https://buy.stripe.com/14k7t074j5YJbT23cc', '_blank');
+    window.open('https://calendly.com/luan-piloto', '_blank');
   };
 
   return (
@@ -51,7 +47,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <a href="#" className="flex items-center">
-              <img src="/Prancheta5.png" alt="O Piloto" className="h-8" />
+              <img src="/Prancheta4.png" alt="O Piloto" className="h-8" />
             </a>
           </div>
 
@@ -73,13 +69,6 @@ const Header = () => {
               Sobre
             </motion.button>
             
-            <motion.button 
-              onClick={() => scrollToSection('how-it-works')} 
-              className="text-gray-300 hover:text-blue-400 transition-colors"
-              whileHover={{ y: -2 }}
-            >
-              Como Funciona
-            </motion.button>
 
             <motion.button 
               onClick={() => scrollToSection('pricing')} 
@@ -95,14 +84,6 @@ const Header = () => {
               whileTap={{ scale: 0.95 }}
             >
               Demonstração
-            </motion.button>
-            <motion.button 
-              onClick={openStripeCheckout}
-              className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Assinar Agora
             </motion.button>
           </div>
 
@@ -131,18 +112,6 @@ const Header = () => {
                 Sobre
               </button>
               <button 
-                onClick={() => scrollToSection('how-it-works')}
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left"
-              >
-                Como Funciona
-              </button>
-              <button 
-                onClick={() => scrollToSection('benefits')}
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left"
-              >
-                Benefícios
-              </button>
-              <button 
                 onClick={() => scrollToSection('pricing')}
                 className="text-gray-300 hover:text-blue-400 transition-colors text-left"
               >
@@ -153,12 +122,6 @@ const Header = () => {
                 className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors text-left"
               >
                 Demonstração
-              </button>
-              <button 
-                onClick={openStripeCheckout}
-                className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors text-left"
-              >
-                Assinar Agora
               </button>
             </div>
           </motion.div>

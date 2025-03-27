@@ -1,8 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Home, RefreshCw, Target, Clock, Calendar } from 'lucide-react';
+import { Smartphone, Home, RefreshCw, Target, Clock, Calendar, MessageCircle } from 'lucide-react';
+import NandaChat from './NandaChat';
+
+// Define the Message type to match NandaChat
+interface Message {
+  id: number;
+  text: string;
+  sender: 'user' | 'nanda';
+  timestamp: Date;
+}
 
 const FeaturesSection: React.FC = () => {
+  const [showChat, setShowChat] = useState(false);
+  
+  // Create the predefined conversation that matches the preview
+  const previewMessages: Message[] = [
+    {
+      id: 1,
+      text: "Olá! Sou Nanda, sua assistente virtual especializada no setor imobiliário. Como posso ajudar na busca pelo seu imóvel ideal?",
+      sender: 'nanda',
+      timestamp: new Date()
+    },
+    {
+      id: 2,
+      text: "Estou procurando um apartamento de 2 quartos com varanda na zona sul.",
+      sender: 'user',
+      timestamp: new Date()
+    },
+    {
+      id: 3,
+      text: "Perfeito! Encontrei 8 apartamentos com essas características. Gostaria de ver alguns dos destaques ou prefere filtrar mais a sua busca?",
+      sender: 'nanda',
+      timestamp: new Date()
+    }
+  ];
+  
+  const handleOpenChat = () => {
+    setShowChat(true);
+  };
+  
   return (
     <section id="features" className="py-20 px-4 md:px-8 lg:px-16 bg-white">
       <div className="container mx-auto">
@@ -41,7 +78,7 @@ const FeaturesSection: React.FC = () => {
           ))}
         </div>
         
-        {/* Demo video or interaction section */}
+        {/* Interactive Chat Section */}
         <motion.div 
           className="mt-20 bg-blue-50 p-8 md:p-12 rounded-2xl"
           initial={{ opacity: 0, y: 30 }}
@@ -58,7 +95,7 @@ const FeaturesSection: React.FC = () => {
                 Nossa assistente virtual é treinada com os dados dos seus imóveis e utiliza linguagem natural 
                 para conversar com seus clientes como se fosse um membro dedicado da sua equipe.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 mb-8">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     <div className="w-2 h-2 rounded-full bg-blue-600"></div>
@@ -66,25 +103,53 @@ const FeaturesSection: React.FC = () => {
                   </div>
                 ))}
               </div>
+              
+
             </div>
-            <div className="lg:w-1/2 aspect-video bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="relative pb-[56.25%] h-0">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-blue-100 flex items-center justify-center mb-4">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <p className="text-gray-700">Clique para ver uma demonstração da Nanda conversando com um cliente</p>
+            
+            <div className="lg:w-1/2">
+              <div className="bg-white rounded-lg shadow-xl p-6 border-2 border-purple-200">
+                <div className="flex items-center space-x-3 mb-5">
+                  <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold">NA</span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900">Nanda - Assistente Imobiliária</h4>
+                    <p className="text-sm text-gray-500">Disponível 24/7</p>
                   </div>
                 </div>
+                
+                <div className="space-y-4 mb-6">
+                  {previewMessages.map((msg, index) => (
+                    msg.sender === 'nanda' ? (
+                      <div key={index} className="bg-purple-100 p-3 rounded-lg rounded-tl-none max-w-[80%]">
+                        <p className="text-gray-800">{msg.text}</p>
+                      </div>
+                    ) : (
+                      <div key={index} className="flex justify-end">
+                        <div className="bg-purple-600 p-3 rounded-lg rounded-tr-none max-w-[80%]">
+                          <p className="text-white">{msg.text}</p>
+                        </div>
+                      </div>
+                    )
+                  ))}
+                </div>
+
               </div>
             </div>
           </div>
         </motion.div>
       </div>
+      
+      {/* Floating Chat with predefined messages */}
+      {showChat && (
+        <div className="fixed bottom-6 right-6 z-50">
+          <NandaChat 
+            showWhatsAppButton={false}
+            predefinedMessages={previewMessages}
+          />
+        </div>
+      )}
     </section>
   );
 };

@@ -30,16 +30,16 @@ const JamesPromo: React.FC = () => {
               <div className="bg-white w-10 h-10 rounded-full flex items-center justify-center">
                 <Bot className="w-5 h-5 text-blue-700" />
               </div>
-              <h3 className="text-xl font-semibold">Conheça o James</h3>
+              <h3 className="text-xl font-semibold">Potencialize com James</h3>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              James: Automação via WhatsApp
+              James: Reduza 80% do Trabalho Manual via WhatsApp
             </h2>
             
             <p className="text-lg opacity-90 mb-6">
-              Transforme seus processos com o James, nossa solução de automação via WhatsApp. 
-              Integre seus sistemas, automatize tarefas e gere relatórios automáticos com comandos simples.
+              <span className="font-bold">Seu tempo vale ouro!</span> Com James, transforme seu WhatsApp em uma central de comando que automatiza 
+              tarefas tediosas, integra seus sistemas e entrega relatórios precisos enquanto você foca no que realmente importa.
             </p>
             
             <div className="space-y-4 mb-8">
@@ -48,8 +48,8 @@ const JamesPromo: React.FC = () => {
                   <MessageSquare className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Automação Completa</h4>
-                  <p className="opacity-80">Execute tarefas complexas com comandos simples em português.</p>
+                  <h4 className="font-medium">Comandos Simples, Resultados Extraordinários</h4>
+                  <p className="opacity-80">Digite naturalmente em português e veja o James executar tarefas que levariam horas em apenas segundos.</p>
                 </div>
               </div>
               
@@ -58,8 +58,8 @@ const JamesPromo: React.FC = () => {
                   <Building className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Integração Avançada</h4>
-                  <p className="opacity-80">Conecte-se aos seus sistemas de gestão via API.</p>
+                  <h4 className="font-medium">Integração Sem Complicações</h4>
+                  <p className="opacity-80">Conecte-se instantaneamente a seus sistemas sem precisar de conhecimento técnico ou meses de implementação.</p>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@ const JamesPromo: React.FC = () => {
               to="/james" 
               className="inline-flex items-center space-x-2 bg-white text-blue-700 hover:bg-blue-50 py-3 px-6 rounded-lg font-medium transition-colors shadow-lg"
             >
-              <span>Conheça o James</span>
+              <span>Comece a Economizar Tempo Hoje</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </motion.div>
