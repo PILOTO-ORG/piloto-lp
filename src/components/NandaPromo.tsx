@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Bot, Building, ChevronRight, Send } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const NandaPromo: React.FC = () => {
   useEffect(() => {
@@ -9,7 +8,7 @@ const NandaPromo: React.FC = () => {
   }, []);
 
   return (
-    <section id="nanda" className="py-20 bg-gradient-to-br from-purple-900 to-purple-700 text-white relative overflow-hidden">
+    <section id="nanda" className="min-h-screen py-20 bg-gradient-to-br from-purple-900 to-purple-700 text-white relative overflow-hidden">
       {/* Overlay com padrões decorativos */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 rounded-full border-4 border-white"></div>
@@ -30,19 +29,23 @@ const NandaPromo: React.FC = () => {
               <div className="bg-white w-10 h-10 rounded-full flex items-center justify-center">
                 <Bot className="w-5 h-5 text-purple-700" />
               </div>
-              <h3 className="text-xl font-semibold">Descubra a Nanda</h3>
+              <h3 className="text-xl font-semibold">Nanda</h3>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Nanda: Sua Equipe Imobiliária Virtual 24/7
+              Sua assistente virtual
             </h2>
             
-            <p className="text-lg opacity-90 mb-6">
-              Imagine nunca mais perder um lead! Com Nanda, sua imobiliária conquista atendimento instantâneo que <span className="underline">aumenta conversões em até 70%</span>. 
-              Enquanto sua concorrência dorme, a Nanda qualifica leads, organiza visitas e fecha negócios automaticamente.
+            <p className="text-lg opacity-90 mb-4">
+              Pense em um atendente que nunca dorme, atende centenas de pessoas ao mesmo tempo e conversa como um amigo. Isso é a Nanda: sua assistente digital no WhatsApp.
             </p>
+            <ul className="list-disc list-inside text-lg opacity-90 mb-8">
+              <li><strong>Sem espera</strong>: respostas em segundos evitam desistências.</li>
+              <li><strong>Escala sem contratação</strong>: cresça sem precisar ampliar a equipe.</li>
+              <li><strong>Vendas mais rápidas</strong>: um “olá” rápido pode fazer a diferença entre fechar ou perder um negócio.</li>
+            </ul>
             
-            <div className="space-y-4 mb-8">
+            {/* <div className="space-y-4 mb-8">
               <div className="flex items-start space-x-3">
                 <div className="bg-purple-500/30 p-2 rounded-full mt-1">
                   <MessageSquare className="w-4 h-4 text-white" />
@@ -62,15 +65,17 @@ const NandaPromo: React.FC = () => {
                   <p className="opacity-80">Treinada com seu portfólio completo para oferecer os imóveis perfeitos e agendar visitas no momento certo.</p>
                 </div>
               </div>
-            </div>
+            </div> */}
             
-            <Link 
-              to="/nanda" 
+            <a
+              href="https://buy.stripe.com/14k7t074j5YJbT23cc"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-white text-purple-700 hover:bg-purple-50 py-3 px-6 rounded-lg font-medium transition-colors shadow-lg"
             >
-              <span>Ver Como a Nanda Transforma Negócios</span>
+              <span>Teste Grátis</span>
               <ChevronRight className="w-4 h-4" />
-            </Link>
+            </a>
           </motion.div>
           
           <motion.div 
@@ -90,7 +95,7 @@ const NandaPromo: React.FC = () => {
                       <span className="text-white font-bold">NA</span>
                     </div>
                     <div>
-                      <h4 className="text-white font-medium">Nanda - Assistente Imobiliária</h4>
+                      <h4 className="text-white font-medium">Chatbot Inteligente</h4>
                     </div>
                   </div>
                   <div className="flex space-x-2">
@@ -101,28 +106,29 @@ const NandaPromo: React.FC = () => {
                 </div>
                 
                 {/* Área das mensagens */}
-                <div className="p-6 bg-gray-50">
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex items-start max-w-[80%]">
-                      <div className="bg-purple-100 p-3 rounded-lg rounded-tl-none">
-                        <p className="text-purple-800">Olá! Sou Nanda, sua assistente virtual especializada no setor imobiliário. Como posso ajudar na busca pelo seu imóvel ideal?</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start self-end max-w-[80%]">
-                      <div className="bg-purple-600 p-3 rounded-lg rounded-tr-none">
-                        <p className="text-white">Estou procurando um apartamento de 2 quartos com varanda.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start max-w-[80%]">
-                      <div className="bg-purple-100 p-3 rounded-lg rounded-tl-none">
-                        <p className="text-purple-800">Perfeito! Tenho ótimas opções para você. Posso te mostrar imóveis nessa categoria e agendar visitas nos horários que preferir.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+           {/* Área das mensagens */}
+<div className="p-6 bg-gray-50">
+  <div className="flex flex-col space-y-4">
+    <div className="flex items-start max-w-[80%]">
+      <div className="bg-purple-100 p-3 rounded-lg rounded-tl-none">
+        <p className="text-purple-800">Olá! Aqui é a Nanda da Loja XYZ. Em que posso ajudar hoje?</p>
+      </div>
+    </div>
+    <div className="flex items-start self-end max-w-[80%]">
+      <div className="bg-purple-600 p-3 rounded-lg rounded-tr-none">
+        <p className="text-white">Quero saber se a mochila Azul está em estoque.</p>
+      </div>
+    </div>
+    <div className="flex items-start max-w-[80%]">
+      <div className="bg-purple-100 p-3 rounded-lg rounded-tl-none">
+        <p className="text-purple-800">Temos 5 unidades da mochila Azul modelo Explorer. Gostaria de adicionar ao carrinho ou saber o prazo de entrega?</p>
+      </div>
+    </div>
+  </div>
+</div>
                 
                 {/* Barra de entrada de texto */}
-                <div className="p-4 border-t border-gray-200 flex items-center">
+                {/* <div className="p-4 border-t border-gray-200 flex items-center">
                   <input 
                     type="text"
                     className="flex-1 py-2 px-4 bg-gray-100 rounded-full text-gray-700 placeholder-gray-500 text-sm"
@@ -132,7 +138,7 @@ const NandaPromo: React.FC = () => {
                   <button className="ml-3 p-2 rounded-full bg-purple-600 text-white">
                     <Send className="h-5 w-5" />
                   </button>
-                </div>
+                </div> */}
               </div>
               
               {/* Elementos decorativos */}

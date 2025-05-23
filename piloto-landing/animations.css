@@ -1,0 +1,40 @@
+/* Animau00e7u00f5es para a landing page */
+
+/* Animau00e7u00e3o de pulsar e saltar para o botu00e3o principal */
+@keyframes pulse-bounce {
+    0% {
+        transform: scale(1) translateY(0);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+    50% {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+}
+
+/* Animau00e7u00e3o de brilho para o botu00e3o principal */
+@keyframes glow {
+    0% {
+        filter: brightness(100%);
+    }
+    50% {
+        filter: brightness(120%);
+    }
+    100% {
+        filter: brightness(100%);
+    }
+}
+
+/* Aplicando a animau00e7u00e3o ao botu00e3o */
+.animated-btn {
+    animation: pulse-bounce 2s infinite ease-in-out, glow 2s infinite ease-in-out;
+}
+
+/* Pausar a animau00e7u00e3o no hover para melhor experiência do usuário */
+.animated-btn:hover {
+    animation-play-state: paused;
+}

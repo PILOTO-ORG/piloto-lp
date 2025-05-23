@@ -1,0 +1,15 @@
+/* Copiado de piloto-landing/animations.css */
+/* Estilos para animações de scroll, carregamento e outros efeitos visuais */
+/* TODO: Ajustar seletores conforme JSX em LuanaPage */
+
+/* Exemplo básico */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Adicione aqui todas as animações definidas em piloto-landing/animations.css */

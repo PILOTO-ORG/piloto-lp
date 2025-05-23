@@ -10,7 +10,6 @@ import {
   DollarSign,
   LineChart
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 // Testimonial interface
 interface Testimonial {
@@ -96,7 +95,7 @@ const FabricioPromo: React.FC = () => {
   }, []);
 
   return (
-    <section id="fabricio" className="py-20 bg-gradient-to-br from-green-900 to-green-700 text-white relative overflow-hidden">
+    <section id="fabricio" className="min-h-screen py-20 bg-gradient-to-br from-green-900 to-green-700 text-white relative overflow-hidden">
       {/* Overlay com padrões decorativos */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 rounded-full border-4 border-white"></div>
@@ -372,20 +371,24 @@ const FabricioPromo: React.FC = () => {
           <p className="mb-8 text-green-100">Agende uma demonstração gratuita e descubra quanto sua empresa pode economizar</p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <Link 
-              to="/fabricio" 
+            <a
+              href="https://buy.stripe.com/14k7t074j5YJbT23cc"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-white text-green-700 hover:bg-green-50 py-3 px-8 rounded-lg font-medium transition-colors shadow-lg"
             >
               <span>Calcular Economia</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
-            
-            <Link 
-              to="https://calendly.com/luan-piloto" 
+            </a>
+
+            <a
+              href="https://wa.me/5519983165763?text=Quero%20agendar%20uma%20demonstra%C3%A7%C3%A3o"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-transparent hover:bg-green-800/50 border border-green-400 py-3 px-8 rounded-lg font-medium transition-colors"
             >
               <span>Agendar Demonstração</span>
-            </Link>
+            </a>
           </div>
         </motion.div>
         

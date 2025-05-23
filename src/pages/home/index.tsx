@@ -13,6 +13,8 @@ import Pricing from '../../components/Pricing';
 import Contact from '../../components/Contact';
 import FloatingChat from '../../components/FloatingChat';
 import { motion } from 'framer-motion';
+import LuanaPromo from '../../components/LuanaPromo';
+// import Parceiros from '../../components/Parceiros';
 
 const HomePage: React.FC = () => {
   // Sempre mostrar o chat, sem comportamento de scroll
@@ -23,17 +25,22 @@ const HomePage: React.FC = () => {
       <Header />
         
       <main>
-        <ChatSection minimized={!showChat} />
         <Hero />
-        <About />
+                <NandaPromo />
+        <LuanaPromo />
+
+        <JamesPromo />
         <HowItWorks />
         <SystemIntegrations />
-        <NandaPromo />
-        <JamesPromo />
-        <FabricioPromo />
-        <Benefits />
-        <Pricing />
+        {/* <FabricioPromo /> */}
+        {/* <Benefits />
+                <About /> */}
+        {/* <Parceiros /> */}
+        {/* <Pricing /> */}
         <Contact />
+   
+        <ChatSection minimized={!showChat} />
+
       </main>
       
       {/* Floating WhatsApp button and Chat component */}

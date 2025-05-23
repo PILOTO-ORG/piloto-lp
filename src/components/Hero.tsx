@@ -1,12 +1,52 @@
-import { memo } from 'react';
+import { memo, useState, useEffect, useRef, TouchEvent } from 'react';
 
 interface HeroProps {
   backgroundImage?: string;
 }
 
+const images = [
+  '/2_Um-Clique-no-WhatsApp.png',
+  '/3_Objetivo.png',
+  '/4_Missao.png',
+  '/5_Legado.png',
+];
+
+const AUTO_PLAY_INTERVAL = 5000;
+
 const Hero = memo(({ backgroundImage }: HeroProps) => {
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+
+  const prev = () => setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const next = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+
+  // Auto play
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(next, AUTO_PLAY_INTERVAL);
+    return () => clearInterval(timer);
+  }, [current, paused]);
+
+  // Touch handlers for swipe
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    if (deltaX > 50) prev();
+    else if (deltaX < -50) next();
+    touchStartX.current = null;
+  };
+
   return (
-    <section className="hero relative overflow-hidden">
+    <section
+      className="hero relative overflow-hidden min-h-[60vh] flex items-center justify-center pt-20 w-screen"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       {backgroundImage && (
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -15,31 +55,53 @@ const Hero = memo(({ backgroundImage }: HeroProps) => {
           <div className="absolute inset-0 bg-black bg-opacity-50" />
         </div>
       )}
-      <div className="relative container mx-auto px-4 py-24">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="lg:w-1/2 text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-              Diga Adeus à Complexidade. O Piloto Faz Por Você.
-            </h1>
-            <p className="text-xl sm:text-2xl text-white mb-8">
-              Revolucione sua operação em minutos com tecnologia AI que entrega resultados reais. Já utilizado por +200 empresas de sucesso.
-            </p>
+      <div className="relative w-screen mx-auto z-10">
+        <div
+          className="relative overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            className="flex transition-transform duration-400 ease-in-out"
+            style={{ transform: `translateX(-${current * 100}%)` }}
+          >
+            {images.map((src, idx) => (
+              <div key={idx} className="w-full flex-shrink-0">
+                <img
+                  src={src}
+                  alt={`Slide ${idx + 1}`}
+                  className="w-full h-full object-cover"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+          {/* Full-height edge click zones for navigation */}
+          <button
+            onClick={prev}
+            className="hidden md:flex absolute left-0 top-0 h-full w-32 items-center justify-center bg-white/20 hover:bg-white/30 transition z-20"
+            aria-label="Anterior"
+          >
+            <span className="text-3xl text-white">‹</span>
+          </button>
+          <button
+            onClick={next}
+            className="hidden md:flex absolute right-0 top-0 h-full w-32 items-center justify-center bg-white/20 hover:bg-white/30 transition z-20"
+            aria-label="Próximo"
+          >
+            <span className="text-3xl text-white">›</span>
+          </button>
+        </div>
+        {/* Pagination Dots */}
+        <div className="flex justify-center mt-6 space-x-2">
+          {images.map((_, idx) => (
             <button
-              onClick={() => window.open('https://calendly.com/luan-piloto', '_blank')}
-              className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center hover:scale-105 active:scale-95"
-            >
-              Garantir Minha Demonstração Exclusiva
-            </button>
-          </div>
-          
-          {/* Image container - right side */}
-          <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-center lg:justify-end">
-            <img 
-              src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-              alt="Piloto AI Interface" 
-              className="w-full max-w-lg h-auto rounded-lg shadow-xl"
+              key={idx}
+              onClick={() => setCurrent(idx)}
+              className={`w-3 h-3 rounded-full ${current === idx ? 'bg-blue-600' : 'bg-gray-300'} transition-colors`}
+              aria-label={`Ir para slide ${idx + 1}`}
             />
-          </div>
+          ))}
         </div>
       </div>
     </section>

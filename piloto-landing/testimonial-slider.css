@@ -1,0 +1,33 @@
+/* Estilos para o carrossel de depoimentos */
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.testimonial-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.testimonial-dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* Melhorias para a seção de depoimentos */
+.testimonials-slider {
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        margin: 0 auto;
+        max-width: 90%;
+    }
+}

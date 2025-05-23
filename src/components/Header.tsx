@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,31 +12,11 @@ const Header = () => {
     ['rgba(17, 24, 39, 0.5)', 'rgba(17, 24, 39, 0.95)']
   );
 
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const headerOffset = 80;
-      const elementPosition = section.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      setIsMenuOpen(false);
-    }
+  const openPurchase = () => {
+    window.open('https://buy.stripe.com/14k7t074j5YJbT23cc', '_blank');
   };
-  
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'auto'
-    });
-    setIsMenuOpen(false);
-  };
-
-  const openCalendly = () => {
-    window.open('https://calendly.com/luan-piloto', '_blank');
+  const openChat = () => {
+    window.open('https://wa.me/554899230055?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais!', '_blank');
   };
 
   return (
@@ -46,47 +27,18 @@ const Header = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="#" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img src="/Prancheta4.png" alt="O Piloto" className="h-8" />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
 
-          <motion.button 
-              onClick={scrollToTop} 
-              className="text-gray-300 hover:text-blue-400 transition-colors"
-              whileHover={{ y: -2 }}
-            >
-              Início
-            </motion.button>
-            <motion.button 
-              onClick={() => scrollToSection('about')} 
-              className="text-gray-300 hover:text-blue-400 transition-colors"
-              whileHover={{ y: -2 }}
-            >
-              Sobre
-            </motion.button>
-            
-
-            <motion.button 
-              onClick={() => scrollToSection('pricing')} 
-              className="text-gray-300 hover:text-blue-400 transition-colors"
-              whileHover={{ y: -2 }}
-            >
-              Planos
-            </motion.button>
-            <motion.button 
-              onClick={openCalendly}
-              className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Demonstração
-            </motion.button>
+            <button onClick={openPurchase} className="bg-blue-600 text-blue-200 px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">Teste Agora</button>
+            <button onClick={openChat} className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors">Fale com a gente</button>
           </div>
-
+        
           {/* Mobile Menu Button */}
           <button 
             className="md:hidden text-blue-200"
@@ -105,27 +57,13 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="flex flex-col space-y-4">
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left"
-              >
-                Sobre
-              </button>
-              <button 
-                onClick={() => scrollToSection('pricing')}
-                className="text-gray-300 hover:text-blue-400 transition-colors text-left"
-              >
-                Planos
-              </button>
-              <button 
-                onClick={openCalendly}
-                className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors text-left"
-              >
-                Demonstração
-              </button>
-            </div>
-          </motion.div>
-        )}
+              <a href="/afiliados-piloto" className="text-gray-300 hover:text-blue-400 transition-colors">Afiliados</a>
+              <Link to="/parceiros" className="text-gray-300 hover:text-blue-400 transition-colors">Parceiros</Link>
+              <button onClick={openPurchase} className="bg-blue-600 text-blue-200 px-6 py-2 rounded-full hover:bg-blue-700 transition-colors">Teste Agora</button>
+              <button onClick={openChat} className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors">Fale com a gente</button>
+             </div>
+           </motion.div>
+         )}
       </nav>
     </motion.header>
   );

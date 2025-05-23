@@ -1,11 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Bot, Building, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { MessageSquare, Bot, Building } from 'lucide-react';
 
 const JamesPromo: React.FC = () => {
   return (
-    <section id="james" className="py-20 bg-gradient-to-br from-blue-900 to-blue-700 text-white relative overflow-hidden">
+    <section id="james" className="min-h-screen py-20 bg-gradient-to-br from-blue-900 to-blue-700 text-white relative overflow-hidden">
       {/* Overlay com padrões decorativos */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 rounded-full border-4 border-white"></div>
@@ -26,11 +25,11 @@ const JamesPromo: React.FC = () => {
               <div className="bg-white w-10 h-10 rounded-full flex items-center justify-center">
                 <Bot className="w-5 h-5 text-blue-700" />
               </div>
-              <h3 className="text-xl font-semibold">Potencialize com James</h3>
+              <h3 className="text-xl font-semibold">James</h3>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              James: Reduza 80% do Trabalho Manual via WhatsApp
+              Automatize tudo sem sair do WhatsApp
             </h2>
             
             <p className="text-lg opacity-90 mb-6">
@@ -60,13 +59,15 @@ const JamesPromo: React.FC = () => {
               </div>
             </div>
             
-            <Link 
-              to="/james" 
+            {/* Chamada para ação */}
+            <a
+              href="https://api.whatsapp.com/send/?phone=554899230055&text=Ol%C3%A1%21+Estou+entrando+em+contato+atrav%C3%A9s+do+James.&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-white text-blue-700 hover:bg-blue-50 py-3 px-6 rounded-lg font-medium transition-colors shadow-lg"
             >
-              <span>Comece a Economizar Tempo Hoje</span>
-              <ChevronRight className="w-4 h-4" />
-            </Link>
+              <span>Faça um Orçamento</span>
+            </a>
           </motion.div>
           
           <motion.div 
@@ -95,32 +96,28 @@ const JamesPromo: React.FC = () => {
                     <div className="w-3 h-3 rounded-full bg-gray-300"></div>
                   </div>
                 </div>
-                
-                {/* Corpo da conversa */}
-                <div className="p-6 bg-gray-50">
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex items-start max-w-[80%]">
-                      <div className="bg-blue-100 p-3 rounded-lg rounded-tl-none">
-                        <p className="text-blue-800">Olá! Sou o James, seu assistente de automação via WhatsApp. Como posso ajudar a automatizar seus processos?</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start self-end max-w-[80%]">
-                      <div className="bg-blue-600 p-3 rounded-lg rounded-tr-none">
-                        <p className="text-white">Quero automatizar o envio de relatórios diários.</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start max-w-[80%]">
-                      <div className="bg-blue-100 p-3 rounded-lg rounded-tl-none">
-                        <p className="text-blue-800">Posso ajudar com isso! Vou configurar um comando simples para gerar e enviar seus relatórios automaticamente.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+                {/* Área das mensagens */}
+<div className="p-6 bg-gray-50">
+  <div className="flex flex-col space-y-4">
+    <div className="flex items-start max-w-[80%]">
+      <div className="bg-blue-100 p-3 rounded-lg rounded-tl-none">
+        <p className="text-blue-800">Olá, sou o James, seu consultor financeiro virtual da Piloto.live. Como posso ajudar hoje?</p>
+      </div>
+    </div>
+    <div className="flex items-start self-end max-w-[80%]">
+      <div className="bg-blue-600 p-3 rounded-lg rounded-tr-none">
+        <p className="text-white">Gostaria de analisar meu fluxo de caixa do último mês e receber recomendações de otimização.</p>
+      </div>
+    </div>
+    <div className="flex items-start max-w-[80%]">
+      <div className="bg-blue-100 p-3 rounded-lg rounded-tl-none">
+        <p className="text-blue-800">Claro! Verificando seu fluxo de caixa de abril de 2025... Você teve R$ 80.000 em entradas e R$ 65.000 em saídas. Recomendo renegociar os fornecedores com maior custo e considerar um plano de pagamento estendido para melhorar seu capital de giro. Posso gerar um relatório detalhado?</p>
+      </div>
+    </div>
+  </div>
+</div>
                 {/* Input area */}
-                <div className="p-4 border-t border-gray-200 flex items-center">
+                {/* <div className="p-4 border-t border-gray-200 flex items-center">
                   <input 
                     type="text" 
                     className="flex-1 py-2 px-4 bg-gray-100 rounded-full text-gray-700 placeholder-gray-500 text-sm"
@@ -132,7 +129,7 @@ const JamesPromo: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
                   </button>
-                </div>
+                </div> */}
               </div>
               
               {/* Elementos decorativos */}

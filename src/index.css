@@ -12,6 +12,7 @@
 /* VS Code: ignore the following line */
 /* @tailwind utilities; */
 @import 'tailwindcss/utilities';
+@import './utils/gtm';
 
 @keyframes fade-in {
   from {

@@ -1,0 +1,9 @@
+Para completar a landing page, você precisará adicionar as seguintes imagens nesta pasta:
+
+1. piloto-logo.png - Logo da Piloto IA
+2. testimonial-1.jpg, testimonial-2.jpg, testimonial-3.jpg - Fotos para os depoimentos
+3. chat-1.jpg, chat-2.jpg, chat-3.jpg - Capturas de tela de conversas/depoimentos
+
+Você pode obter o logo oficial do site da Piloto IA: https://www.piloto.live
+
+Para as imagens de depoimentos e capturas de tela, você pode usar fotos de pessoas profissionais e criar mockups de conversas que demonstrem o sucesso dos afiliados.

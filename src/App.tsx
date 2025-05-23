@@ -4,6 +4,8 @@ import Home from './pages/home';
 import Nanda from './pages/nanda';
 import James from './pages/james';
 import Fabricio from './pages/fabricio';
+import Luana from './pages/luana';
+import Parceiros from './pages/parceiros';
 import { trackPageView } from './utils/analytics';
 import { useLocation } from 'react-router-dom';
 
@@ -45,6 +47,18 @@ function App() {
           <>
             <RouteChangeTracker />
             <Fabricio />
+          </>
+        } />
+        <Route path="/luana" element={
+          <>
+            <RouteChangeTracker />
+            <Luana />
+          </>
+        } />
+        <Route path="/parceiros" element={
+          <>
+            <RouteChangeTracker />
+            <Parceiros />
           </>
         } />
       </Routes>

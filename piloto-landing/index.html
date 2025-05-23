@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piloto IA - Programa de Afiliados | Transforme seu futuro financeiro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="testimonial-slider.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/piloto-logo-new.png" alt="Piloto IA Logo">
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="#sobre">Sobre a Piloto</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#comparativo">Benefícios Exclusivos</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transforme seu futuro financeiro como <span class="highlight">Afiliado Piloto IA</span></h1>
+                <p class="subtitle">Junte-se ao programa de afiliados mais completo e lucrativo do mercado de IA</p>
+                <div class="cta-primary">
+                    <a href="https://wa.me/5519983165763?text=Quero%20ser%20afiliado%20da%20Piloto%20IA" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Quero ser afiliado agora</a>
+                </div>
+            </div>
+            <div class="hero-video">
+                <div class="phone-container">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <iframe id="piloto-video" width="100%" height="100%" src="https://www.youtube.com/embed/6DRiL4GIZVk?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=6DRiL4GIZVk&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3&vq=hd1080&origin=http://localhost:8080" title="Piloto IA Apresentação" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <script>
+                                // Tentar iniciar o vídeo diretamente no HTML
+                                window.addEventListener('load', function() {
+                                    var iframe = document.getElementById('piloto-video');
+                                    if (iframe) {
+                                        // Recarregar o iframe para forçar a reprodução
+                                        iframe.src = iframe.src;
+                                        
+                                        // Adicionar evento de clique para dispositivos móveis
+                                        document.addEventListener('click', function() {
+                                            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo"}', '*');
+                                        }, { once: true });
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspirational Section -->
+    <section class="inspiration" id="sobre">
+        <div class="container">
+            <div class="inspiration-content">
+                <h2>Quantas oportunidades você já deixou passar por medo ou falta de apoio?</h2>
+                <p>A Piloto é diferente: aqui você tem um time completo e um projeto validado para te ajudar a crescer.</p>
+                <p class="highlight-text">Você não precisa saber vender. Só precisa querer mudar de vida. A Piloto mostra o caminho.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="beneficios">
+        <div class="container">
+            <h2 class="section-title">Por que se tornar um Afiliado Piloto IA?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Comissões Atrativas</h3>
+                    <p>Ganhe em média R$250 por venda, com possibilidade de ganhos recorrentes e crescimento mensal.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Suporte Completo</h3>
+                    <p>Equipe de designers, programadores e especialistas prontos para te ajudar a vender mais.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Produto Validado</h3>
+                    <p>A Piloto IA já é um sucesso no mercado, facilitando suas vendas com um produto que realmente funciona.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Materiais Prontos</h3>
+                    <p>Acesso a vídeos, PDFs, scripts e materiais de marketing que vendem por você.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Showcase Section -->
+    <section class="comparison" id="comparativo">
+        <div class="container">
+            <h2 class="section-title">Benefícios Extraordinários da Piloto IA</h2>
+            <div class="benefits-showcase">
+                <div class="benefit-showcase-item">
+                    <div class="benefit-icon-large">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Comissões Extraordinárias</h3>
+                    <p>Ganhe <span class="highlight-big">ATÉ R$250 POR VENDA</span> com a Piloto IA! Imagine receber esse valor para cada cliente que você trouxer. Com nosso sistema de comissões recorrentes, seu faturamento mensal só cresce!</p>
+                </div>
+                
+                <div class="benefit-showcase-item">
+                    <div class="benefit-icon-large">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Suporte de Elite</h3>
+                    <p>Tenha acesso a uma <span class="highlight-big">EQUIPE COMPLETA DE ESPECIALISTAS</span> trabalhando para o seu sucesso! Designers, programadores e especialistas em marketing prontos para te ajudar a vender mais e melhor.</p>
+                </div>
+                
+                <div class="benefit-showcase-item">
+                    <div class="benefit-icon-large">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Produto Revolucionário</h3>
+                    <p>A Piloto IA é um <span class="highlight-big">PRODUTO VALIDADO E EM ALTA DEMANDA</span> no mercado! Empresas de todos os tamanhos estão buscando soluções de IA, e você terá a oportunidade de oferecer a melhor delas.</p>
+                </div>
+                
+                <div class="benefit-showcase-item">
+                    <div class="benefit-icon-large">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Arsenal Completo de Marketing</h3>
+                    <p>Receba <span class="highlight-big">TODOS OS MATERIAIS PRONTOS</span> para vender! Vídeos profissionais, apresentações impactantes, scripts testados e aprovados, PDFs informativos e muito mais - tudo pronto para você usar!</p>
+                </div>
+                
+                <div class="benefit-showcase-item">
+                    <div class="benefit-icon-large">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Treinamento Exclusivo</h3>
+                    <p>Acesse <span class="highlight-big">TREINAMENTOS COMPLETOS</span> que transformarão você em um especialista em vendas de IA! Mesmo sem experiência prévia, nossos treinamentos te levarão do zero ao sucesso.</p>
+                </div>
+                
+                <div class="benefit-showcase-item">
+                    <div class="benefit-icon-large">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Comunidade VIP</h3>
+                    <p>Faça parte de uma <span class="highlight-big">COMUNIDADE EXCLUSIVA NO DISCORD</span> com outros afiliados de sucesso! Compartilhe estratégias, tire dúvidas e celebre suas conquistas com pessoas que estão no mesmo caminho que você.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <h2 class="section-title">O que dizem nossos afiliados</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1hc2N1bGlub3xlbnwwfHwwfHx8MA%3D%3D" alt="Depoimento de Carlos Silva" style="object-position: center;">
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Hoje faturei R$1.200 com a Piloto! Nunca imaginei que seria possível ganhar tanto em um único dia. A equipe de suporte é incrível!"</p>
+                        <p class="testimonial-author">Carlos Silva</p>
+                        <p class="testimonial-role">Afiliado há 3 meses</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6463d7d8-26b0-4bcd-a6f9-660eac1e09ff/6477ac47-f068-4107-869e-150cac1e09ff.jpg" alt="Depoimento de Mariana Oliveira" style="object-position: center;">
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Nunca tive tanto suporte sendo afiliado de algo. Os materiais prontos facilitam muito o trabalho e as comissões são excelentes!"</p>
+                        <p class="testimonial-author">Mariana Oliveira</p>
+                        <p class="testimonial-role">Afiliada há 6 meses</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/testimonial-3.jpg" alt="Depoimento de Rafael Santos Junior" style="object-position: center;">
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Comecei sem experiência nenhuma e já estou faturando mais de R$5.000 por mês. A Piloto mudou minha vida financeira completamente!"</p>
+                        <p class="testimonial-author">Rafael Santos Junior</p>
+                        <p class="testimonial-role">Afiliado há 3 meses</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>O que é a Piloto IA?</h3>
+                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A Piloto IA é uma inteligência artificial que automatiza processos empresariais, como agendamentos, e-mails, CRM, entre outros. Empresas usam a Piloto para ganhar produtividade e economizar tempo.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Quem pode ser afiliado?</h3>
+                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Qualquer pessoa pode se afiliar. Mesmo iniciantes têm suporte completo com materiais, vídeos e acompanhamento da equipe.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Quanto posso ganhar?</h3>
+                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Afiliados ganham em média R$250 por venda, com possibilidade de ganhos recorrentes e crescimento mensal.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Recebo suporte?</h3>
+                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim! A Piloto oferece suporte com designers, programadores e um servidor no Discord com todo o conteúdo pronto para divulgar.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Preciso saber vender?</h3>
+                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Não. Você vai receber materiais que vendem por você: vídeos, apresentações, e estratégias testadas.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Como me afilio agora?</h3>
+                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clique no botão do WhatsApp e fale diretamente com a equipe. Eles vão te orientar no processo completo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Pronto para transformar sua vida financeira?</h2>
+                <p>Junte-se a centenas de afiliados que estão mudando suas vidas com a Piloto IA.</p>
+                <a href="https://wa.me/5519983165763?text=Quero%20ser%20afiliado%20da%20Piloto%20IA" class="btn btn-primary btn-large animated-btn"><i class="fab fa-whatsapp"></i> Quero ser afiliado agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/piloto-logo-new.png" alt="Piloto IA Logo">
+                    <p>Transformando o futuro dos negócios com inteligência artificial</p>
+                </div>
+                <div class="footer-links">
+                    <h3><i class="fas fa-link"></i> Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#sobre"><i class="fas fa-info-circle"></i> Sobre a Piloto</a></li>
+                        <li><a href="#beneficios"><i class="fas fa-gift"></i> Benefícios</a></li>
+                        <li><a href="#comparativo"><i class="fas fa-chart-bar"></i> Comparativo</a></li>
+                        <li><a href="#depoimentos"><i class="fas fa-comment-alt"></i> Depoimentos</a></li>
+                        <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3><i class="fas fa-address-book"></i> Contato</h3>
+
+                    <p><a href="https://wa.me/5519983165763?text=Quero%20ser%20afiliado%20da%20Piloto%20IA" target="_blank" class="footer-social-link"><i class="fab fa-whatsapp"></i> <span>WhatsApp</span></a></p>
+                    <p><a href="mailto:contato@piloto.live" target="_blank" class="footer-social-link"><i class="fas fa-envelope"></i> <span>E-mail</span></a></p>
+                    <p><a href="https://www.instagram.com/compre.piloto/" target="_blank" class="footer-social-link"><i class="fab fa-instagram"></i> <span>Instagram</span></a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Piloto IA. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed WhatsApp Button -->
+    <div class="whatsapp-fixed">
+        <a href="https://wa.me/5519983165763?text=Quero%20ser%20afiliado%20da%20Piloto%20IA" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> Quero ser afiliado agora
+        </a>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
