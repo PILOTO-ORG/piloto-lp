@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
         {/* <Pricing /> */}
         <Contact />
    
-        <ChatSection minimized={!showChat} />
+        {/* <ChatSection minimized={!showChat} /> */}
 
       </main>
       
