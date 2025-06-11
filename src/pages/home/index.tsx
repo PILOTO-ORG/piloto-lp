@@ -48,7 +48,7 @@ const HomePage: React.FC = () => {
       
       {/* WhatsApp button fixed at bottom right */}
       <a
-        href="https://wa.me/554899230055?text=Ol%C3%A1%21%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site."
+        href="https://wa.me/5548998589586?text=Ol%C3%A1%21%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site."
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-4 right-4 z-50"
