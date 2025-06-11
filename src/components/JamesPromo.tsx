@@ -61,7 +61,7 @@ const JamesPromo: React.FC = () => {
             
             {/* Chamada para ação */}
             <a
-              href="https://api.whatsapp.com/send/?phone=554899230055&text=Ol%C3%A1%21+Estou+entrando+em+contato+atrav%C3%A9s+do+James.&type=phone_number&app_absent=0"
+              href="https://api.whatsapp.com/send/?phone=5548998589586&text=Ol%C3%A1%21+Estou+entrando+em+contato+atrav%C3%A9s+do+James.&type=phone_number&app_absent=0"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-white text-blue-700 hover:bg-blue-50 py-3 px-6 rounded-lg font-medium transition-colors shadow-lg"
