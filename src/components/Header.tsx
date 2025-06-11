@@ -16,7 +16,7 @@ const Header = () => {
     window.open('https://buy.stripe.com/14k7t074j5YJbT23cc', '_blank');
   };
   const openChat = () => {
-    window.open('https://wa.me/554899230055?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais!', '_blank');
+    window.open('https://wa.me/5548998589586?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais!', '_blank');
   };
 
   return (
