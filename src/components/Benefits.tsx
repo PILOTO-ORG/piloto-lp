@@ -111,7 +111,7 @@ const Benefits = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <blockquote className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
               <p className="text-gray-600 mb-4">
-                "Com O Piloto, reduzimos o tempo de processamento de pedidos em 70%. A automação
+                "Com Piloto, reduzimos o tempo de processamento de pedidos em 70%. A automação
                 transformou completamente nossa operação."
               </p>
               <footer className="font-semibold">

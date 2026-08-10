@@ -55,7 +55,7 @@ const FloatingChat = ({ onClose, customProps }: FloatingChatProps) => {
     customProps?.initialMessages || [
       {
         id: 1,
-        text: "💡 Precisa automatizar processos na sua empresa? Sou O Piloto, especialista em transformar sua operação manual em fluxos automáticos inteligentes. Vamos conversar sobre seus desafios?",
+        text: "💡 Precisa automatizar processos na sua empresa? Sou Piloto, especialista em transformar sua operação manual em fluxos automáticos inteligentes. Vamos conversar sobre seus desafios?",
         sender: 'piloto',
         timestamp: new Date()
       }
@@ -243,10 +243,10 @@ const FloatingChat = ({ onClose, customProps }: FloatingChatProps) => {
           messages: [
             {
               role: "system",
-              content: `## **🤖 Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+              content: `## **🤖 Modelo de Agente de IA - Piloto (Pré-Vendas)**
  
 ### **📌 Visão Geral**
-**O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
+**Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
 
 Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
 - Explica de forma clara e objetiva os benefícios da solução.
@@ -256,7 +256,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
 ---
 
 ## **🎯 Objetivo do Agente**
-✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
+✔️ **Ser altamente persuasivo** ao apresentar Piloto como a melhor solução para automação.  
 ✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
 ✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
 ✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
@@ -411,10 +411,10 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
           messages: [
             {
               role: "system",
-              content: `## **🤖 Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+              content: `## **🤖 Modelo de Agente de IA - Piloto (Pré-Vendas)**
  
 ### **📌 Visão Geral**
-**O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
+**Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
 
 Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
 - Explica de forma clara e objetiva os benefícios da solução.
@@ -424,7 +424,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
 ---
 
 ## **🎯 Objetivo do Agente**
-✔️ **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
+✔️ **Ser altamente persuasivo** ao apresentar Piloto como a melhor solução para automação.  
 ✔️ **Fazer perguntas estratégicas** para entender as necessidades do lead.  
 ✔️ **Demonstrar aplicações práticas e personalizadas** para cada caso.  
 ✔️ **Coletar informações do lead** como nome, empresa e principal desafio.  
@@ -575,7 +575,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
                 <div className="h-8 w-8 bg-blue-700 text-blue-100 rounded-full flex items-center justify-center text-xs font-medium mr-2">
                   {customProps?.avatarText || "OP"}
                 </div>
-                <h3 className="font-medium">{customProps?.chatTitle || "O Piloto - Assistente Virtual"}</h3>
+                <h3 className="font-medium">{customProps?.chatTitle || "Piloto - Assistente Virtual"}</h3>
               </div>
               <div className="flex items-center space-x-2">
                 <button 

@@ -26,6 +26,7 @@ const HomePage: React.FC = () => {
         
       <main>
         <Hero />
+        <About />
                 <NandaPromo />
         <LuanaPromo />
 
@@ -33,8 +34,7 @@ const HomePage: React.FC = () => {
         <HowItWorks />
         <SystemIntegrations />
         {/* <FabricioPromo /> */}
-        {/* <Benefits />
-                <About /> */}
+        {/* <Benefits /> */}
         {/* <Parceiros /> */}
         {/* <Pricing /> */}
         <Contact />

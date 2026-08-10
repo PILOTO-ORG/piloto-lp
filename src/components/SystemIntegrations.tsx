@@ -58,7 +58,7 @@ const SystemIntegrations = () => {
             Integração com Seus Sistemas
           </h2>
           <p className="text-xl text-gray-600">
-            O Piloto se conecta aos principais sistemas do mercado brasileiro,
+            Piloto se conecta aos principais sistemas do mercado brasileiro,
             automatizando processos em diferentes setores e áreas de negócio.
           </p>
         </div>

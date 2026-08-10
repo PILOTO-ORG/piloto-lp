@@ -40,7 +40,7 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://buy.stripe.com/14k7t074j5YJbT23cc"
+              href="https://app.piloto.life"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"
@@ -80,7 +80,7 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://buy.stripe.com/9AQ3cKewL2Mx0ak289"
+              href="https://app.piloto.life"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-white text-blue-600 py-3 rounded-full hover:bg-blue-50 transition-colors font-semibold text-center"
@@ -116,7 +116,7 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://buy.stripe.com/14k7t074j5YJbT23cc"
+              href="https://app.piloto.life"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"

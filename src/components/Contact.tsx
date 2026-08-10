@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Calendar } from 'lucide-react';
 
 const Contact = () => {
   const openCalendly = () => {
-    window.open('https://calendly.com/luan-piloto', '_blank');
+    window.open('https://calendly.com/luan_piloto/15-minutos', '_blank');
   };
 
   return (
@@ -47,7 +47,8 @@ const Contact = () => {
                 <div>
                   <p className="font-medium text-gray-900">Endereço</p>
                   <p className="text-gray-700">
-                    Joinville - SC
+                    Rodovia Municipal Francisco Wollinger, 2037 - Areias do Meio<br />
+                    Governador Celso Ramos - SC, 88196-192
                   </p>
                 </div>
               </div>

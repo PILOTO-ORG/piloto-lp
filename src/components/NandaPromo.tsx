@@ -68,7 +68,7 @@ const NandaPromo: React.FC = () => {
             </div> */}
             
             <a
-              href="https://buy.stripe.com/14k7t074j5YJbT23cc"
+              href="https://app.piloto.life"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-white text-purple-700 hover:bg-purple-50 py-3 px-6 rounded-lg font-medium transition-colors shadow-lg"

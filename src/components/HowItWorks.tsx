@@ -34,7 +34,7 @@ const HowItWorks = () => {
             <Database className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
             <h3 className="text-xl font-semibold mb-4 text-blue-700">IA Processa</h3>
             <p className="text-gray-600">
-              O Piloto interpreta o comando e acessa a API do sistema
+              Piloto interpreta o comando e acessa a API do sistema
             </p>
           </div>
 

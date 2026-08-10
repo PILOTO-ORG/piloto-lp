@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Soluções</h3>
             <ul className="space-y-3">
-              <li><a href="/" className="text-gray-400 hover:text-white transition-colors">O Piloto</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-white transition-colors">Piloto</a></li>
               <li><a href="/nanda" className="text-gray-400 hover:text-white transition-colors">Nanda para Imobiliárias</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Integrações</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Para Desenvolvedores</a></li>

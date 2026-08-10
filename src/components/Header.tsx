@@ -13,7 +13,7 @@ const Header = () => {
   );
 
   const openPurchase = () => {
-    window.open('https://buy.stripe.com/14k7t074j5YJbT23cc', '_blank');
+    window.open('https://app.piloto.life', '_blank');
   };
   const openChat = () => {
     window.open('https://wa.me/5548998589586?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais!', '_blank');
@@ -28,7 +28,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <img src="/Prancheta4.png" alt="O Piloto" className="h-8" />
+              <img src="/Prancheta4.png" alt="Piloto" className="h-8" />
             </Link>
           </div>
 

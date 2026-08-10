@@ -14,7 +14,7 @@ const James: React.FC = () => {
           imageSrc="/images/whatsapp-automation.jpg"
           imageAlt="Automação via WhatsApp"
           ctaText="Solicitar Demonstração"
-          onClick={() => window.open('https://calendly.com/luan-piloto', '_blank')}
+          onClick={() => window.open('https://calendly.com/luan_piloto/15-minutos', '_blank')}
         />
         <AboutSection />
         <FeaturesSection />

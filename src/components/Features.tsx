@@ -10,7 +10,7 @@ const Features = () => {
             Potencialize seus Processos com IA Avançada
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            O Piloto é a evolução da automação empresarial, combinando inteligência artificial 
+            Piloto é a evolução da automação empresarial, combinando inteligência artificial 
             com simplicidade operacional. Transforme comandos simples em fluxos de trabalho 
             complexos, sem necessidade de conhecimento técnico.
           </p>

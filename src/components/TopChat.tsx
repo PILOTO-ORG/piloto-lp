@@ -50,7 +50,7 @@ const TopChat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: " Olá! Sou O Piloto, seu assistente de automação empresarial. Transforme tarefas manuais em processos automáticos e economize seu tempo!",
+      text: " Olá! Sou Piloto, seu assistente de automação empresarial. Transforme tarefas manuais em processos automáticos e economize seu tempo!",
       sender: 'piloto',
       timestamp: new Date()
     },
@@ -204,10 +204,10 @@ const TopChat: React.FC = () => {
         messages: [
           {
             role: "system",
-            content: `## ** Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+            content: `## ** Modelo de Agente de IA - Piloto (Pré-Vendas)**
  
  ### ** Visão Geral**
- **O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
+ **Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
  
  Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
  - Explica de forma clara e objetiva os benefícios da solução.
@@ -217,7 +217,7 @@ const TopChat: React.FC = () => {
  ---
  
  ## ** Objetivo do Agente**
- **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
+ **Ser altamente persuasivo** ao apresentar Piloto como a melhor solução para automação.  
  **Fazer perguntas estratégicas** para entender as necessidades do lead.  
  **Demonstrar aplicações práticas e personalizadas** para cada caso.  
  **Coletar informações do lead** como nome, empresa e principal desafio.  
@@ -398,10 +398,10 @@ const TopChat: React.FC = () => {
           messages: [
             {
               role: "system",
-              content: `## ** Modelo de Agente de IA - O Piloto (Pré-Vendas)**
+              content: `## ** Modelo de Agente de IA - Piloto (Pré-Vendas)**
  
  ### ** Visão Geral**
- **O Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
+ **Piloto** é um **assistente de IA especializado em automação empresarial**, projetado para **entender necessidades, apresentar soluções e direcionar potenciais clientes para o WhatsApp**.
  
  Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico**, que:
  - Explica de forma clara e objetiva os benefícios da solução.
@@ -411,7 +411,7 @@ const TopChat: React.FC = () => {
  ---
  
  ## ** Objetivo do Agente**
- **Ser altamente persuasivo** ao apresentar O Piloto como a melhor solução para automação.  
+ **Ser altamente persuasivo** ao apresentar Piloto como a melhor solução para automação.  
  **Fazer perguntas estratégicas** para entender as necessidades do lead.  
  **Demonstrar aplicações práticas e personalizadas** para cada caso.  
  **Coletar informações do lead** como nome, empresa e principal desafio.  

@@ -29,7 +29,7 @@ const NandaHeader: React.FC = () => {
 
   // Função para abrir a página de assinatura
   const openSubscriptionPage = () => {
-    window.open('https://buy.stripe.com/14k7t074j5YJbT23cc', '_blank');
+    window.open('https://app.piloto.life', '_blank');
   };
 
   return (
@@ -41,7 +41,7 @@ const NandaHeader: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <img src="/Prancheta5.png" alt="O Piloto" className="h-8 mr-2" />
+              <img src="/Prancheta5.png" alt="Piloto" className="h-8 mr-2" />
               <span className="text-white text-xl font-bold">
                 <span className="text-purple-300">Nanda</span>
               </span>
