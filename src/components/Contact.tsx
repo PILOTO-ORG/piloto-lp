@@ -26,8 +26,8 @@ const Contact = () => {
                 <Mail className="w-6 h-6 text-blue-600 mr-4" />
                 <div>
                   <p className="font-medium text-gray-900">E-mail</p>
-                  <a href="mailto:luan@piloto.live" className="text-gray-700 hover:text-blue-600">
-                    luan@piloto.live
+                  <a href="mailto:luan@piloto.life" className="text-gray-700 hover:text-blue-600">
+                    luan@piloto.life
                   </a>
                 </div>
               </div>
@@ -47,8 +47,9 @@ const Contact = () => {
                 <div>
                   <p className="font-medium text-gray-900">Endereço</p>
                   <p className="text-gray-700">
-                    Rodovia Municipal Francisco Wollinger, 2037 - Areias do Meio<br />
-                    Governador Celso Ramos - SC, 88196-192
+                    SC 410, 2037<br />
+                    Areias do Meio, GCR - SC<br />
+                    CEP 88196-192
                   </p>
                 </div>
               </div>
