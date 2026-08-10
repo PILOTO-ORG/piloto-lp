@@ -4,7 +4,6 @@ import {
   Workflow,
   Puzzle,
   Sparkles,
-  Building2,
   Users,
 } from 'lucide-react';
 
@@ -81,36 +80,7 @@ const About = () => {
           </p>
         </div>
 
-        {/* Dados da empresa */}
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center mb-6">
-            <Building2 className="w-6 h-6 text-blue-600 mr-2" />
-            <h3 className="text-xl font-semibold text-gray-900">Dados da empresa</h3>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-            <div className="bg-white p-4 rounded-lg border border-gray-100">
-              <p className="text-gray-500">Razão Social</p>
-              <p className="font-medium text-gray-900">PILOTO LTDA - ME</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg border border-gray-100">
-              <p className="text-gray-500">CNPJ</p>
-              <p className="font-medium text-gray-900">59.537.121/0001-10</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg border border-gray-100">
-              <p className="text-gray-500">Atividade</p>
-              <p className="font-medium text-gray-900">
-                Desenvolvimento e licenciamento de programas de computador customizáveis
-              </p>
-            </div>
-            <div className="bg-white p-4 rounded-lg border border-gray-100">
-              <p className="text-gray-500">Sede</p>
-              <p className="font-medium text-gray-900">
-                Rodovia Municipal Francisco Wollinger, 2037 - Areias do Meio,
-                Governador Celso Ramos - SC, 88196-192
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* (Dados da empresa movidos para o rodapé — ver CompanyData.tsx) */}
 
         {/*
           ============================================================

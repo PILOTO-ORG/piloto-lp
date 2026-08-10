@@ -11,6 +11,7 @@ import FabricioPromo from '../../components/FabricioPromo';
 import Benefits from '../../components/Benefits';
 import Pricing from '../../components/Pricing';
 import Contact from '../../components/Contact';
+import CompanyData from '../../components/CompanyData';
 import FloatingChat from '../../components/FloatingChat';
 import { motion } from 'framer-motion';
 import LuanaPromo from '../../components/LuanaPromo';
@@ -38,7 +39,10 @@ const HomePage: React.FC = () => {
         {/* <Parceiros /> */}
         {/* <Pricing /> */}
         <Contact />
-   
+
+        {/* Dados oficiais da empresa — no FIM da página */}
+        <CompanyData />
+
         {/* <ChatSection minimized={!showChat} /> */}
 
       </main>
