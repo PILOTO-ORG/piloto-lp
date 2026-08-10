@@ -12,6 +12,8 @@ import Benefits from '../../components/Benefits';
 import Pricing from '../../components/Pricing';
 import Contact from '../../components/Contact';
 import CompanyData from '../../components/CompanyData';
+import FuturisticBg from '../../components/FuturisticBg';
+import Reveal from '../../components/Reveal';
 import FloatingChat from '../../components/FloatingChat';
 import { motion } from 'framer-motion';
 import LuanaPromo from '../../components/LuanaPromo';
@@ -22,31 +24,36 @@ const HomePage: React.FC = () => {
   const [showChat] = useState(true);
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <div className="relative bg-gray-900 text-white min-h-screen overflow-x-hidden">
+      {/* Fundo SVG animado futurista */}
+      <FuturisticBg />
+
+      <div className="relative z-10">
       <Header />
-        
+
       <main>
         <Hero />
-        <About />
+        <Reveal><About /></Reveal>
                 <NandaPromo />
         <LuanaPromo />
 
         <JamesPromo />
-        <HowItWorks />
-        <SystemIntegrations />
+        <Reveal><HowItWorks /></Reveal>
+        <Reveal><SystemIntegrations /></Reveal>
         {/* <FabricioPromo /> */}
         {/* <Benefits /> */}
         {/* <Parceiros /> */}
         {/* <Pricing /> */}
-        <Contact />
+        <Reveal><Contact /></Reveal>
 
         {/* Dados oficiais da empresa — no FIM da página */}
-        <CompanyData />
+        <Reveal><CompanyData /></Reveal>
 
         {/* <ChatSection minimized={!showChat} /> */}
 
       </main>
-      
+      </div>
+
       {/* Floating WhatsApp button and Chat component */}
       <FloatingChat />
       

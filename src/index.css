@@ -28,3 +28,27 @@
 .animate-fade-in {
   animation: fade-in 0.2s ease-out;
 }
+/* Evita scroll horizontal (100vw + barra de rolagem) e prepara base futurista */
+html, body { overflow-x: hidden; max-width: 100%; }
+#root { overflow-x: hidden; }
+
+/* ===== Animações futuristas (FuturisticBg + reveal) ===== */
+@keyframes pf-float-a { 0%,100% { transform: translate(0,0);} 50% { transform: translate(40px,30px);} }
+@keyframes pf-float-b { 0%,100% { transform: translate(0,0);} 50% { transform: translate(-50px,25px);} }
+@keyframes pf-float-c { 0%,100% { transform: translate(0,0);} 50% { transform: translate(30px,-35px);} }
+@keyframes pf-radar { 0% { r:0; opacity:.6;} 100% { r:340px; opacity:0;} }
+@keyframes pf-scan-move { 0% { transform: translateY(0);} 100% { transform: translateY(900px);} }
+@keyframes pf-grid-drift { 0% { transform: translateY(0);} 100% { transform: translateY(48px);} }
+
+.pf-orb-a { animation: pf-float-a 16s ease-in-out infinite; }
+.pf-orb-b { animation: pf-float-b 20s ease-in-out infinite; }
+.pf-orb-c { animation: pf-float-c 24s ease-in-out infinite; }
+.pf-grid  { animation: pf-grid-drift 6s linear infinite; }
+.pf-scan  { animation: pf-scan-move 7s linear infinite; }
+.pf-ring-1 { animation: pf-radar 4s ease-out infinite; }
+.pf-ring-2 { animation: pf-radar 4s ease-out infinite 1.3s; }
+.pf-ring-3 { animation: pf-radar 4s ease-out infinite 2.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-orb-a,.pf-orb-b,.pf-orb-c,.pf-grid,.pf-scan,.pf-ring-1,.pf-ring-2,.pf-ring-3 { animation: none; }
+}

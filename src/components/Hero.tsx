@@ -43,7 +43,7 @@ const Hero = memo(({ backgroundImage }: HeroProps) => {
 
   return (
     <section
-      className="hero relative overflow-hidden min-h-[60vh] flex items-center justify-center pt-20 w-screen"
+      className="hero relative overflow-hidden min-h-[60vh] flex items-center justify-center pt-20 w-full"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -55,7 +55,7 @@ const Hero = memo(({ backgroundImage }: HeroProps) => {
           <div className="absolute inset-0 bg-black bg-opacity-50" />
         </div>
       )}
-      <div className="relative w-screen mx-auto z-10">
+      <div className="relative w-full mx-auto z-10">
         <div
           className="relative overflow-hidden"
           onTouchStart={handleTouchStart}
