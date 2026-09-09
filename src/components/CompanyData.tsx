@@ -40,7 +40,7 @@ const CompanyData = () => {
               </a>
             </Item>
             <Item icon={MapPin} label="Endereço">
-              SC 410, 2037 - Areias do Meio, GCR - SC, CEP 88196-192
+              Praça Nereu Ramos, 90 - Sala do Empreendedor, Centro, Biguaçu - SC, CEP 88.160-116
             </Item>
             <Item icon={Building2} label="Razão Social">
               PILOTO LTDA - ME
