@@ -1,0 +1,10 @@
+# piloto.life
+# O host canônico é www.piloto.life — piloto.life redireciona 307 para lá.
+
+User-agent: *
+Allow: /
+
+# O proxy da OpenAI não tem nada para indexar e cada chamada custa token.
+Disallow: /api/
+
+Sitemap: https://www.piloto.life/sitemap.xml

@@ -1,40 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { 
-  Send, 
+import {
+  Send,
   // X,  // Removed unused import
   ArrowLeft,
   Mic
 } from 'lucide-react';
-
-// OpenAI configuration
-// Usando uma chave temporária para desenvolvimento - em produção, use variáveis de ambiente
-const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || 'sk-exemplo-temporario123456789';
-
-// Configurando interceptor do Axios para garantir que a chave API seja incluída em todas as chamadas
-axios.interceptors.request.use(config => {
-  if (config.url?.includes('api.openai.com')) {
-    config.headers = config.headers || {};
-    
-    // Ensure API key is not empty and add it to the headers
-    if (!OPENAI_API_KEY || OPENAI_API_KEY === 'sk-exemplo-temporario123456789') {
-      console.error('OpenAI API key is missing or using a placeholder. Please check your .env file.');
-      // Desativar chamadas à API em desenvolvimento quando não há chave válida
-      if (import.meta.env.DEV) {
-        console.log('Development mode - mocking OpenAI API call');
-        // Em desenvolvimento, podemos modificar a URL para evitar chamadas à API real
-        // quando não temos uma chave válida
-        config.url = 'https://mock-api.local/v1/chat/completions';
-      }
-    }
-    
-    // Always set the Authorization header with the API key
-    config.headers.Authorization = `Bearer ${OPENAI_API_KEY}`;
-    console.log('Axios interceptor: Added API key to OpenAI request');
-  }
-  return config;
-});
+import { CHAT_COMPLETIONS_URL, TRANSCRIPTIONS_URL } from '../lib/openai';
 
 interface Message {
   id: number;
@@ -198,7 +171,7 @@ const TopChat: React.FC = () => {
 
     // Chamada para a API da OpenAI
     axios.post(
-      'https://api.openai.com/v1/chat/completions',
+      CHAT_COMPLETIONS_URL,
       {
         model: "gpt-4-turbo",
         messages: [
@@ -383,7 +356,7 @@ const TopChat: React.FC = () => {
       
       // Primeiro, obter a transcrição do áudio usando o modelo Whisper
       const transcriptionResponse = await axios.post(
-        'https://api.openai.com/v1/audio/transcriptions',
+        TRANSCRIPTIONS_URL,
         formData
       );
       
@@ -392,7 +365,7 @@ const TopChat: React.FC = () => {
       
       // Agora, enviar a transcrição para o modelo de chat para obter uma resposta
       const chatResponse = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
+        CHAT_COMPLETIONS_URL,
         {
           model: "gpt-4o",
           messages: [

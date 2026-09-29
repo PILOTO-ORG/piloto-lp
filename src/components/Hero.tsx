@@ -4,11 +4,29 @@ interface HeroProps {
   backgroundImage?: string;
 }
 
+// Os slides são WebP em duas larguras (800/1600). Os PNG originais de 2400px
+// continuam em public/ mas não são mais servidos: os quatro somavam 3,1 MB e
+// eram o LCP da home no celular.
+//
+// O alt descreve o conteúdo de cada slide, não a posição dele. O texto está
+// dentro da imagem — sem alt descritivo, leitor de tela não tem nada para ler.
 const images = [
-  '/2_Um-Clique-no-WhatsApp.png',
-  '/3_Objetivo.png',
-  '/4_Missao.png',
-  '/5_Legado.png',
+  {
+    slug: 'whatsapp',
+    alt: 'Um clique no WhatsApp: receber mensagens de clientes, processar o conteúdo com IA e responder em atendimento automático.',
+  },
+  {
+    slug: 'objetivo',
+    alt: 'Objetivo: somar inteligência humana (emoções e criatividade), inteligência artificial (automação e eficiência) e conexão (desenvolvimento social).',
+  },
+  {
+    slug: 'missao',
+    alt: 'Missão: democratizar acesso com novas oportunidades, reconhecer genialidade em novos talentos e transformar vidas com novas histórias.',
+  },
+  {
+    slug: 'legado',
+    alt: 'Legado: um gráfico circular dividido em três partes iguais — tempo, dinheiro e liberdade.',
+  },
 ];
 
 const AUTO_PLAY_INTERVAL = 5000;
@@ -65,11 +83,15 @@ const Hero = memo(({ backgroundImage }: HeroProps) => {
             className="flex transition-transform duration-400 ease-in-out"
             style={{ transform: `translateX(-${current * 100}%)` }}
           >
-            {images.map((src, idx) => (
-              <div key={idx} className="w-full flex-shrink-0">
+            {images.map((image) => (
+              <div key={image.slug} className="w-full flex-shrink-0">
                 <img
-                  src={src}
-                  alt={`Slide ${idx + 1}`}
+                  src={`/images/hero/${image.slug}-1600.webp`}
+                  srcSet={`/images/hero/${image.slug}-800.webp 800w, /images/hero/${image.slug}-1600.webp 1600w`}
+                  sizes="100vw"
+                  alt={image.alt}
+                  width={1600}
+                  height={900}
                   className="w-full h-full object-cover"
                   draggable={false}
                 />

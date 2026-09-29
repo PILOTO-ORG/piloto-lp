@@ -35,40 +35,28 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Preload condicional baseado na rota -->
-    <script>
-      // Apenas precarregar imagens da página principal se não estivermos na rota /nanda
-      if (!window.location.pathname.includes('/nanda')) {
-        const preloadLink = document.createElement('link');
-        preloadLink.rel = 'preload';
-        preloadLink.href = '/images/automation-hero.webp';
-        preloadLink.as = 'image';
-        preloadLink.type = 'image/webp';
-        document.head.appendChild(preloadLink);
-      }
-    </script>
-    
+    <!--
+      Preload do primeiro slide do Hero, que é o elemento LCP da home.
+
+      Era um <script> que injetava o link depois de o HTML ser processado — tarde
+      demais, porque o preload scanner do navegador já tinha passado. E apontava
+      para /images/automation-hero.webp, que nenhum componente renderiza: baixava
+      16 KB inúteis e ainda competia com a imagem que o Hero realmente mostra.
+
+      Link estático para o scanner achar na primeira passada. O imagesrcset tem de
+      repetir o do <img> do Hero, senão o navegador baixa as duas larguras.
+    -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero/whatsapp-1600.webp"
+      imagesrcset="/images/hero/whatsapp-800.webp 800w, /images/hero/whatsapp-1600.webp 1600w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+
     <title>Piloto - Viaje nessa experiência</title>
-    
-    <!-- Configuração das variáveis de ambiente -->
-    <script>
-      window.ENV = {
-        // Em produção, será substituído pelo valor real via interpolação de variáveis de ambiente
-        // Durante o desenvolvimento, usamos uma chave de exemplo
-        OPENAI_API_KEY: '%VITE_APP_OPENAI_API_KEY%' || 'sk-exemplo-temporario123456789'
-      };
-      
-      // Verificação adicional em caso de falha na interpolação da variável
-      if (window.ENV.OPENAI_API_KEY === '%VITE_APP_OPENAI_API_KEY%') {
-        // Fallback para desenvolvimento
-        window.ENV.OPENAI_API_KEY = 'sk-exemplo-temporario123456789';
-        console.log('Usando chave de API temporária para desenvolvimento');
-      }
-    </script>
-    
-    <!-- OpenAI API Key Interceptor -->
-    <script src="/openai-interceptor.js"></script>
-    
+
     <!-- Inlined critical CSS -->
     <style>
       /* Estilos críticos para evitar layout shifts */

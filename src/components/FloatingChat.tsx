@@ -2,34 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Mic, X, MessageCircle, ChevronDown } from 'lucide-react';
 import axios, { AxiosError } from 'axios';
+import { CHAT_COMPLETIONS_URL, TRANSCRIPTIONS_URL } from '../lib/openai';
 
-// OpenAI configuration
-// Usando uma chave temporária para desenvolvimento - em produção, use variáveis de ambiente
-const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || 'sk-exemplo-temporario123456789';
-
-// Configurando interceptor do Axios para garantir que a chave API seja incluída em todas as chamadas
-axios.interceptors.request.use(config => {
-  if (config.url?.includes('api.openai.com')) {
-    config.headers = config.headers || {};
-    
-    // Ensure API key is not empty and add it to the headers
-    if (!OPENAI_API_KEY || OPENAI_API_KEY === 'sk-exemplo-temporario123456789') {
-      console.error('OpenAI API key is missing or using a placeholder. Please check your .env file.');
-      // Desativar chamadas à API em desenvolvimento quando não há chave válida
-      if (import.meta.env.DEV) {
-        console.log('Development mode - mocking OpenAI API call');
-        // Em desenvolvimento, podemos modificar a URL para evitar chamadas à API real
-        // quando não temos uma chave válida
-        config.url = 'https://mock-api.local/v1/chat/completions';
-      }
-    }
-    
-    // Always set the Authorization header with the API key
-    config.headers.Authorization = `Bearer ${OPENAI_API_KEY}`;
-    console.log('Axios interceptor: Added API key to OpenAI request');
-  }
-  return config;
-});
 
 interface Message {
   id: number;
@@ -237,7 +211,7 @@ const FloatingChat = ({ onClose, customProps }: FloatingChatProps) => {
       
       // Usar chat completions diretamente em vez da API de assistentes
       const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
+        CHAT_COMPLETIONS_URL,
         {
           model: "gpt-4-turbo",
           messages: [
@@ -375,14 +349,6 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
     try {
       console.log('Enviando áudio para processamento pela OpenAI...');
       
-      // Obter a chave da API do OpenAI do ambiente
-      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-      
-      if (!apiKey) {
-        console.error('API Key do OpenAI não encontrada');
-        throw new Error('API Key do OpenAI não configurada');
-      }
-      
       // Preparar formData para envio
       const formData = new FormData();
       formData.append('file', audioBlob, 'audio.webm');
@@ -390,14 +356,8 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
       
       // Primeiro, obter a transcrição do áudio usando o modelo Whisper
       const transcriptionResponse = await axios.post(
-        'https://api.openai.com/v1/audio/transcriptions',
-        formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
+        TRANSCRIPTIONS_URL,
+        formData
       );
       
       const transcription = transcriptionResponse.data.text;
@@ -405,7 +365,7 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
       
       // Agora, enviar a transcrição para o modelo de chat para obter uma resposta
       const chatResponse = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
+        CHAT_COMPLETIONS_URL,
         {
           model: "gpt-4-turbo",
           messages: [
@@ -440,12 +400,6 @@ Ele **não é apenas um chatbot**, mas sim um agente **persuasivo e estratégico
             }
           ],
           max_tokens: 500
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'application/json'
-          }
         }
       );
       

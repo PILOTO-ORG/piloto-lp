@@ -1,30 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, X } from 'lucide-react';
-import axios from 'axios';
 
-// OpenAI configuration
-const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY || 'sk-exemplo-temporario123456789';
-
-// Configurando interceptor do Axios para garantir que a chave API seja incluída em todas as chamadas
-axios.interceptors.request.use(config => {
-  if (config.url?.includes('api.openai.com')) {
-    config.headers = config.headers || {};
-    
-    if (!OPENAI_API_KEY || OPENAI_API_KEY === 'sk-exemplo-temporario123456789') {
-      console.error('OpenAI API key is missing or using a placeholder. Please check your .env file.');
-      if (import.meta.env.DEV) {
-        console.log('Development mode - mocking OpenAI API call');
-        config.url = 'https://mock-api.local/v1/chat/completions';
-      }
-    } else {
-      // Ensure the API key is actually included in the Authorization header
-      config.headers.Authorization = `Bearer ${OPENAI_API_KEY}`;
-      console.log('Axios interceptor: Added API key to OpenAI request');
-    }
-  }
-  return config;
-});
 
 interface Message {
   id: number;

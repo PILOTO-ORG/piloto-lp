@@ -1,0 +1,31 @@
+# Piloto
+
+> A Piloto automatiza tarefas e processos de empresas com agentes de IA que
+> conversam pelo WhatsApp. Cada agente atende um tipo de operação: atendimento e
+> venda, integração de sistemas, e compras.
+
+Empresa brasileira, sediada em Biguaçu/SC. O contato comercial acontece pelo
+WhatsApp — as páginas dos agentes existem para demonstrar cada um deles e
+encaminhar a conversa para a equipe.
+
+## Agentes
+
+- [Nanda](https://www.piloto.life/nanda): agente de atendimento para o mercado
+  imobiliário. Conversa pelo WhatsApp, entende o que o cliente procura e
+  recomenda imóveis.
+- [James](https://www.piloto.life/james): integração de sistemas pelo WhatsApp.
+  Dispara processos e devolve relatórios automáticos sem trocar de aplicativo.
+- [Fabricio](https://www.piloto.life/fabricio): agente de compras. Compara
+  orçamentos e negocia para reduzir custo sem perder qualidade.
+
+## Programas
+
+- [Luana — programa de afiliados](https://www.piloto.life/luana): como revender
+  a Piloto, comissões e material de apoio.
+- [Parceiros](https://www.piloto.life/parceiros): empresas e integrações
+  parceiras.
+
+## Institucional
+
+- [Política de privacidade](https://www.piloto.life/privacidade)
+- [Termos de uso](https://www.piloto.life/termos)
