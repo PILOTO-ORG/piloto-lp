@@ -5,6 +5,7 @@ import Hero from '../../components/Hero';
 import About from '../../components/About';
 import HowItWorks from '../../components/HowItWorks';
 import SystemIntegrations from '../../components/SystemIntegrations';
+import AppRecursos from '../../components/AppRecursos';
 import NandaPromo from '../../components/NandaPromo';
 import JamesPromo from '../../components/JamesPromo';
 import FabricioPromo from '../../components/FabricioPromo';
@@ -40,6 +41,7 @@ const HomePage: React.FC = () => {
         <JamesPromo />
         <Reveal><HowItWorks /></Reveal>
         <Reveal><SystemIntegrations /></Reveal>
+        <AppRecursos />
         {/* <FabricioPromo /> */}
         {/* <Benefits /> */}
         {/* <Parceiros /> */}
