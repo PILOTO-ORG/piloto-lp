@@ -2,7 +2,7 @@ import { Calendar } from 'lucide-react';
 
 const Contact = () => {
   const openCalendly = () => {
-    window.open('https://calendly.com/luan_piloto/15-minutos', '_blank');
+    window.open('https://calendly.com/luan_piloto/', '_blank');
   };
 
   return (

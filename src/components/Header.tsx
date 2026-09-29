@@ -13,7 +13,7 @@ const Header = () => {
   );
 
   const openPurchase = () => {
-    window.open('https://app.piloto.life', '_blank');
+    window.open('https://app.piloto.life/register', '_blank');
   };
   const openChat = () => {
     window.open('https://wa.me/5548998589586?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais!', '_blank');

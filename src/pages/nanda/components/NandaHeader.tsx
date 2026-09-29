@@ -29,7 +29,7 @@ const NandaHeader: React.FC = () => {
 
   // Função para abrir a página de assinatura
   const openSubscriptionPage = () => {
-    window.open('https://app.piloto.life', '_blank');
+    window.open('https://app.piloto.life/register', '_blank');
   };
 
   return (

@@ -372,7 +372,7 @@ const FabricioPromo: React.FC = () => {
           
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://app.piloto.life"
+              href="https://app.piloto.life/register"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-white text-green-700 hover:bg-green-50 py-3 px-8 rounded-lg font-medium transition-colors shadow-lg"

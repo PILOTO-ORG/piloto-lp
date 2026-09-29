@@ -40,7 +40,7 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://app.piloto.life"
+              href="https://app.piloto.life/register"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"
@@ -80,7 +80,7 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://app.piloto.life"
+              href="https://app.piloto.life/register"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-white text-blue-600 py-3 rounded-full hover:bg-blue-50 transition-colors font-semibold text-center"
@@ -116,7 +116,7 @@ const Pricing = () => {
               </li>
             </ul>
             <a
-              href="https://app.piloto.life"
+              href="https://app.piloto.life/register"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors font-medium text-center"
