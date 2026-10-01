@@ -1,6 +1,12 @@
 import { Building2, Mail, Phone, MapPin, FileText, Briefcase } from 'lucide-react';
 
 // Rodapé institucional unificado: contato + dados oficiais da empresa (endereço uma única vez).
+const ENDERECO_MAPS_URL =
+  'https://www.google.com/maps/search/?api=1&query=' +
+  encodeURIComponent(
+    'Rodovia Municipal Francisco Wollinger, 2037, Areias do Meio, Governador Celso Ramos - SC, 88196-192'
+  );
+
 const Item = ({
   icon: Icon,
   label,
@@ -40,7 +46,19 @@ const CompanyData = () => {
               </a>
             </Item>
             <Item icon={MapPin} label="Endereço">
-              Praça Nereu Ramos, 90 - Sala do Empreendedor, Centro, Biguaçu - SC, CEP 88.160-116
+              <a
+                href={ENDERECO_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block hover:text-blue-600"
+              >
+                <span className="block">Rodovia Municipal Francisco Wollinger, 2037</span>
+                <span className="block">Areias do Meio — Governador Celso Ramos/SC</span>
+                <span className="block">CEP 88196-192</span>
+                <span className="block mt-1 text-xs font-normal text-gray-500 group-hover:text-blue-600">
+                  Toque para abrir no mapa →
+                </span>
+              </a>
             </Item>
             <Item icon={Building2} label="Razão Social">
               PILOTO LTDA - ME
