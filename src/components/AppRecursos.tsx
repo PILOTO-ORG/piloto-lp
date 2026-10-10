@@ -5,8 +5,12 @@ import {
   Gavel,
   MapPin,
   Linkedin,
+  Instagram,
+  Radar,
   Phone,
   Bot,
+  Sparkles,
+  QrCode,
   MessageSquare,
   ScanText,
   MessageCircle,
@@ -25,11 +29,21 @@ import type { LucideIcon } from 'lucide-react';
 // mesmo status. Quando um módulo mudar lá, mudar aqui — senão a landing promete
 // o que o app não entrega.
 //
+// CONFERIDO em 09/10/2026 contra o registro: 31 módulos, 28 'ativo' e 3
+// 'roadmap'. Tirando o grupo 'sistema' (5) e as duas omissões de propósito
+// abaixo, sobram os 21 que esta seção mostra. Se for mexer aqui, recontar — o
+// número aparece no texto de abertura.
+//
+// Nesta rodada entraram quatro que já estavam 'ativo' no app e faltavam aqui:
+// Prospecção, Instagram, QR Code e Sugestão de resposta. E caíram os selos "em
+// evolução" de WhatsApp e Agentes, que viraram 'ativo' no registro em 29/09.
+//
 // Ficaram de fora, de propósito: Restaurante (é o cardápio da Toca da Onça,
 // cliente específico), Freelas (prospecção da própria Piloto, não do cliente),
-// Base da navegação (só faz sentido com a extensão instalada) e Configurações
-// (conta e senha, não é recurso). "Importar planilha" virou a linha de apoio do
-// cabeçalho, onde ela vende melhor do que como cartão.
+// e o grupo 'sistema' inteiro — Base da navegação (só faz sentido com a
+// extensão instalada), Configurações e Usuários (conta e acesso, não é
+// recurso), Fontes públicas e Importar planilha. Esta última virou a linha de
+// apoio do cabeçalho, onde vende melhor do que como cartão.
 //
 // Os ícones seguem o registro do app, com duas exceções: lá 'emails' e
 // 'extracao' usam MessageSquare, e 'canais' e 'recursos' usam CalendarCheck.
@@ -55,10 +69,16 @@ const GRUPOS: Grupo[] = [
     resumo: 'Achar e conquistar cliente',
     recursos: [
       {
+        label: 'Prospecção',
+        icon: Radar,
+        descricao:
+          'Quem existe lá fora, vindo de quatro fontes: a base CNPJ da Receita Federal, o Google Maps, as redes sociais e a sua própria planilha. Filtra por ramo, cidade, porte e data de abertura, e o resultado cai direto na fila do CRM.',
+      },
+      {
         label: 'Aquisição & CRM',
         icon: Users,
         descricao:
-          'Do lead descoberto ao cliente na carteira: fila única vinda do LinkedIn, do Google Maps e da Receita Federal, com campanhas e funil.',
+          'Do lead descoberto ao cliente na carteira, numa fila só. Monta trilhas de contato e automações que iniciam a conversa e sabem continuar de onde parou — com campanhas e funil por etapa.',
       },
       {
         label: 'Orçamentos',
@@ -84,6 +104,12 @@ const GRUPOS: Grupo[] = [
         descricao:
           'Qualifica as pessoas e os posts que você vê no LinkedIn e redige a abordagem.',
       },
+      {
+        label: 'Instagram',
+        icon: Instagram,
+        descricao:
+          'Cresce a conta seguindo quem é da região, mede quanto cada fonte rende de seguidor e recicla quem não retribui — com teto por dia e por hora no servidor, porque rajada é o que a plataforma corta.',
+      },
     ],
   },
   {
@@ -94,15 +120,25 @@ const GRUPOS: Grupo[] = [
         label: 'WhatsApp',
         icon: Phone,
         descricao:
-          'Caixa de entrada em tempo real, com etiquetas, respostas rápidas, transcrição de áudio e Kanban.',
-        emEvolucao: true,
+          'Caixa de entrada em tempo real, com etiquetas, respostas rápidas, transcrição de áudio e Kanban. Liga o número pela Cloud API da Meta, em coexistência — sem tirar o WhatsApp do celular — ou por QR.',
       },
       {
         label: 'Agentes',
         icon: Bot,
         descricao:
           'Agentes de IA e regras por evento, com interação em tempo real.',
-        emEvolucao: true,
+      },
+      {
+        label: 'Sugestão de resposta',
+        icon: Sparkles,
+        descricao:
+          'A IA redige a resposta ao cliente juntando a conversa recente, o histórico, os dados do negócio com preço e o estilo da casa. Não existe botão de enviar: responder continua sendo ato de gente.',
+      },
+      {
+        label: 'QR Code',
+        icon: QrCode,
+        descricao:
+          'A plaquinha de balcão que leva à avaliação no Google, ao Pix ou ao WhatsApp — e cujo destino você troca sem reimprimir nada, porque o papel aponta para a Piloto, não para o destino final.',
       },
       {
         label: 'E-mail',
@@ -190,10 +226,10 @@ const AppRecursos = () => {
           </span>
           <h2 className="text-4xl font-bold mb-6">O que já está no app</h2>
           <p className="text-xl text-gray-300">
-            Não é uma lista de promessas: são os módulos que estão no ar hoje,
-            agrupados pelo momento do trabalho em que cada um entra. Começa
-            importando a sua planilha — ela vira cadastro, e você vê o que entra
-            antes de gravar.
+            Não é uma lista de promessas: são os 21 módulos que estão no ar hoje,
+            agrupados pelo momento do trabalho em que cada um entra. Na
+            implantação a gente escolhe junto quais fazem sentido para a sua
+            operação — ninguém opera bem com mais tela do que consegue usar.
           </p>
         </div>
 

@@ -1,27 +1,67 @@
 # Piloto
 
-> A Piloto automatiza tarefas e processos de empresas com agentes de IA que
-> conversam pelo WhatsApp. Cada agente atende um tipo de operação: atendimento e
-> venda, integração de sistemas, e compras.
+> A Piloto reúne a operação de médias empresas num app só — prospecção,
+> atendimento no WhatsApp, operação e financeiro — com agentes de IA que leem a
+> mensagem do cliente, dizem o que entenderam e redigem a resposta. Nada vira
+> pedido sem aprovação humana.
 
-Empresa brasileira, sediada em Biguaçu/SC. O contato comercial acontece pelo
-WhatsApp — as páginas dos agentes existem para demonstrar cada um deles e
-encaminhar a conversa para a equipe.
+PILOTO LTDA, CNPJ 59.537.121/0001-10. Empresa brasileira com sede registrada em
+Biguaçu/SC e operação em Governador Celso Ramos/SC. Atividade: desenvolvimento e
+licenciamento de programas de computador customizáveis.
 
-## Agentes
+Para quem é: médias empresas, em geral com mais de 10 colaboradores e
+faturamento acima de R$ 1 milhão por ano.
 
-- [Nanda](https://www.piloto.life/nanda): agente de atendimento para o mercado
-  imobiliário. Conversa pelo WhatsApp, entende o que o cliente procura e
-  recomenda imóveis.
+O contato comercial acontece pelo WhatsApp (48) 99858-9586 ou por
+luan@piloto.life.
+
+## O produto
+
+- [app.piloto.life](https://app.piloto.life) — o aplicativo. A home é o login;
+  depois de entrar, é uma biblioteca de módulos que o cliente ativa conforme
+  usa. São 21 módulos no ar, em quatro grupos:
+  - **Comercial**: Prospecção (base CNPJ da Receita Federal, hoje com o recorte
+    de Santa Catarina), Aquisição & CRM, Orçamentos (com assinatura digital pelo
+    gov.br), Licitações (contratos públicos do PNCP), Mapa (Google Places com
+    rota de visita), LinkedIn, Instagram.
+  - **Atendimento**: WhatsApp (Cloud API da Meta em coexistência, ou QR),
+    Agentes de IA, Sugestão de resposta, QR Code de balcão, E-mail, Leitura das
+    mensagens, Chat.
+  - **Operação**: Marketplace & Estoque, Agenda & Reuniões (com transcrição e
+    resumo), Tarefas & Kanban, Reservas por canal, Recursos e capacidade.
+  - **Gestão**: Dashboard & Relatórios, Financeiro.
+- [Criar conta](https://app.piloto.life/register) — cadastro e teste gratuito.
+
+Integração com sistemas de terceiros (ERP, CRM, e-commerce) é feita **sob
+encomenda**, pela API do cliente, dentro do escopo de um projeto. Não existe
+conector de prateleira dentro do app.
+
+## Clientes em operação
+
+- [Toca da Onça](https://toca.piloto.life) — restaurante. Cardápio público com
+  pedido pelo celular, entrega marcada no mapa, Kanban na cozinha, PDV e
+  estoque.
+- [Cunha Festas](https://cunhafestas.com.br) — locação de móveis e decoração
+  para festas. Catálogo do site servido pela API do sistema, orçamento pelo
+  WhatsApp com briefing extraído da conversa por IA.
+- Itaway Ecotours — ecoturismo. Agregador de reservas de oito canais (Bokun,
+  GetYourGuide, Viator, Airbnb, Civitatis, Klook, site e balcão) numa fila só,
+  com e-mail como canal classificado por IA. Sistema interno, sem acesso
+  público.
+
+## Agentes demonstrados no site
+
+As páginas abaixo demonstram agentes específicos e encaminham a conversa para a
+equipe.
+
+- [Nanda](https://www.piloto.life/nanda): atendimento pelo WhatsApp. Responde o
+  cliente, entende o que ele procura e recomenda.
 - [James](https://www.piloto.life/james): integração de sistemas pelo WhatsApp.
-  Dispara processos e devolve relatórios automáticos sem trocar de aplicativo.
-- [Fabricio](https://www.piloto.life/fabricio): agente de compras. Compara
-  orçamentos e negocia para reduzir custo sem perder qualidade.
-
-## Programas
-
-- [Luana — programa de afiliados](https://www.piloto.life/luana): como revender
-  a Piloto, comissões e material de apoio.
+  Dispara processos e devolve relatórios sem trocar de aplicativo.
+- [Luana](https://www.piloto.life/luana): conteúdo e directs no Instagram, com
+  tom de voz treinado na própria conta.
+- [Fabricio](https://www.piloto.life/fabricio): compras. Compara orçamentos e
+  negocia.
 - [Parceiros](https://www.piloto.life/parceiros): empresas e integrações
   parceiras.
 

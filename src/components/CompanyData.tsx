@@ -60,8 +60,15 @@ const CompanyData = () => {
                 </span>
               </a>
             </Item>
+            {/*
+              Nome empresarial é PILOTO LTDA, conforme a 1ª Alteração Contratual
+              registrada na JUCESC em 26/01/2026. "ME" é ENQUADRAMENTO (LC
+              123/2006, Cláusula Décima Segunda), não parte do nome — escrever
+              "PILOTO LTDA - ME" como razão social é impreciso. Os Termos e a
+              Política de Privacidade já escreviam certo; só este rodapé não.
+            */}
             <Item icon={Building2} label="Razão Social">
-              PILOTO LTDA - ME
+              PILOTO LTDA
             </Item>
             <Item icon={FileText} label="CNPJ">
               59.537.121/0001-10

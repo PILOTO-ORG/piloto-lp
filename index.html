@@ -3,8 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Piloto - Automatize tarefas e aumente sua produtividade com IA avançada" />
+    <meta name="description" content="A Piloto reúne prospecção, atendimento no WhatsApp, operação e financeiro num app só, com agentes de IA que leem a mensagem do cliente e redigem a resposta. 21 módulos no ar. Para médias empresas." />
     <meta name="theme-color" content="#1F2937" />
+    <link rel="canonical" href="https://www.piloto.life/" />
+
+    <!-- Open Graph / compartilhamento em WhatsApp, LinkedIn e Instagram -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Piloto" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content="https://www.piloto.life/" />
+    <meta property="og:title" content="Piloto — a operação da sua empresa num app só, com IA que executa" />
+    <meta property="og:description" content="Prospecção, atendimento no WhatsApp, operação e financeiro no mesmo lugar. Os agentes de IA leem a mensagem do cliente e redigem a resposta — e nada vira pedido sem você aprovar." />
+    <meta property="og:image" content="https://www.piloto.life/images/hero/objetivo-1600.webp" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+    <meta name="twitter:card" content="summary_large_image" />
     
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -36,26 +49,20 @@
     <link rel="manifest" href="/site.webmanifest" />
     
     <!--
-      Preload do primeiro slide do Hero, que é o elemento LCP da home.
+      SEM preload de imagem aqui, de propósito.
 
-      Era um <script> que injetava o link depois de o HTML ser processado — tarde
-      demais, porque o preload scanner do navegador já tinha passado. E apontava
-      para /images/automation-hero.webp, que nenhum componente renderiza: baixava
-      16 KB inúteis e ainda competia com a imagem que o Hero realmente mostra.
+      Havia um preload do primeiro slide do carrossel, que era o elemento LCP
+      quando o carrossel abria a home. Em 09/10/2026 o herói virou TEXTO
+      (src/components/HeroIntro.tsx) e o carrossel desceu para o meio da página:
+      o LCP agora é o <h1>, que vem no HTML, e as imagens do carrossel estão
+      abaixo da dobra com loading="lazy".
 
-      Link estático para o scanner achar na primeira passada. O imagesrcset tem de
-      repetir o do <img> do Hero, senão o navegador baixa as duas larguras.
+      Preload de imagem que não é mais o LCP não acelera nada — só antecipa um
+      download de 1600px que disputa banda com o bundle. Se o herói voltar a ser
+      imagem, o preload volta junto, com imagesrcset igual ao do <img>.
     -->
-    <link
-      rel="preload"
-      as="image"
-      href="/images/hero/whatsapp-1600.webp"
-      imagesrcset="/images/hero/whatsapp-800.webp 800w, /images/hero/whatsapp-1600.webp 1600w"
-      imagesizes="100vw"
-      fetchpriority="high"
-    />
 
-    <title>Piloto - Viaje nessa experiência</title>
+    <title>Piloto — a operação da sua empresa num app só, com IA que executa</title>
 
     <!-- Inlined critical CSS -->
     <style>
@@ -83,6 +90,39 @@
         background-color: #1F2937;
       }
     </style>
+
+    <!--
+      Dados estruturados da empresa.
+
+      `legalName` é PILOTO LTDA sem o "- ME": ME é enquadramento, não parte do
+      nome (1ª Alteração Contratual, JUCESC 26/01/2026). O endereço aqui é o
+      OPERACIONAL, o mesmo que o rodapé mostra — a sede registrada em Biguaçu
+      fica nos Termos e na Política de Privacidade, que é onde ela tem efeito.
+      Os dois coexistem de propósito; não "unificar".
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Piloto",
+        "legalName": "PILOTO LTDA",
+        "taxID": "59.537.121/0001-10",
+        "url": "https://www.piloto.life/",
+        "logo": "https://www.piloto.life/android-chrome-512x512.png",
+        "email": "luan@piloto.life",
+        "telephone": "+55-48-99858-9586",
+        "description": "Automação de operações para médias empresas com agentes de IA integrados ao WhatsApp, desenvolvimento sob medida e licenciamento de programas de computador customizáveis.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rodovia Municipal Francisco Wollinger, 2037, Areias do Meio",
+          "addressLocality": "Governador Celso Ramos",
+          "addressRegion": "SC",
+          "postalCode": "88196-192",
+          "addressCountry": "BR"
+        },
+        "sameAs": ["https://www.instagram.com/piloto.life"]
+      }
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

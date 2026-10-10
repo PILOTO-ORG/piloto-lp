@@ -101,7 +101,7 @@ const JamesPromo: React.FC = () => {
   <div className="flex flex-col space-y-4">
     <div className="flex items-start max-w-[80%]">
       <div className="bg-blue-100 p-3 rounded-lg rounded-tl-none">
-        <p className="text-blue-800">Olá, sou o James, seu consultor financeiro virtual da Piloto.live. Como posso ajudar hoje?</p>
+        <p className="text-blue-800">Olá, sou o James, seu consultor financeiro virtual da Piloto. Como posso ajudar hoje?</p>
       </div>
     </div>
     <div className="flex items-start self-end max-w-[80%]">
@@ -111,7 +111,8 @@ const JamesPromo: React.FC = () => {
     </div>
     <div className="flex items-start max-w-[80%]">
       <div className="bg-blue-100 p-3 rounded-lg rounded-tl-none">
-        <p className="text-blue-800">Claro! Verificando seu fluxo de caixa de abril de 2025... Você teve R$ 80.000 em entradas e R$ 65.000 em saídas. Recomendo renegociar os fornecedores com maior custo e considerar um plano de pagamento estendido para melhorar seu capital de giro. Posso gerar um relatório detalhado?</p>
+        {/* Sem mês fixo de propósito: estava "abril de 2025" e envelheceu no ar. */}
+        <p className="text-blue-800">Claro! Verificando seu fluxo de caixa do mês passado... Você teve R$ 80.000 em entradas e R$ 65.000 em saídas. Recomendo renegociar os fornecedores com maior custo e considerar um plano de pagamento estendido para melhorar seu capital de giro. Posso gerar um relatório detalhado?</p>
       </div>
     </div>
   </div>

@@ -3,6 +3,27 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/*
+  Âncora sob cabeçalho fixo.
+
+  O cabeçalho é `fixed` e tem ~68px de altura. Sem isto, clicar em "Clientes" no
+  menu leva a seção para `top: 0` — exatamente atrás do cabeçalho — e o título
+  da seção fica encoberto: o visitante clica e parece que caiu no lugar errado.
+  Medido no painel em 09/10/2026, antes da correção: #clientes parava em top 0.
+
+  `scroll-margin-top` resolve no próprio alvo, sem JS e sem compensar no scroll.
+*/
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Quem pediu para não animar também não quer ser levado de rolagem suave. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Definições de animações keyframes */
 @keyframes pulse-highlight {
   0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.6); }

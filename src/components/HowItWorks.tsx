@@ -1,17 +1,35 @@
-import React from 'react';
-import { MessageCircle, ArrowRight, Database, Check } from 'lucide-react';
+import { MessageCircle, Database, Check, Mic } from 'lucide-react';
+
+// Esta seção tinha, depois dos três passos, um bloco escuro "Exemplos de Uso"
+// com seis categorias (CRM, ERP, Financeiro, E-commerce, RH, Suporte) e os
+// mesmos nomes de sistema que a seção SystemIntegrations lista logo abaixo —
+// duplicata quase literal. Fechava com um botão "Ver Mais Integrações" que só
+// rolava a página até a própria duplicata.
+//
+// O bloco saiu. O que valia nele eram os COMANDOS, que não se repetem em lugar
+// nenhum: viraram a tira compacta abaixo dos passos, sem repetir nome de
+// fornecedor (isso é assunto da seção de integrações, e lá está rotulado como
+// sob medida).
+
+const COMANDOS = [
+  'Atualize o estoque do produto X para 50 unidades',
+  'Agende follow-up com o João para a próxima semana',
+  'Gere o relatório de faturamento do mês',
+  'Abra um chamado para esse cliente com prioridade alta',
+];
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-20 bg-white">
+    <section id="como-funciona" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
-            Automação sem esforço: Fale, que o Piloto executa!
+            Você fala, a Piloto executa
           </h2>
           <p className="text-lg sm:text-xl text-gray-600">
-            Nosso agente de IA se conecta à API do seu sistema e permite que você execute
-            tarefas apenas enviando mensagens de texto ou áudio.
+            O agente de IA se conecta à API do seu sistema e executa a tarefa a
+            partir de uma mensagem de texto ou de áudio — sem você abrir outra
+            tela.
           </p>
         </div>
 
@@ -21,9 +39,10 @@ const HowItWorks = () => {
               1
             </div>
             <MessageCircle className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
-            <h3 className="text-xl font-semibold mb-4 text-blue-700">Envie um Comando</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Envie um comando</h3>
             <p className="text-gray-600">
-              "Atualize o estoque do produto X para 50 unidades"
+              Escreva em português, do jeito que você falaria com alguém da
+              equipe. Áudio também serve: a mensagem é transcrita.
             </p>
           </div>
 
@@ -32,9 +51,10 @@ const HowItWorks = () => {
               2
             </div>
             <Database className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
-            <h3 className="text-xl font-semibold mb-4 text-blue-700">IA Processa</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">A IA interpreta</h3>
             <p className="text-gray-600">
-              Piloto interpreta o comando e acessa a API do sistema
+              O agente diz o que entendeu — o quê, para quando, quantos, onde —
+              e chama a API do sistema com esses dados.
             </p>
           </div>
 
@@ -43,113 +63,35 @@ const HowItWorks = () => {
               3
             </div>
             <Check className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-4 sm:mb-6" />
-            <h3 className="text-xl font-semibold mb-4 text-blue-700">Tarefa Executada</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-700">Você aprova</h3>
             <p className="text-gray-600">
-              A ação é realizada e você recebe a confirmação
+              Nada vira pedido, orçamento ou resposta ao cliente sem o seu aval.
+              Depois de aprovado, a ação é executada e confirmada.
             </p>
           </div>
         </div>
 
-        <div className="bg-gray-900 text-white rounded-2xl p-8 md:p-12">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-6">Exemplos de Uso</h3>
-              <div className="space-y-8">
-                <div>
-                  <h4 className="text-blue-400 font-semibold mb-3">CRM (Pipedrive, HubSpot, RD Station)</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                      <span>"Atualize o status do lead João para 'Qualificado'"</span>
-                    </li>
-                    <li className="flex items-start">
-                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                      <span>"Agende follow-up para próxima semana"</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-blue-400 font-semibold mb-3">ERP (TOTVS, SAP, Omie)</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                      <span>"Emita nota fiscal para o pedido #1234"</span>
-                    </li>
-                    <li className="flex items-start">
-                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                      <span>"Atualize o estoque do produto XYZ"</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-blue-400 font-semibold mb-3">Financeiro (Conta Azul, Nibo)</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                      <span>"Gere relatório de faturamento mensal"</span>
-                    </li>
-                    <li className="flex items-start">
-                      <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                      <span>"Faça conciliação bancária de hoje"</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <button 
-                onClick={() => document.getElementById('integrations')?.scrollIntoView({ behavior: 'smooth' })}
-                className="mt-8 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors inline-flex items-center"
-              >
-                Ver Mais Integrações
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="space-y-8">
-              <div>
-                <h4 className="text-blue-400 font-semibold mb-3">E-commerce (VTEX, Shopify)</h4>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                    <span>"Atualize o status do pedido para 'Enviado'"</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                    <span>"Ajuste o preço do produto ABC"</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-blue-400 font-semibold mb-3">RH (Gupy, Senior Sistemas)</h4>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                    <span>"Inicie processo de onboarding para Maria"</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                    <span>"Agende férias do colaborador José"</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-blue-400 font-semibold mb-3">Suporte (Zendesk, Freshdesk)</h4>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                    <span>"Abra ticket para cliente com prioridade alta"</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="w-5 h-5 mr-2 mt-1 text-blue-400 flex-shrink-0" />
-                    <span>"Encaminhe chamado #5678 para equipe técnica"</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div className="max-w-4xl mx-auto bg-gray-900 text-white rounded-2xl p-8 md:p-10">
+          <div className="flex items-center mb-6">
+            <Mic className="w-5 h-5 text-blue-400 mr-2 flex-shrink-0" aria-hidden="true" />
+            <h3 className="text-xl font-bold">Comandos que já funcionam assim</h3>
           </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {COMANDOS.map((comando) => (
+              <li
+                key={comando}
+                className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-200"
+              >
+                <span className="text-gray-500 mr-1" aria-hidden="true">
+                  “
+                </span>
+                {comando}
+                <span className="text-gray-500 ml-1" aria-hidden="true">
+                  ”
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -4,9 +4,21 @@ interface HeroProps {
   backgroundImage?: string;
 }
 
+// Carrossel institucional: objetivo, missão e legado da Piloto.
+//
 // Os slides são WebP em duas larguras (800/1600). Os PNG originais de 2400px
-// continuam em public/ mas não são mais servidos: os quatro somavam 3,1 MB e
-// eram o LCP da home no celular.
+// continuam em public/ mas não são mais servidos: os quatro somavam 3,1 MB.
+//
+// Desde 09/10/2026 este NÃO é mais o primeiro elemento da home — o herói virou
+// texto (HeroIntro) e este bloco desceu para junto do "Sobre a Piloto". Duas
+// consequências que estão no código:
+//
+// 1. `loading="lazy"`: as imagens ficaram abaixo da dobra, então não devem
+//    competir com o render inicial. O <link rel="preload"> que o index.html
+//    tinha para o primeiro slide foi removido pelo mesmo motivo — preload de
+//    coisa que não é LCP é só download antecipado disputando banda.
+// 2. O `pt-20` saiu: ele existia para a imagem não ficar embaixo do cabeçalho
+//    fixo, e no meio da página virava um vão.
 //
 // O alt descreve o conteúdo de cada slide, não a posição dele. O texto está
 // dentro da imagem — sem alt descritivo, leitor de tela não tem nada para ler.
@@ -61,7 +73,7 @@ const Hero = memo(({ backgroundImage }: HeroProps) => {
 
   return (
     <section
-      className="hero relative overflow-hidden min-h-[60vh] flex items-center justify-center pt-20 w-full"
+      className="hero relative overflow-hidden min-h-[60vh] flex items-center justify-center w-full"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -92,6 +104,8 @@ const Hero = memo(({ backgroundImage }: HeroProps) => {
                   alt={image.alt}
                   width={1600}
                   height={900}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                   draggable={false}
                 />
